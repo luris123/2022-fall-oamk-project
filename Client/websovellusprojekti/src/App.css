@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: #61dafb;
 }
 
 .App-header {
@@ -10,7 +11,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(255, 255, 255);
 }
 
 .App-link {
@@ -24,4 +25,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+.h1 {
+  color: #ffffff;
+  text-align: center;
+  font-size: 80px;
 }
