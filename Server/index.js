@@ -7,7 +7,7 @@ const connectDB = require('./config/dbConn');
 const PORT = process.env.PORT || 3001; 
 
 //Cross Origin Resource Sharing
-app.use(cors(true));
+app.use(cors());
 
 //built-in middleware to hande urlencoded form data
 app.use(express.urlencoded({extended: false}));

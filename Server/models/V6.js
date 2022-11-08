@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const v2Schema = new Schema({
+const v6Schema = new Schema({
     year: {
         type: Number,
     },
@@ -11,4 +11,4 @@ const v2Schema = new Schema({
 
 });
 
-module.exports = mongoose.model('V2', v2Schema);
+module.exports = mongoose.model('V6', v6Schema);

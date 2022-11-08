@@ -1,11 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const globalAnnualSchema = new Schema({
-    time: Number,
-    anomaly: Number
-});
-
 const v1Schema = new Schema({
     globalAnnual: {
        type: Array
