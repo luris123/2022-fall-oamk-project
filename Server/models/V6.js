@@ -11,4 +11,11 @@ const v6Schema = new Schema({
 
 });
 
+v6Schema.set('toJSON', {
+    transform: (document, returnedObject) => {
+      returnedObject.id = returnedObject._id.toString()
+
+    }
+  })
+
 module.exports = mongoose.model('V6', v6Schema);

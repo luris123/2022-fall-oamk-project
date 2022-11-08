@@ -11,4 +11,11 @@ const v5Schema = new Schema({
 
 });
 
+v5Schema.set('toJSON', {
+    transform: (document, returnedObject) => {
+      returnedObject.id = returnedObject._id.toString()
+
+    }
+  })
+
 module.exports = mongoose.model('V5', v5Schema);

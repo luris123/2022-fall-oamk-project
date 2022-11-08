@@ -8,4 +8,11 @@ const v8Schema = new Schema({
 
 });
 
+v8Schema.set('toJSON', {
+    transform: (document, returnedObject) => {
+      returnedObject.id = returnedObject._id.toString()
+
+    }
+  })
+
 module.exports = mongoose.model('V8', v8Schema);

@@ -17,4 +17,11 @@ const v4Schema = new Schema({
 
 });
 
+v4Schema.set('toJSON', {
+    transform: (document, returnedObject) => {
+      returnedObject.id = returnedObject._id.toString()
+
+    }
+  })
+
 module.exports = mongoose.model('V4', v4Schema);

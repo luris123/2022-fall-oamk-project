@@ -17,4 +17,11 @@ const v9Schema = new Schema({
 
 });
 
+v9Schema.set('toJSON', {
+    transform: (document, returnedObject) => {
+      returnedObject.id = returnedObject._id.toString()
+
+    }
+  })
+
 module.exports = mongoose.model('V9', v9Schema);
