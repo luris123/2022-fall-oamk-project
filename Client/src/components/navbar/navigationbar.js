@@ -7,6 +7,7 @@ import Form from 'react-bootstrap/Form';
 
 
 function Navigationbar() {
+
     return (
         <Navbar collapseOnSelect expand ="sm" bg="dark" variant="dark">
             <Navbar.Toggle aria-controls="navBarScroll" data-bs-target="#navbarScroll"/>
@@ -24,7 +25,7 @@ function Navigationbar() {
                         <Form>
                             <Form.Group>
                                 <Form.Label>Käyttäjätunnus</Form.Label>
-                                <Form.Control type="user" placeholder="Syötä käyttäjätunnus" />
+                                <Form.Control type="user" placeholder="Syötä käyttäjätunnus"/>
                             </Form.Group>
                             <Form.Group>
                                 <Form.Label>Salasana</Form.Label>

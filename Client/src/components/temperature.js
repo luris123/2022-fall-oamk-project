@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {Chart} from 'chart.js';
 import axios from 'axios'
 const URL = "http://localhost:3001"
 
