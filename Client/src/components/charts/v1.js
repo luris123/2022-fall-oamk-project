@@ -43,8 +43,7 @@ function V1() {
         
           //Temporary test below will be changed to chart later on...
           return (
-            <div>
-              <h3>V1 Temperature Anomalies (this will be replaced with a chart...)</h3>
+
               <Line
               style={{backgroundColor: "white"}}
                 options={options}
@@ -60,7 +59,6 @@ function V1() {
                   ]
                 }}
               />
-            </div>
         
           )
         }
