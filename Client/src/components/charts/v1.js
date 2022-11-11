@@ -12,13 +12,13 @@ function V1() {
 
     useEffect(() => {
         try {
-            chartService.getAllDatasets()
+            chartService.getV1Data()
             .then((response) => {
     
-                let globalAnnualYears = response.v1data[0].globalAnnual.map( x => x.time);
+                let globalAnnualYears = response[0].globalAnnual.map( x => x.time);
                 setGlobalAnnualYears1(globalAnnualYears);
     
-                let globalAnnualAnomaly = response.v1data[0].globalAnnual.map( x => x.anomaly);
+                let globalAnnualAnomaly = response[0].globalAnnual.map( x => x.anomaly);
                 setGlobalAnnualAnomaly1(globalAnnualAnomaly);
     
             });
