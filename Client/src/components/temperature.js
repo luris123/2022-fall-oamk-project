@@ -7,47 +7,20 @@ const URL = "http://localhost:3001"
 Chart.register(...registerables);
 
 function Temperature() {
-  let years = [];
-  let anomaly = [];
 
-  const [years2, setYears] = useState([]);
-  const [globalAnnualAnomaly, setGlobalAnnualAnomaly] = useState([]);
-  const [globalMonthlyAnomaly, setGlobalMonthlyAnomaly] = useState([]);
-  const [northernAnnualAnomaly, setNorthernAnnualAnomaly] = useState([]);
-  const [northernMonthlyAnomaly, setNorthernMonthlyAnomaly] = useState([]);
-
-
+  const [globalAnnualYears1, setGlobalAnnualYears1] = useState([]);
+  const [globalAnnualyAnomaly1, setGlobalAnnualAnomaly1] = useState([]);
   //Paikat naille voi muuttua myohemmin...
   useEffect(() => {
     try {
       const response = axios.get(URL + "/datasets")
         .then((response) => {
 
-          console.log(response.data.v1data);
-          response.data.v1data[0].globalAnnual.forEach(element => {
-            years.push(element.time);
-            anomaly.push(element.anomaly);
-          });
-          setYears(years);
-          setGlobalAnnualAnomaly(anomaly);
-          
-          anomaly = [];
-          response.data.v1data[0].globalMonthly.forEach(element => {
-            anomaly.push(element.anomaly);
-          });
-          setGlobalMonthlyAnomaly(anomaly);
+          let globalAnnualYears = response.data.v1data[0].globalAnnual.map( x => x.time);
+          setGlobalAnnualYears1(globalAnnualYears);
 
-          anomaly = [];
-          response.data.v1data[0].northernAnnual.forEach(element => {
-            anomaly.push(element.anomaly);
-          });
-          setNorthernAnnualAnomaly(anomaly);
-
-          anomaly = [];
-          response.data.v1data[0].northernMonthly.forEach(element => {
-            anomaly.push(element.anomaly);
-          });
-          setNorthernMonthlyAnomaly(anomaly);
+          let globalAnnualAnomaly = response.data.v1data[0].globalAnnual.map( x => x.anomaly);
+          setGlobalAnnualAnomaly1(globalAnnualAnomaly);
 
         });
 
@@ -66,7 +39,7 @@ function Temperature() {
         display: true,
         text: "Temperature Anomalies from 1850",
       },
-    },
+    }
   };
 
 
@@ -78,24 +51,13 @@ function Temperature() {
       style={{backgroundColor: "white"}}
         options={options}
         data={{
-          labels: years2,
+          labels: globalAnnualYears1,
           datasets: [
             {
               label: "Global Annual",
-              data: globalAnnualAnomaly,
-              backgroundColor: "rgba(255, 99, 132, 0.5)",
-            },
-            {
-              label: "Global Monthly",
-              data: globalMonthlyAnomaly,
-            },
-            {
-              label: "Northern Annual",
-              data: northernAnnualAnomaly,
-            },
-            {
-              label: "Northern Monthly",
-              data: northernMonthlyAnomaly,
+              data: globalAnnualyAnomaly1,
+              borderColor: 'rgb(53, 162, 235)',
+              backgroundColor: 'rgba(53, 162, 235, 0.5)',
             }
           ]
         }}
