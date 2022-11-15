@@ -52,9 +52,9 @@ function V8() {
   return (
     <>
       <h3>V8 CO2 emissions by country</h3>
-      <a href="https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D">V8 Data source</a>
+      <a href="https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D" target="_blank">V8 Data source</a>
       <br></br>
-      <a href="https://www.icos-cp.eu/science-and-impact/global-carbon-budget/2021">V8 description<br/></a>
+      <a href="https://www.icos-cp.eu/science-and-impact/global-carbon-budget/2021" target="_blank">V8 description<br/></a>
       <Line
         style={{ backgroundColor: "white" }}
         options={options}

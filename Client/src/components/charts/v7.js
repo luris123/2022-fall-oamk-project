@@ -53,9 +53,11 @@ function V7() {
         scales: {
             y1: {
                 position: 'right',
+                min: -5,
+                max: 15,
                 title: {
                     display: true,
-                    text: "Temperature (ºC)",
+                    text: "Surface temperature change (ºC)",
                     color: 'blue',
                     font: {
                         size: 20,
@@ -66,6 +68,8 @@ function V7() {
             },
             y2: {
                 position: 'left',
+                min: 100,
+                max: 300,
                 title: {
                     display: true,
                     text: "C02 ppm",
@@ -77,39 +81,54 @@ function V7() {
                     },
                 }
 
-            }
+            },
+            x1: {
+                reverse: true,
+                type: "linear",
+                title: {
+                    display: true,
+                    text: "Time (ka)",
+                    color: 'black',
+                    font: {
+                        size: 20,
+                        weight: 'bold',
+                        lineHeight: 1.2,
+                    },
+                }
+            },
         }
 
-    }
+    };
 
     return (
         <>
             <h3>V7 Evolution of global temperature over the past two million years</h3>
-            <div style={{width: 2000, height: 1000, margin: 'auto'}}>
+            <a href="http://carolynsnyder.com/publications.php" target="_blank">Data source</a>
+            <br></br>
+            <a href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf" target="_blank">Data description</a>
+            <div style={{ width: 1500, height: 'auto', margin: 'auto' }}>
                 <Line
                     style={{ backgroundColor: "white" }}
                     options={options}
                     data={{
-                        labels: timeTemp1.reverse(),
+                        labels: timeTemp1,
                         datasets: [
                             {
                                 label: "Change in global temperature (ºC)",
-                                data: globalTemp1.reverse(),
+                                data: globalTemp1,
                                 showLine: true,
                                 borderColor: 'blue',
                                 yAxisID: 'y1',
+                                xAxisID: 'x1'
 
                             },
                             {
-                                if (globalTemp1) {
-                                    console.log("tes");
-                                },
                                 label: "C02 measurements from the 800k year period",
-                                data: carbon1.reverse(),
+                                data: carbon1,
                                 showLine: true,
                                 borderColor: 'red',
                                 yAxisID: 'y2',
-                            }
+                            },
                         ]
                     }}
                 />

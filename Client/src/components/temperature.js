@@ -14,8 +14,8 @@ function Temperature() {
       <V1V2 />
       <V3 />
       <V5 />
-      <V7 />
       <V6 />
+      <V7 />
       <V8 />
       <V9 />
     </div>

@@ -83,9 +83,9 @@ function V3 () {
         return (
             <>
             <h3>V3 Atmospheric CO2 concentrations from Mauna Loa measurements starting 1958</h3>
-            <a href="https://gml.noaa.gov/ccgg/trends/">Data source</a>
+            <a href="https://gml.noaa.gov/ccgg/trends/" target="_blank">Data source</a>
             <br></br>
-            <a href="https://gml.noaa.gov/ccgg/about/co2_measurements.html">data measurement description<br/></a>
+            <a href="https://gml.noaa.gov/ccgg/about/co2_measurements.html" target="_blank">data measurement description<br/></a>
             <button onClick={() => setVisible(!visible)}>Change view</button>
             <Line
             style={{backgroundColor: "white"}}

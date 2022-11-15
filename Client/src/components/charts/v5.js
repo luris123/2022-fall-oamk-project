@@ -45,9 +45,9 @@ function V5() {
   return (
     <>
       <h3>V5 Vostok Ice Core CO2 measurements, 417160 - 2342 years BP</h3>
-      <a href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2">Data source</a>
+      <a href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2" target="_blank">Data source</a>
       <br></br>
-      <a href="https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html">Data description</a>
+      <a href="https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html" target="_blank">Data description</a>
       <Line
         style={{ backgroundColor: "white" }}
         options={options}
