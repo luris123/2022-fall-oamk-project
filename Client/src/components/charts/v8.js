@@ -10,6 +10,7 @@ function V8() {
   const [globalCo2Years, setGlobalCo2Years] = useState([]);
   const [CountriesCO2State, setCountriesCO2State] = useState([]);
   const [CountriesNames, setCountriesNames] = useState([]);
+  const V8Dataset = []
 
   useEffect(() => {
     try {
@@ -21,7 +22,7 @@ function V8() {
           let TemporaryCountry = [];
           
           //235 countries
-          for (let k = 0; k < 2; k++) {
+          for (let k = 0; k < 20; k++) {
             for (let i = 1959; i < 2020; i++) {
               TemporaryCountry.push(response[0][i][TempCountries[k]])
             }
@@ -32,11 +33,23 @@ function V8() {
           setCountriesNames(TempCountries)
           setCountriesCO2State(CountriesCO2)
 
+          
         });
     } catch (error) {
       console.log(error)
     }
   }, []);
+
+  for (let k = 0; k < 20; k++) {
+    V8Dataset.push(
+      {
+        label: CountriesNames[k],
+        data: CountriesCO2State[k],
+        borderColor: 'black',
+      }
+    )
+  }
+
   const options = {
     //Only reacts to mousemove events
     events: ['mousemove'],
@@ -64,18 +77,7 @@ function V8() {
         options={options}
         data={{
           labels: globalCo2Years,
-          datasets: [
-            {
-              label: CountriesNames[0],
-              data: CountriesCO2State[0],
-              borderColor: 'black',
-            },
-            {
-              label: CountriesNames[1],
-              data: CountriesCO2State[1],
-              borderColor: 'black',
-            }
-          ]
+          datasets: V8Dataset
         }}
       />
     </>
