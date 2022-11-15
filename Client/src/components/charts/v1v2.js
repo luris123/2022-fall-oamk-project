@@ -5,7 +5,7 @@ import { Line } from 'react-chartjs-2';
 
 Chart.register(...registerables);
 
-function V1() {
+function V1V2() {
 
   const [globalAnnualYears1, setGlobalAnnualYears1] = useState([]);
   const [globalAnnualyAnomaly1, setGlobalAnnualAnomaly1] = useState([]);
@@ -132,4 +132,4 @@ function V1() {
   )
 }
 
-export default V1;
+export default V1V2;
