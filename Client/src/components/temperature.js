@@ -1,6 +1,7 @@
 import V1 from './charts/v1';
 import V3 from './charts/v3';
 import V5 from './charts/v5';
+import V9 from './charts/v9';
 
 function Temperature() {
 
@@ -10,6 +11,7 @@ function Temperature() {
       <V1 />
       <V3 />
       <V5 />
+      <V9 />
     </div>
   )
 }
