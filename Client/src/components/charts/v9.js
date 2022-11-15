@@ -86,27 +86,35 @@ function V9 () {
             },
             title: {
                 display: true,
-                text: "V9",
+                text: "CO2 emissions by sectors",
             },
         }
     };
 
     return (
         <>
-        <h3>V9</h3>
-        <Popup open={openEnergy} closeOnDocumentClick onClose={closeModal}>
-            <Energy subSector={subSector} subSectorShare={subSectorShare} />
+        <h3>V9 CO2 emissions by sectors</h3>
+        <a href='https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D'>Data source</a>
+        <br></br>
+        <a href='https://essd.copernicus.org/articles/14/1917/2022/'>Data description</a>
+        <Popup contentStyle={{width: 1138}} open={openEnergy} closeOnDocumentClick onClose={closeModal}>
+            <Energy subSector={subSector} subSectorShare={subSectorShare} subSectorFurtherBreakdown={subSectorFurtherBreakdown} 
+            subSectorFurtherBreakdownShare={subSectorFurtherBreakdownShare}/>
         </Popup>
+
         <Popup open={openIndustrial} closeOnDocumentClick onClose={closeModal}>
             <Industrial subSector={subSector} subSectorShare={subSectorShare} />
         </Popup>
+
         <Popup open={openAgriculture} closeOnDocumentClick onClose={closeModal}>
             <Agriculture subSector={subSector} subSectorShare={subSectorShare} />
         </Popup>
+
         <Popup open={openWaste} closeOnDocumentClick onClose={closeModal}>
             <Waste subSector={subSector} subSectorShare={subSectorShare} />
         </Popup>
-        
+
+        <div style={{width: 1000, height: 1000, margin: "auto"}}>
         <Doughnut
         style={{height: "50%", width: "50%"}}
             options={options}
@@ -130,7 +138,7 @@ function V9 () {
 
         
             />
-
+            </div>
         </>
     )
 

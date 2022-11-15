@@ -9,7 +9,7 @@ function Agriculture ({subSector, subSectorShare}) {
             <h3>Agriculture</h3>
             <ul>
                 {subSectorData.slice(8,15).map((x, i) => {
-                    return <li key={i}>{x.subSector}: {x.subSectorShare}% <button>breakdown</button></li>
+                    return <li key={i}>{x.subSector}: {x.subSectorShare}%</li>
                 })}
             </ul>
     

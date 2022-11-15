@@ -9,7 +9,7 @@ function Industrial ({subSector, subSectorShare}) {
             <h3>Industrial Processes</h3>
             <ul>
                 {subSectorData.slice(6,8).map((x, i) => {
-                    return <li key={i}>{x.subSector}: {x.subSectorShare}% <button>breakdown</button></li>
+                    return <li key={i}>{x.subSector}: {x.subSectorShare}%</li>
                 })}
             </ul>
     
