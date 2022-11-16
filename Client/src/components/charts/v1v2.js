@@ -79,9 +79,9 @@ function V1V2() {
   return (
     <>
       <h3>V1 Global historical surface temperature anomalies from January 1850 onwards<br/>V2 Northern Hemisphere 2,000-year temperature reconstruction</h3>
-      <a href="https://www.metoffice.gov.uk/hadobs/hadcrut5/" target="_blank">V1 Data source</a>
+      <a href="https://www.metoffice.gov.uk/hadobs/hadcrut5/" target="_blank" rel="noreferrer">V1 Data source</a>
       <br></br>
-      <a href="https://gml.noaa.gov/ccgg/about/co2_measurements.html" target="_blank">V2 Data measurement description<br/></a>
+      <a href="https://gml.noaa.gov/ccgg/about/co2_measurements.html" target="_blank" rel="noreferrer">V2 Data measurement description<br/></a>
       <button onClick={() => setVisible(!visible)}>Change view</button>
       <Line
         style={{ backgroundColor: "white" }}

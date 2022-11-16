@@ -45,9 +45,9 @@ function V6() {
   return (
     <>
       <h3>V6 Ice core 800k year composite study CO2 measurements</h3>
-      <a href="https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt" target="_blank">Data source</a>
+      <a href="https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt" target="_blank" rel="noreferrer">Data source</a>
       <br></br>
-      <a href="https://www.ncei.noaa.gov/access/paleo-search/study/17975" target="_blank">Data description</a>
+      <a href="https://www.ncei.noaa.gov/access/paleo-search/study/17975" target="_blank" rel="noreferrer">Data description</a>
       <Line
         style={{ backgroundColor: "white" }}
         options={options}

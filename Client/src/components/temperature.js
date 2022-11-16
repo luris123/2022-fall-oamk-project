@@ -4,7 +4,6 @@ import V5 from './charts/v5';
 import V7 from './charts/v7';
 import V6 from './charts/v6';
 import V8 from './charts/v8';
-import V9 from './charts/v9';
 
 function Temperature() {
 
@@ -17,7 +16,6 @@ function Temperature() {
       <V6 />
       <V7 />
       <V8 />
-      <V9 />
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import chartService from '../../services/chartService';
 import { Chart, registerables } from 'chart.js';
-import { Line, Scatter } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 
 Chart.register(...registerables);
 
@@ -103,9 +103,9 @@ function V7() {
     return (
         <>
             <h3>V7 Evolution of global temperature over the past two million years</h3>
-            <a href="http://carolynsnyder.com/publications.php" target="_blank">Data source</a>
+            <a href="http://carolynsnyder.com/publications.php" target="_blank" rel="noreferrer">Data source</a>
             <br></br>
-            <a href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf" target="_blank">Data description</a>
+            <a href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf" target="_blank" rel="noreferrer">Data description</a>
             <div style={{ width: 1500, height: 'auto', margin: 'auto' }}>
                 <Line
                     style={{ backgroundColor: "white" }}
