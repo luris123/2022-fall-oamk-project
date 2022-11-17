@@ -8,39 +8,6 @@ import 'chartjs-adapter-luxon';
 
 Chart.register(...registerables);
 
-const dataTesti = {
-  globalAnnual: [
-    {
-        "time": "1900",
-        "anomaly": "200"  
-    },
-    {
-        "time": "1901",
-        "anomaly": "204"  
-    },
-    {
-        "time": "1902",
-        "anomaly": "208"  
-    },
-    {
-        "time": "1903",
-        "anomaly": "239"  
-    },
-    {
-        "time": "1904",
-        "anomaly": "212"  
-    },
-    {
-        "time": "1905",
-        "anomaly": "276"  
-    },
-    {
-        "time": "1906",
-        "anomaly": "201"  
-    }
-]
-};
-
 function V1V2() {
 
   const [v1Data, setV1Data] = useState([]);
@@ -79,17 +46,13 @@ function V1V2() {
           response.data.v2data[i].t = response.data.v2data[i].t.toString(); 
         }
 
-
-        console.log(response.data.v1data[0].globalAnnual.length);
-
         for(let j = 1980; j <= 2023; j++){
           response.data.v2data[j] = {
             "year": null,
             "t": null
           }
         }
-        
-        console.log(response.data.v2data);
+
         setV1Data(response.data.v1data[0]);
         setV2Data(response.data.v2data);
       
