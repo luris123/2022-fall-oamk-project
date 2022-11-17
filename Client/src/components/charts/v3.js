@@ -2,17 +2,15 @@ import React, { useState, useEffect } from 'react';
 import chartService from '../../services/chartService';
 import { Chart, registerables } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import 'chartjs-adapter-luxon';
 
 Chart.register(...registerables);
 
 function V3 () {
 
-    const [annualYears3, setAnnualYears3] = useState([]);
-    const [annualMean3, setAnnualMean3] = useState([]);
-    const [monthlyYears3, setMonthlyYears3] = useState([]);
-    const [monthlyMean3, setMonthlyMean3] = useState([]);
+    const [annual, setAnnual] = useState([]);
+    const [monthly, setMonthly] = useState([]);
     const [dss, setDss] = useState([]);
-    const [dssYears, setDssYears] = useState([]);
     const [visible, setVisible] = useState(false);
 
 
@@ -21,17 +19,22 @@ function V3 () {
             chartService.getV3Data()
             .then((response) => {
     
-                let annualYears = response[0].annual.map( x => x.year);
-                setAnnualYears3(annualYears);
-    
-                let annualMean = response[0].annual.map( x => x.mean);
-                setAnnualMean3(annualMean);
+                let annual = response[0].annual
+                setAnnual(annual)
+                //change values inside annual to strings
+                for (let i = 0; i < annual.length; i++) {
+                    annual[i].year = annual[i].year.toString();
+                    annual[i].mean = annual[i].mean.toString();
+                }
 
-                let monthlyYears = response[0].monthly.map( x => x.year);
-                setMonthlyYears3(monthlyYears);
+                let monthly = response[0].monthly
+                setMonthly(monthly);
 
-                let monthlyMean = response[0].monthly.map( x => x.monthlyAverage);
-                setMonthlyMean3(monthlyMean);
+                for (let i = 0; i < monthly.length; i++) {
+                    monthly[i].year = monthly[i].year.toString();
+                    monthly[i].average = monthly[i].average.toString();
+
+                }
 
 
     
@@ -40,11 +43,14 @@ function V3 () {
             chartService.getV4Data()
             .then((response) => {
     
-                let dssYears = response[0].dss.map( x => x.year);
-                setDssYears(dssYears.reverse());
-
-                let dss = response[0].dss.map( x => x.c02MixingRatio);
+                let dss = response[0].dss
                 setDss(dss.reverse());
+
+                for (let i = 0; i < dss.length; i++) {
+                    dss[i].year = dss[i].year.toString();
+                    dss[i].c02MixingRatio = dss[i].c02MixingRatio.toString();
+                }
+
 
             });
 
@@ -59,14 +65,16 @@ function V3 () {
             events: ['mousemove'],
             scales: {
                 x: {
-                    //type: 'linear',
-
-
-                },
-                y: {
-                    type: 'linear',
-
+                    type: 'time',
+                    time: {
+                        unit: 'year',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Year'
                     }
+                },
+
                 },
             
             plugins: {
@@ -80,6 +88,44 @@ function V3 () {
             }
         };
 
+        const data = {
+            datasets: [
+                {
+                    label: 'Annual mean',
+                    data: annual,
+                    borderColor: 'rgb(255, 99, 132)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                    parsing:{
+                        xAxisKey: 'year',
+                        yAxisKey: 'mean'
+                    }
+                    
+                },
+                {
+                    label: 'Monthly mean',
+                    data: monthly,
+                    borderColor: 'rgb(54, 162, 235)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                    parsing:{
+                        xAxisKey: 'year',
+                        yAxisKey: 'average'
+                    }
+                },
+                // {
+                //     label: 'DSS',
+                //     data: dss,
+                //     borderColor: 'rgb(75, 192, 192)',
+                //     backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                //     parsing:{
+                //         xAxisKey: 'year',
+                //         yAxisKey: 'c02MixingRatio'
+                //     }
+
+                // }
+            ],
+
+        }
+
         return (
             <>
             <h3>V3 Atmospheric CO2 concentrations from Mauna Loa measurements starting 1958</h3>
@@ -87,35 +133,12 @@ function V3 () {
             <br></br>
             <a href="https://gml.noaa.gov/ccgg/about/co2_measurements.html" target="_blank" rel="noreferrer">data measurement description<br/></a>
             <button onClick={() => setVisible(!visible)}>Change view</button>
+            {console.log(data)}
             <div>
             <Line
             style={{backgroundColor: "white"}}
                 options={options}
-                data={{
-                    labels: annualYears3, monthlyYears3, dssYears,
-                    datasets: [
-                        {
-                            label: "Annual Mean",
-                            hidden: visible,
-                            data: annualMean3,
-                            borderColor: 'rgb(53, 162, 235)',
-                            backgroundColor: 'rgba(53, 162, 235, 0.5)',
-                        },
-                        {
-                            label: "Monthly Mean-Average",
-                            hidden: !visible,
-                            data: monthlyMean3,
-                            borderColor: 'rgb(255, 99, 132)',
-                            backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                        },
-                        // {
-                        //     label: "DSS",
-                        //     data: dss,
-                        //     borderColor: 'rgb(255, 205, 86)',
-                        //     backgroundColor: 'rgba(255, 205, 86, 0.5)',
-                        // }
-                    ]
-                }}
+                data={data}
             />
             </div>
             </>
