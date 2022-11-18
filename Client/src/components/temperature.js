@@ -15,7 +15,6 @@ function Temperature() {
       <V5 />
       <V6 />
       <V7 />
-      <V8 />
     </div>
   )
 }
