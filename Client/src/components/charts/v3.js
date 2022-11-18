@@ -10,8 +10,11 @@ function V3 () {
 
     const [annual, setAnnual] = useState([]);
     const [monthly, setMonthly] = useState([]);
+    const [de08, setDe08] = useState([]);
+    const [de082, setDe082] = useState([]);
     const [dss, setDss] = useState([]);
     const [visible, setVisible] = useState(false);
+    const [v4Toggle, setV4Toggle] = useState(true);
 
 
     useEffect(() => {
@@ -42,6 +45,22 @@ function V3 () {
 
             chartService.getV4Data()
             .then((response) => {
+
+                let de08 = response[0].de08
+                setDe08(de08.reverse());
+
+                for (let i = 0; i < de08.length; i++) {
+                    de08[i].year = de08[i].year.toString();
+                    de08[i].c02MixingRatio = de08[i].c02MixingRatio.toString();
+                }
+
+                let de082 = response[0].de082
+                setDe082(de082.reverse());
+
+                for (let i = 0; i < de082.length; i++) {
+                    de082[i].year = de082[i].year.toString();
+                    de082[i].c02MixingRatio = de082[i].c02MixingRatio.toString();
+                }
     
                 let dss = response[0].dss
                 setDss(dss.reverse());
@@ -60,7 +79,7 @@ function V3 () {
         }
         }, []);
         const options = {
-            responsive: true,
+            
             // events: [] makes the chart unresponsive to mouse events   
             events: ['mousemove'],
             scales: {
@@ -76,7 +95,7 @@ function V3 () {
                 },
 
                 },
-            
+            responsive: true,
             plugins: {
                 legend: {
                     position: "top",
@@ -93,6 +112,7 @@ function V3 () {
                 {
                     label: 'Annual mean',
                     data: annual,
+                    hidden: visible,
                     borderColor: 'rgb(255, 99, 132)',
                     backgroundColor: 'rgba(255, 99, 132, 0.5)',
                     parsing:{
@@ -104,6 +124,7 @@ function V3 () {
                 {
                     label: 'Monthly mean',
                     data: monthly,
+                    hidden: !visible,
                     borderColor: 'rgb(54, 162, 235)',
                     backgroundColor: 'rgba(54, 162, 235, 0.5)',
                     parsing:{
@@ -111,17 +132,40 @@ function V3 () {
                         yAxisKey: 'average'
                     }
                 },
-                // {
-                //     label: 'DSS',
-                //     data: dss,
-                //     borderColor: 'rgb(75, 192, 192)',
-                //     backgroundColor: 'rgba(75, 192, 192, 0.5)',
-                //     parsing:{
-                //         xAxisKey: 'year',
-                //         yAxisKey: 'c02MixingRatio'
-                //     }
+                {
+                    label: 'DE08',
+                    data: de08,
+                    hidden: v4Toggle,
+                    borderColor: 'rgb(255, 205, 86)',
+                    backgroundColor: 'rgba(255, 205, 86, 0.5)',
+                    parsing:{
+                        xAxisKey: 'year',
+                        yAxisKey: 'c02MixingRatio'
+                    }
+                },
+                {
+                    label: 'DE082',
+                    data: de082,
+                    hidden: v4Toggle,
+                    borderColor: 'rgb(75, 192, 192)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                    parsing:{
+                        xAxisKey: 'year',
+                        yAxisKey: 'c02MixingRatio'
+                    }
+                },
+                {
+                    label: 'DSS',
+                    data: dss,
+                    hidden: v4Toggle,
+                    borderColor: 'rgb(75, 192, 192)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                    parsing:{
+                        xAxisKey: 'year',
+                        yAxisKey: 'c02MixingRatio'
+                    }
 
-                // }
+                }
             ],
 
         }
@@ -133,6 +177,7 @@ function V3 () {
             <br></br>
             <a href="https://gml.noaa.gov/ccgg/about/co2_measurements.html" target="_blank" rel="noreferrer">data measurement description<br/></a>
             <button onClick={() => setVisible(!visible)}>Change view</button>
+            <button onClick={() => setV4Toggle(!v4Toggle)}>Toggle V4</button>
             {console.log(data)}
             <div>
             <Line
