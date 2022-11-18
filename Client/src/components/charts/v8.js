@@ -24,7 +24,7 @@ function V8() {
           
           //219 countries
           for (let s = 0; s < 9; s++) {
-            for (let i = 1959; i < 2020; i++) {
+            for (let i = 1959; i < 2021; i++) {
               if(s<8) {
                 TempCountryCO2.push(response[0][i][MostCo2Countries[s]])
               } else {

@@ -3,7 +3,6 @@ import V3 from './charts/v3';
 import V5 from './charts/v5';
 import V7 from './charts/v7';
 import V6 from './charts/v6';
-import V8 from './charts/v8';
 
 function Temperature() {
 
