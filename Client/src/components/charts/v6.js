@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import chartService from '../../services/chartService';
 import { Chart, registerables } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import axios from 'axios';
 
 Chart.register(...registerables);
 
@@ -11,21 +12,23 @@ function V6() {
   const [co2ppmV6, setCO2ppmV6] = useState([]);
 
   useEffect(() => {
-    try {
-      chartService.getV6Data()
-        .then((response) => {
+    const getData = async () => {
+      try {
+          const response = await axios.get('http://localhost:3001/datasets');
 
-          let iceAgeArrayV6 = response.map(x => x.age_before_present);
+          let iceAgeArrayV6 = response.data.v6data.map(x => x.age_before_present);
           setIcesAgeV6(iceAgeArrayV6);
 
-          let co2ppmArrayV6 = response.map(x => x.c02_ppm);
+          let co2ppmArrayV6 = response.data.v6data.map(x => x.c02_ppm);
           setCO2ppmV6(co2ppmArrayV6);
+          
+      } catch (error) {
+          console.log(error);
+      }
+  };
+  getData();
+}, []);
 
-        });
-    } catch (error) {
-      console.log(error)
-    }
-  }, []);
   const options = {
     //Only reacts to mousemove events
     events: ['mousemove'],

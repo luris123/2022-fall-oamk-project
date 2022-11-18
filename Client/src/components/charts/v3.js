@@ -3,10 +3,11 @@ import chartService from '../../services/chartService';
 import { Chart, registerables } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import 'chartjs-adapter-luxon';
+import axios from 'axios';
 
 Chart.register(...registerables);
 
-function V3 () {
+function V3() {
 
     const [annual, setAnnual] = useState([]);
     const [monthly, setMonthly] = useState([]);
@@ -20,11 +21,11 @@ function V3 () {
 
 
     useEffect(() => {
-        try {
-            chartService.getV3Data()
-            .then((response) => {
-    
-                let annual = response[0].annual
+        const getData = async () => {
+            try {
+                const response = await axios.get('http://localhost:3001/datasets');
+
+                let annual = response.data.v3data[0].annual
                 setAnnual(annual)
                 //change values inside annual to strings
                 for (let i = 0; i < annual.length; i++) {
@@ -32,7 +33,7 @@ function V3 () {
                     annual[i].mean = annual[i].mean.toString();
                 }
 
-                let monthly = response[0].monthly
+                let monthly = response.data.v3data[0].monthly
                 setMonthly(monthly);
 
                 for (let i = 0; i < monthly.length; i++) {
@@ -41,14 +42,7 @@ function V3 () {
 
                 }
 
-
-    
-            });
-
-            chartService.getV4Data()
-            .then((response) => {
-
-                let de08 = response[0].de08
+                let de08 = response.data.v4data[0].de08
                 setDe08(de08.reverse());
 
                 for (let i = 0; i < de08.length; i++) {
@@ -56,15 +50,15 @@ function V3 () {
                     de08[i].c02MixingRatio = de08[i].c02MixingRatio.toString();
                 }
 
-                let de082 = response[0].de082
+                let de082 = response.data.v4data[0].de082
                 setDe082(de082.reverse());
 
                 for (let i = 0; i < de082.length; i++) {
                     de082[i].year = de082[i].year.toString();
                     de082[i].c02MixingRatio = de082[i].c02MixingRatio.toString();
                 }
-    
-                let dss = response[0].dss
+
+                let dss = response.data.v4data[0].dss
                 setDss(dss.reverse());
 
                 for (let i = 0; i < dss.length; i++) {
@@ -111,6 +105,29 @@ function V3 () {
                         text: 'Year'
                     }
                 },
+                
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        getData();
+    }, []);
+    const options = {
+
+        // events: [] makes the chart unresponsive to mouse events   
+        events: ['mousemove'],
+        scales: {
+            x: {
+                type: 'time',
+                time: {
+                    unit: 'year',
+
+                },
+                title: {
+                    display: true,
+                    text: 'Year'
+                }
+            },
 
                 },
             plugins: {
@@ -195,29 +212,29 @@ function V3 () {
                 // },
             ],
 
-        }
+    }
 
-        return (
-            <>
+    return (
+        <>
             <h3>V3 Atmospheric CO2 concentrations from Mauna Loa measurements starting 1958</h3>
             <a href="https://gml.noaa.gov/ccgg/trends/" target="_blank" rel="noreferrer">Data source</a>
             <br></br>
-            <a href="https://gml.noaa.gov/ccgg/about/co2_measurements.html" target="_blank" rel="noreferrer">data measurement description<br/></a>
+            <a href="https://gml.noaa.gov/ccgg/about/co2_measurements.html" target="_blank" rel="noreferrer">data measurement description<br /></a>
             <button onClick={() => setVisible(!visible)}>Change view</button>
             <button onClick={() => setV4Toggle(!v4Toggle)}>Toggle V4</button>
             <button onClick={() => setV10Toggle(!v10Toggle)}>Toggle V10</button>
             {console.log(data)}
             <div>
-            <Line
-            style={{backgroundColor: "white"}}
-                options={options}
-                data={data}
-            />
+                <Line
+                    style={{ backgroundColor: "white" }}
+                    options={options}
+                    data={data}
+                />
             </div>
-            </>
-            
-            
-        )
+        </>
+
+
+    )
 }
 
 export default V3;
