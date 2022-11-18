@@ -66,13 +66,7 @@ function V3() {
                     dss[i].c02MixingRatio = dss[i].c02MixingRatio.toString();
                 }
 
-
-            });
-
-            chartService.getV10Data()
-            .then((response) => {
-
-                let v10 = response
+                let v10 = response.data.v10data
                 setV10(v10);
                 
                 for (let i = 0; i < v10.length; i++) {
@@ -81,37 +75,16 @@ function V3() {
                 }
 
                 setV10(v10.slice(344));
-                
 
-            })
-
-    
-        } catch (error) {
+            } catch (error) {
             console.log(error)
         }
+
+            };
+            getData();
         }, []);
-        const options = {
-            // events: [] makes the chart unresponsive to mouse events   
-            events: ['mousemove'],
-            responsive: true,
-            scales: {
-                x: {
-                    type: 'time',
-                    time: {
-                        unit: 'year',
-                    },
-                    title: {
-                        display: true,
-                        text: 'Year'
-                    }
-                },
-                
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        getData();
-    }, []);
+        
+        
     const options = {
 
         // events: [] makes the chart unresponsive to mouse events   
@@ -210,6 +183,7 @@ function V3() {
                 //         xAxisKey: 'year',
                 //     }
                 // },
+                
             ],
 
     }
@@ -232,7 +206,6 @@ function V3() {
                 />
             </div>
         </>
-
 
     )
 }
