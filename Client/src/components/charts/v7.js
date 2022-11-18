@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import chartService from '../../services/chartService';
 import { Chart, registerables } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import axios from 'axios';
 
 Chart.register(...registerables);
 
@@ -13,42 +14,43 @@ function V7() {
     const [carbon1, setCarbon1] = useState([]);
 
     useEffect(() => {
-        try {
-            chartService.getV7Data()
-                .then((response) => {
+        const getData = async () => {
+            try {
+                const response = await axios.get('http://localhost:3001/datasets');
+                let timeCarbon = response.data.v7data[0].carbon_dioxide.map(x => x.time_kyr_bp);
+                let carbon = response.data.v7data[0].carbon_dioxide.map(x => x.carbon_dioxide_ppm);
+                setTimeCarbon1(timeCarbon);
+                setCarbon1(carbon);
 
-                    let timeCarbon = response[0].carbon_dioxide.map(x => x.time_kyr_bp);
-                    let carbon = response[0].carbon_dioxide.map(x => x.carbon_dioxide_ppm);
-                    setTimeCarbon1(timeCarbon);
-                    setCarbon1(carbon);
-
-                    let timeTemp = response[0].gast_reconstruction.map(x => x.time_kyr_bp);
-                    let globalTemp = response[0].gast_reconstruction.map(x => x.changes_global_tempature_c);
-                    setTimeTemp1(timeTemp);
-                    setGlobalTemp1(globalTemp);
-                });
-
-            /*chartService.getV6Data()
-              .then((response) => {
-                let v2DataYears = response.map(x => x.year);
-                let v2DataTempature = response.map(x => x.t)
-                setV2DataYears1(v2DataYears);
-                setV2DataTempature1(v2DataTempature); 
-      
-              }); */
-
-        } catch (error) {
-            console.log(error)
+                let timeTemp = response.data.v7data[0].gast_reconstruction.map(x => x.time_kyr_bp);
+                let globalTemp = response.data.v7data[0].gast_reconstruction.map(x => x.changes_global_tempature_c);
+                setTimeTemp1(timeTemp);
+                setGlobalTemp1(globalTemp);
+            } catch (error) {
+                console.log(error);
+            }
         }
+        getData();
     }, []);
 
     const options = {
+        plugins: {
+            legend: {
+                position: "top",
+            },
+            title: {
+                display: true,
+                text: "Evolution of global temperature over the past two million years combined ",
+            },
+        },
         interaction: {
             mode: 'index',
             intersect: false,
         },
-        layout: {
-            padding: 50
+        elements: {
+            point: {
+                radius: 0
+            }
         },
         scales: {
             y1: {
@@ -100,37 +102,47 @@ function V7() {
 
     };
 
+    const data = {
+        labels: timeTemp1,
+        datasets: [
+            {
+                label: "Change in global temperature (ºC)",
+                data: globalTemp1,
+                showLine: true,
+                borderColor: 'blue',
+                borderWidth: 2,
+                yAxisID: 'y1',
+                xAxisID: 'x1'
+
+            },
+            {
+                label: "C02 measurements from the 800k year period",
+                data: carbon1,
+                showLine: true,
+                borderColor: 'red',
+                borderWidth: 2,
+                yAxisID: 'y2',
+            },
+        ]
+    }
+
     return (
         <>
-            <h3>V7 Evolution of global temperature over the past two million years</h3>
-            <a href="http://carolynsnyder.com/publications.php" target="_blank" rel="noreferrer">Data source</a>
-            <br></br>
+            <h4>Ice core 800k year composite study CO2 measurements</h4>
+            <a href="https://www.ncei.noaa.gov/access/paleo-search/study/17975" target="_blank" rel="noreferrer">Data description</a>
+            <br />
+            <a href="https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt" target="_blank" rel="noreferrer">Data source</a>
+            <p>TODO: Write a brief description of the graph and its information.</p>
+            <h4>Evolution of global temperature over the past two million years</h4>
             <a href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf" target="_blank" rel="noreferrer">Data description</a>
+            <br />
+            <a href="http://carolynsnyder.com/publications.php" target="_blank" rel="noreferrer">Data source</a>
+            <p>TODO: Write a brief description of the graph and its information.</p>
             <div style={{ width: 1500, height: 'auto', margin: 'auto' }}>
                 <Line
                     style={{ backgroundColor: "white" }}
                     options={options}
-                    data={{
-                        labels: timeTemp1,
-                        datasets: [
-                            {
-                                label: "Change in global temperature (ºC)",
-                                data: globalTemp1,
-                                showLine: true,
-                                borderColor: 'blue',
-                                yAxisID: 'y1',
-                                xAxisID: 'x1'
-
-                            },
-                            {
-                                label: "C02 measurements from the 800k year period",
-                                data: carbon1,
-                                showLine: true,
-                                borderColor: 'red',
-                                yAxisID: 'y2',
-                            },
-                        ]
-                    }}
+                    data={data}
                 />
             </div>
         </>
