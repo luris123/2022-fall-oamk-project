@@ -13,8 +13,10 @@ function V3 () {
     const [de08, setDe08] = useState([]);
     const [de082, setDe082] = useState([]);
     const [dss, setDss] = useState([]);
+    const [v10, setV10] = useState([]);
     const [visible, setVisible] = useState(false);
     const [v4Toggle, setV4Toggle] = useState(true);
+    const [v10Toggle, setV10Toggle] = useState(true);
 
 
     useEffect(() => {
@@ -73,15 +75,31 @@ function V3 () {
 
             });
 
+            chartService.getV10Data()
+            .then((response) => {
+
+                let v10 = response
+                setV10(v10);
+                
+                for (let i = 0; i < v10.length; i++) {
+                    v10[i].year = v10[i].year.toString();
+                    v10[i].description = v10[i].description.toString();
+                }
+
+                setV10(v10.slice(344));
+                
+
+            })
+
     
         } catch (error) {
             console.log(error)
         }
         }, []);
         const options = {
-            
             // events: [] makes the chart unresponsive to mouse events   
             events: ['mousemove'],
+            responsive: true,
             scales: {
                 x: {
                     type: 'time',
@@ -95,7 +113,6 @@ function V3 () {
                 },
 
                 },
-            responsive: true,
             plugins: {
                 legend: {
                     position: "top",
@@ -122,7 +139,7 @@ function V3 () {
                     
                 },
                 {
-                    label: 'Monthly mean',
+                    label: 'Monthly mean average',
                     data: monthly,
                     hidden: !visible,
                     borderColor: 'rgb(54, 162, 235)',
@@ -147,8 +164,8 @@ function V3 () {
                     label: 'DE082',
                     data: de082,
                     hidden: v4Toggle,
-                    borderColor: 'rgb(75, 192, 192)',
-                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                    borderColor: 'rgb(153, 102, 255)',
+                    backgroundColor: 'rgba(153, 102, 255, 0.5)',
                     parsing:{
                         xAxisKey: 'year',
                         yAxisKey: 'c02MixingRatio'
@@ -165,7 +182,17 @@ function V3 () {
                         yAxisKey: 'c02MixingRatio'
                     }
 
-                }
+                },
+                // {
+                //     label: 'Major historical events',
+                //     data: v10,
+                //     hidden: v10Toggle,
+                //     borderColor: 'rgb(50, 205, 50)',
+                //     backgroundColor: 'rgba(50, 205, 50, 0.5)',
+                //     parsing:{
+                //         xAxisKey: 'year',
+                //     }
+                // },
             ],
 
         }
@@ -178,6 +205,7 @@ function V3 () {
             <a href="https://gml.noaa.gov/ccgg/about/co2_measurements.html" target="_blank" rel="noreferrer">data measurement description<br/></a>
             <button onClick={() => setVisible(!visible)}>Change view</button>
             <button onClick={() => setV4Toggle(!v4Toggle)}>Toggle V4</button>
+            <button onClick={() => setV10Toggle(!v10Toggle)}>Toggle V10</button>
             {console.log(data)}
             <div>
             <Line
