@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import chartService from '../../services/chartService';
 import { Chart, registerables } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import 'chartjs-adapter-luxon';
@@ -198,7 +197,7 @@ function V3() {
             <button onClick={() => setV4Toggle(!v4Toggle)}>Toggle V4</button>
             <button onClick={() => setV10Toggle(!v10Toggle)}>Toggle V10</button>
             {console.log(data)}
-            <div>
+            <div style={{width: 1500, height: 1500, margin: "auto"}}>
                 <Line
                     style={{ backgroundColor: "white" }}
                     options={options}
