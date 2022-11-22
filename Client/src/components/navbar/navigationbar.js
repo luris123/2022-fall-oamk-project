@@ -1,14 +1,45 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
+import loginService from '../../services/loginService';
 import  { Link } from "react-router-dom";
 import { Navbar, Nav, NavLink} from 'react-bootstrap'
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from "react-bootstrap/Button";
 import Form from 'react-bootstrap/Form';
 
-
 function Navigationbar() {
+    const [username, setUsername] = useState('') 
+    const [password, setPassword] = useState('')
+    const [user, setUser] = useState(null)
 
-    return (
+    useEffect(() => {
+        const loggedUserJSON = window.localStorage.getItem('loggedUser')
+        if (loggedUserJSON) {
+          const user = JSON.parse(loggedUserJSON)
+          setUser(user)
+          loginService.setToken(user.token)
+        }
+      }, [])
+
+      const handleLogin = async (event) => {
+        event.preventDefault()
+        try {
+          const user = await loginService.login({
+            username, password,
+          })
+          setUser(user)
+          loginService.setToken(user.token)
+          window.localStorage.setItem(
+            'loggedUser', JSON.stringify(user)
+          ) 
+          setUsername('')
+          setPassword('')
+        } catch (exception) {
+            console.log(exception)
+        }
+      }
+
+    if (user === null) {
+        return (
         <Navbar collapseOnSelect expand ="sm" bg="dark" variant="dark">
             <Navbar.Toggle aria-controls="navBarScroll" data-bs-target="#navbarScroll"/>
             <Navbar.Collapse id="navbarScroll">
@@ -22,19 +53,19 @@ function Navigationbar() {
                         title="Kirjaudu"
                         menuVariant="light"
                     >
-                        <Form>
+                        <Form onSubmit={handleLogin}>
                             <Form.Group>
                                 <Form.Label>Käyttäjätunnus</Form.Label>
-                                <Form.Control type="user" placeholder="Syötä käyttäjätunnus"/>
+                                <Form.Control onChange={({ target }) => setUsername(target.value)} type="username" placeholder="Syötä käyttäjätunnus"/>
                             </Form.Group>
                             <Form.Group>
                                 <Form.Label>Salasana</Form.Label>
-                                <Form.Control type="password" placeholder="Syötä salasana" />
+                                <Form.Control onChange={({ target }) => setPassword(target.value)} type="password" placeholder="Syötä salasana" />
                             </Form.Group>
-                            <Button>
+                            <Button type='submit'>
                                 Kirjaudu Sisään
                             </Button>
-                            <Button className="me-2">
+                            <Button className="me-2" >
                                 Luo uusi tili
                             </Button>
                         </Form>
@@ -43,5 +74,23 @@ function Navigationbar() {
             </Navbar.Collapse>
         </Navbar>
     )
+    } else {
+        return (
+            <Navbar collapseOnSelect expand ="sm" bg="dark" variant="dark">
+            <Navbar.Toggle aria-controls="navBarScroll" data-bs-target="#navbarScroll"/>
+            <Navbar.Collapse id="navbarScroll">
+                <Nav>
+                    <NavLink eventKey="1" as={Link} to="/">Etusivu</NavLink>
+                    <NavLink eventKey="2" as={Link} to="/emissionSources">Päästölähteet</NavLink>
+                    <NavLink eventKey="3" as={Link} to="/temperature">Lämpötilatiedot ja co2 pitoisuudet</NavLink>
+                    <NavLink eventKey="4" as={Link} to="/profile">Profiili</NavLink>
+                    <Button onClick={() => {window.localStorage.removeItem('loggedBloglistUser'); setUser(null)}}>logout</Button>
+            
+                </Nav>
+            </Navbar.Collapse>
+        </Navbar>
+        )
+    
+}
 }
 export default Navigationbar;
