@@ -1,6 +1,5 @@
-const bcrypt = require('bcrypt')
-const usersRouter = require('express').Router()
-const User = require('../models/user')
+const bcrypt = require('bcrypt');
+const User = require('../models/user');
 
 const getUsers = async(req, res) => {
     const users = await User.find({});
@@ -12,13 +11,15 @@ const getUsers = async(req, res) => {
 }
 
 const createUser = async (request, response) => {
-  const { username, password } = request.body
-  const existingUser = await User.findOne({ username })
+  const { username, password } = request.body;
+
+  const existingUser = await User.findOne({ username });
+
   if (existingUser) {
     return response.status(400).json({
       error: 'username must be unique'
     })
-  }
+  };
 
   const saltRounds = 10
   const passwordHash = await bcrypt.hash(password, saltRounds)

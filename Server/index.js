@@ -23,7 +23,7 @@ app.get("/",(req,res) => {
 })
 
 app.use('/datasets', require('./routes/datasetsRouter'));
-app.use('/users', require('./routes/api/userRouter'));
+app.use('/users', require('./routes/userRouter'));
 app.use('/login', require('./routes/loginRouter'));
 
 
