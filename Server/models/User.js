@@ -97,4 +97,10 @@ userSchema.set('toJSON', {
     }
   })
 
+ /* visualizationSchema.set('toJSON', {
+    transform: (document, returnedObject) => {
+      delete returnedObject._id
+    }
+  }) */
+
 module.exports = mongoose.model('User', userSchema);
