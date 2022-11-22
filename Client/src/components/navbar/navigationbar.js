@@ -38,6 +38,23 @@ function Navigationbar() {
         }
       }
 
+      const handleRegister = async (event) => {
+        event.preventDefault()
+        try {
+            const user = await loginService.register({
+                username, password,
+            })
+            loginService.setToken(user.token)
+            window.localStorage.setItem(
+                'loggedUser', JSON.stringify(user)
+            )
+            console.log(event.target)
+        } catch (exception) {
+            console.log(exception)
+        }
+        }
+
+
     if (user === null) {
         return (
         <Navbar collapseOnSelect expand ="sm" bg="dark" variant="dark">
@@ -65,7 +82,24 @@ function Navigationbar() {
                             <Button type='submit'>
                                 Kirjaudu Sisään
                             </Button>
-                            <Button className="me-2" >
+                        </Form>
+
+                    </NavDropdown>
+                    <NavDropdown
+                        id="nav-dropdown"
+                        title="Rekisteröidy"
+                        menuVariant="light"
+                    >
+                        <Form onSubmit={handleRegister}>
+                            <Form.Group>
+                                <Form.Label>Käyttäjätunnus</Form.Label>
+                                <Form.Control onChange={({ target }) => setUsername(target.value)} type="username" placeholder="Syötä käyttäjätunnus"/>
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Label>Salasana</Form.Label>
+                                <Form.Control onChange={({ target }) => setPassword(target.value)} type="password" placeholder="Syötä salasana" />
+                            </Form.Group>
+                            <Button type='submit'>
                                 Luo uusi tili
                             </Button>
                         </Form>
