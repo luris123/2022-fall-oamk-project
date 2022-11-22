@@ -23,8 +23,13 @@ const handleLogin = async (request, response) => {
       username: user.username,
       id: user._id,
     }
-  
-    const token = jwt.sign(userForToken, process.env.SECRET);
+
+    //token expires in 1hour
+    const token = jwt.sign(
+      userForToken, 
+      process.env.SECRET,
+      { expiresIn: 60*60 }
+    )
   
     response
       .status(200)
