@@ -66,7 +66,6 @@ function Navigationbar() {
                     <NavLink eventKey="1" as={Link} to="/">Etusivu</NavLink>
                     <NavLink eventKey="2" as={Link} to="/emissionSources">Päästölähteet</NavLink>
                     <NavLink eventKey="3" as={Link} to="/temperature">Lämpötilatiedot ja co2 pitoisuudet</NavLink>
-                    <NavLink eventKey="4" as={Link} to="/profile">Profiili</NavLink>
                     <NavDropdown
                         id="nav-dropdown"
                         title="Kirjaudu"
