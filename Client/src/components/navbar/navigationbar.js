@@ -48,7 +48,9 @@ function Navigationbar() {
             window.localStorage.setItem(
                 'loggedUser', JSON.stringify(user)
             )
-            console.log(event.target)
+            setUsername('')
+            setPassword('')
+            window.alert('Rekisteröityminen onnistui!')
         } catch (exception) {
             console.log(exception)
         }
