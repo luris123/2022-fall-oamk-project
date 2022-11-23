@@ -2,6 +2,15 @@ const bcrypt = require('bcrypt');
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 
+//middleware?
+const getTokenFrom = (req) => {
+  const authorization = req.get('authorization')
+  if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
+    return authorization.substring(7)
+  }
+  return null
+}
+
 const getUsers = async (req, res) => {
   const users = await User.find({});
 
@@ -11,13 +20,13 @@ const getUsers = async (req, res) => {
   res.json(users);
 }
 
-const createUser = async (request, response) => {
-  const { username, password } = request.body;
+const createUser = async (req, res) => {
+  const { username, password } = req.body;
 
   const existingUser = await User.findOne({ username });
 
   if (existingUser) {
-    return response.status(400).json({
+    return res.status(400).json({
       error: 'username must be unique'
     })
   };
@@ -32,15 +41,7 @@ const createUser = async (request, response) => {
 
   const savedUser = await user.save();
 
-  response.status(201).json(savedUser);
-}
-
-const getTokenFrom = request => {
-  const authorization = request.get('authorization')
-  if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
-    return authorization.substring(7)
-  }
-  return null
+  res.status(201).json(savedUser);
 }
 
 const createNewVisual = async (req, res) => {
@@ -48,10 +49,12 @@ const createNewVisual = async (req, res) => {
 
   const token = getTokenFrom(req);
 
-  const decodedToken = jwt.verify(token, process.env.SECRET);
+  let decodedToken;
 
-  if (!token || !decodedToken.id) {
-    return response.status(401).json({ error: 'token missing or invalid' });
+  try {
+    decodedToken = jwt.verify(token, process.env.SECRET);
+  } catch (error) {
+    return res.status(401).json({ error: 'token missing or invalid' });
   }
 
   const user = await User.findById(decodedToken.id);
@@ -81,37 +84,35 @@ const createNewVisual = async (req, res) => {
 
   const savedUser = await user.save();
 
-  return res.status(201).json(savedUser);
+  res.status(201).json(savedUser);
 }
 
 const deleteVisual = async(req, res) => {
   const body = req.body;
   const token = getTokenFrom(req);
   
-  const decodedToken = jwt.verify(token, process.env.SECRET);
+  let decodedToken;
 
-  if (!token || !decodedToken.id) {
+  try {
+    decodedToken = jwt.verify(token, process.env.SECRET);
+  } catch (error) {
     return res.status(401).json({ error: 'token missing or invalid' });
   }
 
   const user = await User.findById(decodedToken.id);
 
-  console.log(user.visualizations.map(x => x.url));
-  let testi = user.visualizations[2].url;
-  console.log(testi);
- console.log(user.visualizations.map(x => {
-  if(x.url === testi){
-    console.log(löyty);
+  const object = user.visualizations.find(x => x.url === body.url);
+
+  if(object === undefined){
+    return res.status(404).json({message: "Visualization not found"});
   }
- }));
-  /*
-  const index = user.visualizations.findIndex(x => x.url === body.url);
 
-  console.log(user.visualizations.map(x => x.url));
+  const index = user.visualizations.indexOf(object);
 
-  const savedUser = user.save(); */
+  user.visualizations.splice(index, 1);
+  user.save();
 
-  return res.status(200).json({message: "Visualization deleted successfully"});
+  res.status(200).json({message: "Visualization deleted successfully"});
 }
 
 module.exports = {
