@@ -84,8 +84,30 @@ const createNewVisual = async (req, res) => {
   return res.status(201).json(savedUser);
 }
 
+const deleteVisual = async(req, res) => {
+  const body = req.body;
+  const token = getTokenFrom(req);
+  
+  const decodedToken = jwt.verify(token, process.env.SECRET);
+
+  if (!token || !decodedToken.id) {
+    return res.status(401).json({ error: 'token missing or invalid' });
+  }
+
+  const user = await User.findById(decodedToken.id);
+
+  const index = user.visualizations.findIndex(x => x.url === body.url);
+
+  console.log(user.visualizations.map(x => x.url));
+
+  const savedUser = user.save();
+
+  return res.status(200).json({message: "Visualization deleted successfully"});
+}
+
 module.exports = {
   createUser,
   getUsers,
-  createNewVisual
+  createNewVisual,
+  deleteVisual
 }

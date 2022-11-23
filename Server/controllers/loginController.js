@@ -33,7 +33,7 @@ const handleLogin = async (request, response) => {
   
     response
       .status(200)
-      .send({ token, username: user.username})
+      .send({ token, username: user.username, visualizations: user.visualizations})
   }
 
 module.exports = {
