@@ -96,11 +96,20 @@ const deleteVisual = async(req, res) => {
 
   const user = await User.findById(decodedToken.id);
 
+  console.log(user.visualizations.map(x => x.url));
+  let testi = user.visualizations[2].url;
+  console.log(testi);
+ console.log(user.visualizations.map(x => {
+  if(x.url === testi){
+    console.log(löyty);
+  }
+ }));
+  /*
   const index = user.visualizations.findIndex(x => x.url === body.url);
 
   console.log(user.visualizations.map(x => x.url));
 
-  const savedUser = user.save();
+  const savedUser = user.save(); */
 
   return res.status(200).json({message: "Visualization deleted successfully"});
 }
