@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import loginService from '../../services/loginService';
-import  { Link } from "react-router-dom";
+import  { Link, useNavigate } from "react-router-dom";
 import { Navbar, Nav, NavLink} from 'react-bootstrap'
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from "react-bootstrap/Button";
@@ -10,6 +10,8 @@ function Navigationbar() {
     const [username, setUsername] = useState('') 
     const [password, setPassword] = useState('')
     const [user, setUser] = useState(null)
+
+    let navigate = useNavigate();
 
     useEffect(() => {
         const loggedUserJSON = window.localStorage.getItem('loggedUser')
@@ -33,6 +35,9 @@ function Navigationbar() {
           ) 
           setUsername('')
           setPassword('')
+          
+         navigate("/profile");
+          
         } catch (exception) {
             console.log(exception)
         }
