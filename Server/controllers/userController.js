@@ -44,6 +44,24 @@ const createUser = async (req, res) => {
   res.status(201).json(savedUser);
 }
 
+const deleteUser = async(req, res) => {
+  const token = getTokenFrom(req);
+  
+  let decodedToken;
+
+  try {
+    decodedToken = jwt.verify(token, process.env.SECRET);
+  } catch (error) {
+    return res.status(401).json({ error: 'token missing or invalid' });
+  }
+
+  const user = await User.findById(decodedToken.id);
+
+  user.deleteOne();
+
+  res.status(200).json({message: "User deleted successfully"});
+}
+
 const createNewVisual = async (req, res) => {
   const body = req.body;
 
@@ -118,6 +136,7 @@ const deleteVisual = async(req, res) => {
 module.exports = {
   createUser,
   getUsers,
+  deleteUser,
   createNewVisual,
   deleteVisual
 }
