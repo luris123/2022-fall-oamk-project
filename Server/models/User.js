@@ -68,7 +68,7 @@ const visualizationSchema = new Schema({
         },
         display: {
             type: Boolean,
-            default: true,
+            default: false,
         },
     },
 });

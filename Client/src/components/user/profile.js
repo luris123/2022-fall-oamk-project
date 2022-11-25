@@ -2,13 +2,35 @@ import React, { useState, useEffect } from 'react';
 import Popup from 'reactjs-popup';
 import Form from 'react-bootstrap/Form';
 import Button from "react-bootstrap/Button";
+import viewService from '../../services/viewService';
 
 
 function Profile() {
 
     const [user, setUser] = useState(null);
-    const [v1v2Description, setV1V2Description] = useState(false);
-    const [v3v4v10Description, setV3V4V10Description] = useState(false);
+    const [v1v2Toggle, setV1V2Toggle] = useState(false);
+    const [v1v2Description, setV1V2Description] = useState("");
+
+    const [v3v4v10Toggle, setV3V4V10Toggle] = useState(false);
+    const [v3v4v10Description, setV3V4V10Description] = useState("");
+
+    const [v5Toggle, setV5Toggle] = useState(false);
+    const [v5Description, setV5Description] = useState("");
+
+    const [v6Toggle, setV6Toggle] = useState(false);
+    const [v6Description, setV6Description] = useState("");
+
+    const [v6v7Toggle, setV6V7Toggle] = useState(false);
+    const [v6v7Description, setV6V7Description] = useState("");
+
+    const [v8Toggle, setV8Toggle] = useState(false);
+    const [v8Description, setV8Description] = useState("");
+
+    const [v9Toggle, setV9Toggle] = useState(false);
+    const [v9Description, setV9Description] = useState("");
+
+    const [displayOption, setDisplayOption] = useState(false);
+
 
     const userJSON = JSON.parse(window.localStorage.getItem('loggedUser'));
 
@@ -18,6 +40,42 @@ function Profile() {
         setUser(userJSON)
         console.log(user)
     }, []);
+
+    const handleCreateView = async (event) => {
+        event.preventDefault();
+
+        const settings = {
+            "v1v2": v1v2Toggle,
+            "v1v2text": v1v2Description,
+            "v3v4v10": v3v4v10Toggle,
+            "v3v4v10text": v3v4v10Description,
+            "v5": v5Toggle,
+            "v5text": v5Description,
+            "v6": v6Toggle,
+            "v6text": v6Description,
+            "v7v10": v6v7Toggle,
+            "v7v10text": v6v7Description,
+            "v8": v8Toggle,
+            "v8text": v8Description,
+            "v9": v9Toggle,
+            "v9text": v9Description,
+            "display": displayOption
+        };
+
+        try {
+            const views = await viewService.createView({
+                settings
+            });
+
+            console.table(views);
+
+            //tässä voisi päivittää viewsit?
+
+        } catch (error) {
+
+        }
+
+    }
 
     if (user === null) {
         return (
@@ -39,29 +97,85 @@ function Profile() {
                 })}
             </ul>
             <Popup trigger={<Button type='primary'>Luo uusi näkymä</Button>} modal nested onClose={() => {
-                setV1V2Description(false);
-                setV3V4V10Description(false);
+                setV1V2Toggle(false);
+                setV3V4V10Toggle(false);
+                setV5Toggle(false);
+                setV6Toggle(false);
+                setV6V7Toggle(false);
+                setV8Toggle(false);
+                setV9Toggle(false);
+                setDisplayOption(false);
+
+                setV1V2Description("");
+                setV3V4V10Description("");
+                setV5Description("");
+                setV6Description("");
+                setV6V7Description("");
+                setV8Description("");
+                setV9Description("");
             }}>
-                <div className='newVisualization'>
-                    <div className='newVisualizationContent'>
+                <div className='newView'>
+                    <div className='newViewContent'>
                         <h1>Luo uusi näkymä</h1>
-                        <Form onSubmit={() => console.log("Submit painettu")}>
+                        <Form onSubmit={handleCreateView}>
+                            <h4>Lämpötilatiedot ja co2 pitoisuudet</h4>
                             <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                                <Form.Check type="checkbox" onClick={() => setV1V2Description(!v1v2Description)} label="Global historical surface temperature anomalies from January 1850 onwards combined with Northern Hemisphere 2,000-year temperature reconstruction " />
-                                {v1v2Description
-                                ? <Form.Control type="text" placeholder="Enter description" />
-                                : null
+                                <Form.Check type="checkbox" onClick={() => setV1V2Toggle(!v1v2Toggle)} label="Global historical surface temperature anomalies from January 1850 onwards combined with Northern Hemisphere 2,000-year temperature reconstruction " />
+                                {v1v2Toggle
+                                    ? <Form.Control type="text" onChange={(e) => setV1V2Description(e.target.value)} placeholder="Enter description" />
+                                    : null
                                 }
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                                <Form.Check type="checkbox" onClick={() => setV3V4V10Description(!v3v4v10Description)} label="Atmospheric CO2 concentrations from Mauna Loa measurements starting 1958 combined with Antarctic Ice Core records of atmospheric CO2 ratios combined with Mauna Loa measurements and Antarctic Ice Core records of atmospheric CO2 ratios combined with Mauna Loa measurements" />
-                                {v3v4v10Description
-                                ? <Form.Control type="text" placeholder="Enter description" />
-                                : null
+                                <Form.Check type="checkbox" onClick={() => setV3V4V10Toggle(!v3v4v10Toggle)} label="Atmospheric CO2 concentrations from Mauna Loa measurements starting 1958 combined with Antarctic Ice Core records of atmospheric CO2 ratios combined with Mauna Loa measurements and Antarctic Ice Core records of atmospheric CO2 ratios combined with Mauna Loa measurements" />
+                                {v3v4v10Toggle
+                                    ? <Form.Control type="text" onChange={(e) => setV3V4V10Description(e.target.value)} placeholder="Enter description" />
+                                    : null
                                 }
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                                <Form.Check type="checkbox" onClick={() => setV5Toggle(!v5Toggle)} label="Vostok Ice Core CO2 measurements, 417160 - 2342 years BP" />
+                                {v5Toggle
+                                    ? <Form.Control type="text" onChange={(e) => setV5Description(e.target.value)} placeholder="Enter description" />
+                                    : null
+                                }
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                                <Form.Check type="checkbox" onClick={() => setV6Toggle(!v6Toggle)} label="Ice core 800k year composite study CO2 measurements" />
+                                {v6Toggle
+                                    ? <Form.Control type="text" onChange={(e) => setV6Description(e.target.value)} placeholder="Enter description" />
+                                    : null
+                                }
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                                <Form.Check type="checkbox" onClick={() => setV6V7Toggle(!v6v7Toggle)} label="Evolution of global temperature over the past two million years combined with Ice core 800k year composite study CO2 measurements" />
+                                {v6v7Toggle
+                                    ? <Form.Control type="text" onChange={(e) => setV6V7Description(e.target.value)} placeholder="Enter description" />
+                                    : null
+                                }
+                            </Form.Group>
+                            <h4>Päästölähteet</h4>
+                            <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                                <Form.Check type="checkbox" onClick={() => setV8Toggle(!v8Toggle)} label="CO2 emissions by country" />
+                                {v8Toggle
+                                    ? <Form.Control type="text" onChange={(e) => setV8Description(e.target.value)} placeholder="Enter description" />
+                                    : null
+                                }
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                                <Form.Check type="checkbox" onClick={() => setV9Toggle(!v9Toggle)} label="CO2 emissions by sectors" />
+                                {v9Toggle
+                                    ? <Form.Control type="text" onChange={(e) => setV9Description(e.target.value)} placeholder="Enter description" />
+                                    : null
+                                }
+                            </Form.Group>
+                            <h4>Valitse näkymän asettelu</h4>
+                            <p>Asettelu on automaattisesti asetettu sarakeasetteluun, jossa jokainen visualisointi on allekkain.</p>
+                            <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                                <Form.Check type="checkbox" onClick={() => setDisplayOption(!displayOption)} label="Vaihda 2-sarakkeen rinnakkaisasetteluun" />
                             </Form.Group>
                             <Button type='submit'>
-                                Kirjaudu Sisään
+                                Luo näkymä
                             </Button>
                         </Form>
                     </div>

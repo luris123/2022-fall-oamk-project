@@ -197,7 +197,7 @@ function V3() {
             <button onClick={() => setV4Toggle(!v4Toggle)}>Toggle V4</button>
             <button onClick={() => setV10Toggle(!v10Toggle)}>Toggle V10</button>
             {console.log(data)}
-            <div style={{width: 1500, height: 1500, margin: "auto"}}>
+            <div style={{width: 1500, height: "auto", margin: "auto"}}>
                 <Line
                     style={{ backgroundColor: "white" }}
                     options={options}

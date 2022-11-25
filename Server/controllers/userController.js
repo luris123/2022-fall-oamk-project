@@ -62,7 +62,7 @@ const deleteUser = async(req, res) => {
   res.status(200).json({message: "User deleted successfully"});
 }
 
-const createNewVisual = async (req, res) => {
+const createNewView = async (req, res) => {
   const body = req.body;
 
   const token = getTokenFrom(req);
@@ -105,7 +105,7 @@ const createNewVisual = async (req, res) => {
   res.status(201).json(savedUser);
 }
 
-const deleteVisual = async(req, res) => {
+const deleteView = async(req, res) => {
   const body = req.body;
   const token = getTokenFrom(req);
   
@@ -137,6 +137,6 @@ module.exports = {
   createUser,
   getUsers,
   deleteUser,
-  createNewVisual,
-  deleteVisual
+  createNewView,
+  deleteView
 }
