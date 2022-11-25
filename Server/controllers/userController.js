@@ -46,6 +46,7 @@ const createUser = async (req, res) => {
 
 const deleteUser = async(req, res) => {
   const token = getTokenFrom(req);
+  const password = req.body.password;
   
   let decodedToken;
 
@@ -56,6 +57,17 @@ const deleteUser = async(req, res) => {
   }
 
   const user = await User.findById(decodedToken.id);
+
+  try {
+    passwordCorrect = await bcrypt.compare(password, user.passwordHash);
+    if (!passwordCorrect) {
+      return res.status(401).json({
+        error: 'invalid password'
+      })
+    }
+  } catch (error) {
+    return res.status(401).json({ error: 'Password Check Failed' });
+  }
 
   user.deleteOne();
 
