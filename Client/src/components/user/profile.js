@@ -32,7 +32,7 @@ function Profile() {
     const [displayOption, setDisplayOption] = useState(false);
 
 
-    let userJSON = JSON.parse(window.localStorage.getItem('loggedUser'));
+    const userJSON = JSON.parse(window.localStorage.getItem('loggedUser'));
 
 
     useEffect(() => {
@@ -43,12 +43,6 @@ function Profile() {
 
     const handleCreateView = async (event) => {
         event.preventDefault();
-
-        //if every toggle is false then alert user to select at least one visualization
-        if (!v1v2Toggle && !v3v4v10Toggle && !v5Toggle && !v6Toggle && !v6v7Toggle && !v8Toggle && !v9Toggle) {
-            alert("Valitse ainakin yksi visualisaatio luodaksesi näkymän");
-            return;
-        }
 
         const settings = {
             "v1v2": v1v2Toggle,
@@ -69,17 +63,16 @@ function Profile() {
         };
 
         try {
-            const response = await viewService.createView({
+            const views = await viewService.createView({
                 settings
             });
 
-            //update local storage user
-            userJSON.visualizations = response.visualizations;
-            window.localStorage.setItem('loggedUser', JSON.stringify(userJSON));
-            setUser(userJSON);
+            console.table(views);
+
+            //tässä voisi päivittää viewsit?
 
         } catch (error) {
-            console.log(error);
+
         }
 
     }
@@ -93,6 +86,7 @@ function Profile() {
     }
 
     return (
+        console.log(user),
         <div>
             <h2>Käyttäjäprofiili</h2>
             <p>Käyttäjätunnus: {user.username}</p>
@@ -123,7 +117,7 @@ function Profile() {
                 <div className='newView'>
                     <div className='newViewContent'>
                         <h1>Luo uusi näkymä</h1>
-                        <Form>
+                        <Form onSubmit={handleCreateView}>
                             <h4>Lämpötilatiedot ja co2 pitoisuudet</h4>
                             <Form.Group className="mb-3" controlId="formBasicCheckbox">
                                 <Form.Check type="checkbox" onClick={() => setV1V2Toggle(!v1v2Toggle)} label="Global historical surface temperature anomalies from January 1850 onwards combined with Northern Hemisphere 2,000-year temperature reconstruction " />
@@ -180,7 +174,7 @@ function Profile() {
                             <Form.Group className="mb-3" controlId="formBasicCheckbox">
                                 <Form.Check type="checkbox" onClick={() => setDisplayOption(!displayOption)} label="Vaihda 2-sarakkeen rinnakkaisasetteluun" />
                             </Form.Group>
-                            <Button onClick={handleCreateView}>
+                            <Button type='submit'>
                                 Luo näkymä
                             </Button>
                         </Form>
