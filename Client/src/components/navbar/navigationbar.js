@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import loginService from '../../services/loginService';
-import  { Link, useNavigate } from "react-router-dom";
+import  { Link } from "react-router-dom";
 import { Navbar, Nav, NavLink} from 'react-bootstrap'
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from "react-bootstrap/Button";
@@ -11,7 +11,9 @@ function Navigationbar() {
     const [password, setPassword] = useState('')
     const [user, setUser] = useState(null)
 
-    let navigate = useNavigate();
+    const refreshPage = () => {
+        window.location.reload(false);
+    }
 
     useEffect(() => {
         const loggedUserJSON = window.localStorage.getItem('loggedUser')
@@ -35,8 +37,8 @@ function Navigationbar() {
           ) 
           setUsername('')
           setPassword('')
-          
-         navigate("/profile");
+
+          refreshPage();
           
         } catch (exception) {
             console.log(exception)
@@ -124,7 +126,7 @@ function Navigationbar() {
                     <NavLink eventKey="2" as={Link} to="/emissionSources">Päästölähteet</NavLink>
                     <NavLink eventKey="3" as={Link} to="/temperature">Lämpötilatiedot ja co2 pitoisuudet</NavLink>
                     <NavLink eventKey="4" as={Link} to="/profile">Profiili</NavLink>
-                    <Button onClick={() => {window.localStorage.removeItem('loggedUser'); setUser(null)}}>logout</Button>
+                    <Button onClick={() => {window.localStorage.removeItem('loggedUser'); setUser(null); refreshPage()}}>logout</Button>
             
                 </Nav>
             </Navbar.Collapse>
