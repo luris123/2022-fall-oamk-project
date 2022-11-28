@@ -4,8 +4,10 @@
 
 ## Linkki appiin: 
 
-## Projektin aihe
----
+## Projektin aihe:
+Projektin aiheena oli tehdä web-sovellus, jossa voidaan tarkastella erilaisia ilmastonmuutokseen liittyviä kuvaajia. Sovelluksessa on myös mahdollista tehdä käyttäjä, jolla voidaan luoda omia visualisointinäkymä yksilöllisellä url-tunnisteella. Näkymään käyttäjä voi valita haluamansa visualisoinnit, valita haluamansa asettelun ja kirjoittaa kuvaustekstin jokaiselle visualisoinnille.
+
+Projektin tarkoituksena oli perehtyä full-stack 
 
 ## Mitä teknologioita projektissa on käytetty?
 ---
