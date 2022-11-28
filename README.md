@@ -5,7 +5,7 @@
 ## Linkki appiin: 
 
 ## Projektin aihe
-Projektin aiheena oli tehdä visualisointityökalu, jossa voidaan tarkastella erilaisia ilmastonmuutokseen liittyviä kuvaajia. Sovelluksessa on myös mahdollista tehdä käyttäjä, jolla voidaan luoda omia visualisointinäkymä yksilöllisellä url-tunnisteella. Näkymään käyttäjä voi valita haluamansa visualisoinnit, valita haluamansa asettelun ja kirjoittaa kuvaustekstin jokaiselle visualisoinnille. Käyttäjän luomat näkymät ovat löydettävissä julkisesti internetissä. 
+Projektin aiheena oli tehdä visualisointityökalu, jossa voidaan tarkastella erilaisia ilmastonmuutokseen liittyviä kuvaajia. Sovelluksessa on myös mahdollista tehdä käyttäjä, jolla voidaan luoda omia visualisointinäkymä yksilöllisellä url-tunnisteella. Näkymään käyttäjä voi valita haluamansa visualisoinnit, valita haluamansa asettelun ja kirjoittaa kuvaustekstin jokaiselle visualisoinnille. Käyttäjien luomat näkymät ovat löydettävissä julkisesti internetissä. 
 
 ## Projektin tarkoitus
 Projektin tarkoituksena oli perehtyä full-stack ohjelmoinnin perusteisiin ja Kanban-kehitysmallin käyttämiseen.
