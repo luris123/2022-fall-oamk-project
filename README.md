@@ -1,6 +1,6 @@
 # Syksyn 2022 ryhmäprojekti
 
-## Projektin nimi
+## Projektin nimi: Web-sovellusprojekti
 
 ## Linkki appiin: 
 
