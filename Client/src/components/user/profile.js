@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import Popup from 'reactjs-popup';
 import Form from 'react-bootstrap/Form';
 import Button from "react-bootstrap/Button";
+import { Link } from 'react-router-dom';
 import viewService from '../../services/viewService';
-
+import View from '../view';
 
 function Profile() {
 
     const [user, setUser] = useState(null);
+
     const [v1v2Toggle, setV1V2Toggle] = useState(false);
     const [v1v2Description, setV1V2Description] = useState("");
 
@@ -36,9 +38,9 @@ function Profile() {
 
 
     useEffect(() => {
-        console.log(userJSON)
-        setUser(userJSON)
-        console.log(user)
+        console.log(userJSON);
+        setUser(userJSON);
+        console.log(user);
     }, []);
 
     const handleCreateView = async (event) => {
@@ -83,7 +85,6 @@ function Profile() {
         } catch (error) {
             console.log(error);
         }
-
     }
 
     if (user === null) {
@@ -102,7 +103,8 @@ function Profile() {
             <p>Visualisointien määrä: {user.visualizations.length}</p>
             <ul>
                 {user.visualizations.map((visualization, i) => {
-                    return <li key={i}>Visualisointi: <a href={visualization.url}>{visualization.url}</a></li>
+                    let url = "/view/" + visualization.url;
+                    return <li key={i}>Visualisointi: <Link to = {url} onClick={() => View()}>{visualization.url}</Link></li>
                 })}
             </ul>
             <Popup trigger={<Button type='primary'>Luo uusi näkymä</Button>} modal nested onClose={() => {

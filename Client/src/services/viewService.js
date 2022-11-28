@@ -19,7 +19,17 @@ const createView = async (settings) => {
   return response.data;
 }
 
+const getView = async (url) => {
 
-const exportedObject = { createView }
+  /*const object = {
+    "url": url
+  }
+
+  const response = await axios.get(baseUrl + '/users/getVisualization', object);
+  return response.data; */
+}
+
+
+const exportedObject = { createView, getView }
 
 export default exportedObject 

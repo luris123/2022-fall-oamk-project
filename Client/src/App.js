@@ -6,6 +6,7 @@ import Home from './components/home'
 import EmissionSources from './components/emissionSources'
 import Temperature from './components/temperature'
 import Profile from './components/user/profile.js'
+import View from './components/view.js'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/emissionSources" element={EmissionSources()} />
           <Route path="/temperature" element={Temperature()} />
           <Route path="/profile" element={Profile()} />
+          <Route path="/view/:url" element={View()} />
         </Routes>
       </BrowserRouter>
     </div>

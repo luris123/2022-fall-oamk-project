@@ -145,10 +145,21 @@ const deleteView = async(req, res) => {
   res.status(200).json({message: "Visualization deleted successfully"});
 }
 
+const getVisualization = async(req, res) => {
+    const body = req.body;
+    console.log(body);
+    const user = await User.findOne({ "visualizations.url": body.url }).exec();
+    console.log(user);
+    const object = user.visualizations.find(x => x.url === body.url);
+
+    res.status(200).json(object);
+}
+
 module.exports = {
   createUser,
   getUsers,
   deleteUser,
   createNewView,
-  deleteView
+  deleteView,
+  getVisualization
 }
