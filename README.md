@@ -11,6 +11,17 @@ Projektin tarkoituksena oli perehtyä full-stack ohjelmoinnin perusteisiin ja Ka
 
 ## Mitä teknologioita projektissa on käytetty?
 ---
+### frontend
+
+Sovelluksen frontend on toteutettu käyttäen ReactJS nimistä JavaScript kirjastoa ja CSS:ää HTML:n tyylittämiseen. Erilaisten pakettien ja dependencyjen asentamiseen käytettiin npm:ää (node package manager).
+
+### backend
+
+Backend toteutettiin myös Javascriptillä käyttäen Node.js ajoympäristöä, käytössä on myös muunmuassa Express.js niminen kirjasto jota käytettiin sovelluksen API:n rakentamisessa, sekä Mongoose jonka avulla voitiin luoda yhteys tietokannan ja backendin välillä.
+
+### tietokanta
+
+Tietokannaksi valittiin MongoDB, joka on avoimen lähteen dokumenttipohjainen NoSQL tietokanta. Suurin syy MongoDB:n valinnalle oli sen yksinkertainen rakenne.
 
 ## Käyttöönotto
 ---
