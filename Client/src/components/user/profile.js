@@ -44,6 +44,12 @@ function Profile() {
     const handleCreateView = async (event) => {
         event.preventDefault();
 
+        //if every toggle is false then alert user to select at least one visualization
+        if (!v1v2Toggle && !v3v4v10Toggle && !v5Toggle && !v6Toggle && !v6v7Toggle && !v8Toggle && !v9Toggle) {
+            alert("Valitse ainakin yksi visualisaatio luodaksesi näkymän");
+            return;
+        }
+
         const settings = {
             "v1v2": v1v2Toggle,
             "v1v2text": v1v2Description,
@@ -63,16 +69,19 @@ function Profile() {
         };
 
         try {
-            const views = await viewService.createView({
+            const response = await viewService.createView({
                 settings
             });
 
-            console.table(views);
+            console.log(response);
 
-            //tässä voisi päivittää viewsit?
+            //update local storage user
+            userJSON.visualizations = response.visualizations;
+            window.localStorage.setItem('loggedUser', JSON.stringify(userJSON));
+            setUser(userJSON);
 
         } catch (error) {
-
+            console.log(error);
         }
 
     }
