@@ -1,11 +1,11 @@
 # Syksyn 2022 ryhmäprojekti
 
-## Projektin nimi
+## Projektin nimi:
 
 ## Linkki appiin: 
 
-## Projektin aihe
+### Projektin aihe
 ---
 
-## Mitä teknologioita projektissa on käytetty?
+### Käytetyt teknologiat ja työkalut:
 ---
