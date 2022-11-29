@@ -16,7 +16,7 @@ function V5(props) {
       try {
         const response = await axios.get('http://localhost:3001/datasets');
         let AirAgeArray = response.data.v5data.map(x => x.mean-age-of-air-yr);
-        setAirAge(AirAgeArray);
+        setAirAge(AirAgeArray.reverse());
 
         let co2ConcentrationArray = response.data.v5data.map(x => x.c02_concentration);
         setCO2Concentration(co2ConcentrationArray);
