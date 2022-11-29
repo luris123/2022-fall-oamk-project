@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import chartService from '../../services/chartService';
+import chartServAir from '../../servAir/chartServAir';
 import { Chart, registerables } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import axios from 'axios';
@@ -8,15 +8,15 @@ Chart.register(...registerables);
 
 function V5(props) {
 
-  const [icesAge, setIcesAge] = useState([]);
+  const [airAge, setAirAge] = useState([]);
   const [co2Concentration, setCO2Concentration] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
       try {
         const response = await axios.get('http://localhost:3001/datasets');
-        let iceAgeArray = response.data.v5data.map(x => x.age_of_ice_yr_bp);
-        setIcesAge(iceAgeArray);
+        let AirAgeArray = response.data.v5data.map(x => x.mean-age-of-air-yr);
+        setAirAge(AirAgeArray);
 
         let co2ConcentrationArray = response.data.v5data.map(x => x.c02_concentration);
         setCO2Concentration(co2ConcentrationArray);
@@ -39,7 +39,7 @@ function V5(props) {
       },
       title: {
         display: true,
-        text: "CO2 Concentration compared to the age of the ice years before present",
+        text: "CO2 Concentration compared to the age of the air per year",
       },
     }
   };
@@ -48,8 +48,8 @@ function V5(props) {
     <>
       {props.show
         ? <div>
-          <h3>V5 Vostok Ice Core CO2 measurements, 417160 - 2342 years BP</h3>
-          <a href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2" target="_blank" rel="noreferrer">Data source</a>
+          <h3>V5 Vostok Air Core CO2 measurements, 417160 - 2342 years BP 2003</h3>
+          <a href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.Aircore.co2" target="_blank" rel="noreferrer">Data source</a>
           <br></br>
           <a href="https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html" target="_blank" rel="noreferrer">Data description</a>
           {props.description
@@ -60,7 +60,7 @@ function V5(props) {
             style={{ backgroundColor: "white" }}
             options={options}
             data={{
-              labels: icesAge,
+              labels: airAge,
               datasets: [
                 {
                   label: "Concentration of CO2",
