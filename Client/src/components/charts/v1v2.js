@@ -4,6 +4,10 @@ import { Chart, registerables } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import axios from 'axios';
 import 'chartjs-adapter-luxon';
+import Button from "react-bootstrap/Button";
+import '../../App.css'
+import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 
 Chart.register(...registerables);
@@ -178,31 +182,64 @@ function V1V2(props) {
 
     ]
   }
+//   return (
+//     <>
+//       {props.show
+//         ? <div>
+//         <h4>Global historical surface temperature anomalies from January 1850 onwards</h4>
+//         <a href="https://www.metoffice.gov.uk/hadobs/hadcrut5/" target="_blank" rel="noreferrer">Description and data source</a>
+//         <br></br>
+//         <h4>Northern Hemisphere 2,000-year temperature reconstruction</h4>
+//         <a href="https://gml.noaa.gov/ccgg/about/co2_measurements.html" target="_blank" rel="noreferrer">Data measurement description<br /></a>
+//         <a href="https://www.ncei.noaa.gov/pub/data/paleo/contributions_by_author/moberg2005/nhtemp-moberg2005.txt" target="_blank" rel="noreferrer">Data source<br /></a>
+//         <Button id="view-button" onClick={() => setVisible(!visible)}>Change view</Button>
+//         <Button id="view-button" onClick={() => setV2Toggle(!v2Toggle)}>V2Toggle</Button>
+//         {props.description
+//           ? <p>{props.description}</p>
+//           : null
+//         }
+//         <div style={{ width: 1500, height: 'auto', margin: 'auto' }}>
+//           <Line
+//             style={{ backgroundColor: "white" }}
+//             options={options}
+//             data={data}
+//           />
+//         </div>
+//       </div>
+//         : null
+//       }
+//     </>
+//   )
+// }
 
   return (
     <>
       {props.show
-        ? <div>
-        <h4>Global historical surface temperature anomalies from January 1850 onwards</h4>
-        <a href="https://www.metoffice.gov.uk/hadobs/hadcrut5/" target="_blank" rel="noreferrer">Description and data source</a>
-        <br></br>
-        <h4>Northern Hemisphere 2,000-year temperature reconstruction</h4>
-        <a href="https://gml.noaa.gov/ccgg/about/co2_measurements.html" target="_blank" rel="noreferrer">Data measurement description<br /></a>
-        <a href="https://www.ncei.noaa.gov/pub/data/paleo/contributions_by_author/moberg2005/nhtemp-moberg2005.txt" target="_blank" rel="noreferrer">Data source<br /></a>
-        <button onClick={() => setVisible(!visible)}>Change view</button>
-        <button onClick={() => setV2Toggle(!v2Toggle)}>V2Toggle</button>
+        ? <Card id="card">
+          <Card.Body id="card-header">
+            <h3>Global historical surface temperature anomalies from January 1850 onwards<br></br>&<br></br>Northern Hemisphere 2,000-year temperature reconstruction</h3>
+          </Card.Body>
+          <Card.Body id="card-header">
+            <Button id="view-button" onClick={() => setVisible(!visible)}>Change view</Button>
+            <Button id="view-button" onClick={() => setV2Toggle(!v2Toggle)}>V2Toggle</Button>
+          </Card.Body>
         {props.description
           ? <p>{props.description}</p>
           : null
         }
-        <div style={{ width: 1500, height: 'auto', margin: 'auto' }}>
+        <div style={{ width: 1000, height: 'auto', margin: 'auto' }}>
           <Line
             style={{ backgroundColor: "white" }}
             options={options}
             data={data}
           />
         </div>
-      </div>
+        <Card.Body id="card-header">
+          <Card.Link href="https://www.metoffice.gov.uk/hadobs/hadcrut5/">Global surface temperature Description and Data source</Card.Link>
+          <Card.Link href="https://gml.noaa.gov/ccgg/about/co2_measurements.html">Data measurement description</Card.Link>
+          <Card.Link href="https://www.ncei.noaa.gov/pub/data/paleo/contributions_by_author/moberg2005/nhtemp-moberg2005.txt">Northern Hemisphere temperature Data source</Card.Link>
+        </Card.Body>
+      </Card>
         : null
       }
     </>

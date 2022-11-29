@@ -5,6 +5,7 @@ import { Navbar, Nav, NavLink} from 'react-bootstrap'
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from "react-bootstrap/Button";
 import Form from 'react-bootstrap/Form';
+import '../../App.css'
 
 function Navigationbar() {
     const [username, setUsername] = useState('') 
@@ -78,17 +79,18 @@ function Navigationbar() {
                         title="Kirjaudu"
                         menuVariant="light"
                     >
-                        <Form onSubmit={handleLogin}>
+                        <Form onSubmit={handleLogin} id="form">
+                            <h5 id="form-header">Kirjaudu</h5>
                             <Form.Group>
-                                <Form.Label>Käyttäjätunnus</Form.Label>
-                                <Form.Control onChange={({ target }) => setUsername(target.value)} type="username" placeholder="Syötä käyttäjätunnus"/>
+                                <Form.Label id="form-label">Käyttäjätunnus</Form.Label>
+                                <Form.Control id="form-control" onChange={({ target }) => setUsername(target.value)} type="username"/>
                             </Form.Group>
                             <Form.Group>
-                                <Form.Label>Salasana</Form.Label>
-                                <Form.Control onChange={({ target }) => setPassword(target.value)} type="password" placeholder="Syötä salasana" />
+                                <Form.Label id="form-label">Salasana</Form.Label>
+                                <Form.Control id="form-control" onChange={({ target }) => setPassword(target.value)} type="password" />
                             </Form.Group>
-                            <Button type='submit'>
-                                Kirjaudu Sisään
+                            <Button type='submit' id="form-button">
+                                Kirjaudu sisään
                             </Button>
                         </Form>
 
@@ -98,16 +100,17 @@ function Navigationbar() {
                         title="Rekisteröidy"
                         menuVariant="light"
                     >
-                        <Form onSubmit={handleRegister}>
+                        <Form onSubmit={handleRegister} id="form">
+                            <h5 id="form-header">Rekisteröidy</h5>
                             <Form.Group>
-                                <Form.Label>Käyttäjätunnus</Form.Label>
-                                <Form.Control onChange={({ target }) => setUsername(target.value)} type="username" placeholder="Syötä käyttäjätunnus"/>
+                                <Form.Label id="form-label">Käyttäjätunnus</Form.Label>
+                                <Form.Control id="form-control" onChange={({ target }) => setUsername(target.value)} type="username" />
                             </Form.Group>
                             <Form.Group>
-                                <Form.Label>Salasana</Form.Label>
-                                <Form.Control onChange={({ target }) => setPassword(target.value)} type="password" placeholder="Syötä salasana" />
+                                <Form.Label id="form-label">Salasana</Form.Label>
+                                <Form.Control id="form-control" onChange={({ target }) => setPassword(target.value)} type="password" />
                             </Form.Group>
-                            <Button type='submit'>
+                            <Button type='submit' id="form-button">
                                 Luo uusi tili
                             </Button>
                         </Form>
