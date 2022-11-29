@@ -91,7 +91,7 @@ const createNewView = async (req, res) => {
 
   const rand = Math.random().toString(16).substr(2, 4);
 
-  user.visualizations.push({
+  user.views.push({
     'url': rand,
     'settings': {
       "v1v2": body.settings.v1v2,
@@ -131,26 +131,26 @@ const deleteView = async(req, res) => {
 
   const user = await User.findById(decodedToken.id);
 
-  const object = user.visualizations.find(x => x.url === body.url);
+  const object = user.views.find(x => x.url === body.url);
 
   if(object === undefined){
-    return res.status(404).json({message: "Visualization not found"});
+    return res.status(404).json({message: "View not found"});
   }
 
-  const index = user.visualizations.indexOf(object);
+  const index = user.views.indexOf(object);
 
-  user.visualizations.splice(index, 1);
+  user.views.splice(index, 1);
   user.save();
 
-  res.status(200).json({message: "Visualization deleted successfully"});
+  res.status(200).json({message: "View deleted successfully"});
 }
 
-const getVisualization = async(req, res) => {
+const getView = async(req, res) => {
     const body = req.body;
     console.log(body);
-    const user = await User.findOne({ "visualizations.url": body.url }).exec();
+    const user = await User.findOne({ "views.url": body.url }).exec();
     console.log(user);
-    const object = user.visualizations.find(x => x.url === body.url);
+    const object = user.views.find(x => x.url === body.url);
 
     res.status(200).json(object);
 }
@@ -161,5 +161,5 @@ module.exports = {
   deleteUser,
   createNewView,
   deleteView,
-  getVisualization
+  getView
 }

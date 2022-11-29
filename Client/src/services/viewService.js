@@ -25,7 +25,7 @@ const getView = async (url) => {
     "url": url
   }
 
-  const response = await axios.get(baseUrl + '/users/getVisualization', object);
+  const response = await axios.get(baseUrl + '/users/getView', object);
   return response.data; */
 }
 

@@ -40,7 +40,7 @@ function Profile() {
     useEffect(() => {
         console.log(userJSON);
         setUser(userJSON);
-        console.log(user);
+
     }, []);
 
     const handleCreateView = async (event) => {
@@ -78,7 +78,7 @@ function Profile() {
             console.log(response);
 
             //update local storage user
-            userJSON.visualizations = response.visualizations;
+            userJSON.views = response.views;
             window.localStorage.setItem('loggedUser', JSON.stringify(userJSON));
             setUser(userJSON);
 
@@ -96,15 +96,14 @@ function Profile() {
     }
 
     return (
-        console.log(user),
         <div>
             <h2>Käyttäjäprofiili</h2>
             <p>Käyttäjätunnus: {user.username}</p>
-            <p>Visualisointien määrä: {user.visualizations.length}</p>
+            <p>Näkymien määrä: {user.views.length}</p>
             <ul>
-                {user.visualizations.map((visualization, i) => {
-                    let url = "/view/" + visualization.url;
-                    return <li key={i}>Visualisointi: <Link to = {url} onClick={() => View()}>{visualization.url}</Link></li>
+                {user.views.map((view, i) => {
+                    let url = "/view/" + view.url;
+                    return <li key={i}>Näkymä: <Link to = {url} onClick={() => View()}>{view.url}</Link></li>
                 })}
             </ul>
             <Popup trigger={<Button type='primary'>Luo uusi näkymä</Button>} modal nested onClose={() => {

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const visualizationSchema = new Schema({
+const viewSchema = new Schema({
     url: {
         type: String,
         default: ''
@@ -81,8 +81,8 @@ const userSchema = new Schema({
     passwordHash: {
         type: String
     },
-    visualizations: {
-        type: [visualizationSchema],
+    views: {
+        type: [viewSchema],
         default: []
     }
 });
