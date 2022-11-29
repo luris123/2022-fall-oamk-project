@@ -74,6 +74,11 @@ function V3() {
                 }
 
                 setV10(v10.slice(344));
+                v10.y = '';
+                for (let i = 0; i < v10.length; i++) {
+                    v10[i].y = '0';
+                }
+                
 
             } catch (error) {
             console.log(error)
@@ -89,17 +94,25 @@ function V3() {
         // events: [] makes the chart unresponsive to mouse events   
         events: ['mousemove'],
         scales: {
+            C: {
+                type: "linear",
+                display: true,
+                position: "right",
+                title: {
+                    display: true,
+                    text: "Mean data"
+                },
+            },
             x: {
                 type: 'time',
                 time: {
-                    unit: 'year',
-
+                    unit: "month",
                 },
                 title: {
                     display: true,
-                    text: 'Year'
+                    text: "Time (monthly)"
                 }
-            },
+            }
 
                 },
             plugins: {
@@ -117,6 +130,7 @@ function V3() {
             datasets: [
                 {
                     label: 'Annual mean',
+                    spanGaps: true,
                     data: annual,
                     hidden: visible,
                     borderColor: 'rgb(255, 99, 132)',
@@ -129,6 +143,7 @@ function V3() {
                 },
                 {
                     label: 'Monthly mean average',
+                    spanGaps: true,
                     data: monthly,
                     hidden: !visible,
                     borderColor: 'rgb(54, 162, 235)',
@@ -140,6 +155,7 @@ function V3() {
                 },
                 {
                     label: 'DE08',
+                    spanGaps: true,
                     data: de08,
                     hidden: v4Toggle,
                     borderColor: 'rgb(255, 205, 86)',
@@ -151,6 +167,7 @@ function V3() {
                 },
                 {
                     label: 'DE082',
+                    spanGaps: true,
                     data: de082,
                     hidden: v4Toggle,
                     borderColor: 'rgb(153, 102, 255)',
@@ -162,6 +179,7 @@ function V3() {
                 },
                 {
                     label: 'DSS',
+                    spanGaps: true,
                     data: dss,
                     hidden: v4Toggle,
                     borderColor: 'rgb(75, 192, 192)',
@@ -172,16 +190,17 @@ function V3() {
                     }
 
                 },
-                // {
-                //     label: 'Major historical events',
-                //     data: v10,
-                //     hidden: v10Toggle,
-                //     borderColor: 'rgb(50, 205, 50)',
-                //     backgroundColor: 'rgba(50, 205, 50, 0.5)',
-                //     parsing:{
-                //         xAxisKey: 'year',
-                //     }
-                // },
+                {
+                    label: 'Major historical events',
+                    data: v10,
+                    hidden: v10Toggle,
+                    borderColor: 'rgb(50, 205, 50)',
+                    backgroundColor: 'rgba(50, 205, 50, 0.5)',
+                    parsing:{
+                        xAxisKey: 'year',
+                        yAxisKey: 'y'
+                    }
+                },
                 
             ],
 
@@ -196,7 +215,8 @@ function V3() {
             <button onClick={() => setVisible(!visible)}>Change view</button>
             <button onClick={() => setV4Toggle(!v4Toggle)}>Toggle V4</button>
             <button onClick={() => setV10Toggle(!v10Toggle)}>Toggle V10</button>
-            {console.log(data)}
+            {console.log(v10)}
+            {console.log(dss)}
             <div style={{width: 1500, height: "auto", margin: "auto"}}>
                 <Line
                     style={{ backgroundColor: "white" }}
