@@ -9,11 +9,11 @@ function Temperature() {
   //Temporary test below will be changed to chart later on...
   return (
     <div>
-      <V1V2 />
-      <V3 />
-      <V5 />
-      <V6 />
-      <V7 />
+      <V1V2 show={true}/>
+      <V3 show={true}/>
+      <V5 show={true}/>
+      <V6 show={true}/>
+      <V7 show={true}/>
     </div>
   )
 }

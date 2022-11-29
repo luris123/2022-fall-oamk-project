@@ -6,7 +6,7 @@ import axios from 'axios';
 
 Chart.register(...registerables);
 
-function V7() {
+function V7(props) {
 
     const [timeTemp1, setTimeTemp1] = useState([]);
     const [globalTemp1, setGlobalTemp1] = useState([]);
@@ -128,23 +128,33 @@ function V7() {
 
     return (
         <>
-            <h4>Ice core 800k year composite study CO2 measurements</h4>
-            <a href="https://www.ncei.noaa.gov/access/paleo-search/study/17975" target="_blank" rel="noreferrer">Data description</a>
-            <br />
-            <a href="https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt" target="_blank" rel="noreferrer">Data source</a>
-            <p>TODO: Write a brief description of the graph and its information.</p>
-            <h4>Evolution of global temperature over the past two million years</h4>
-            <a href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf" target="_blank" rel="noreferrer">Data description</a>
-            <br />
-            <a href="http://carolynsnyder.com/publications.php" target="_blank" rel="noreferrer">Data source</a>
-            <p>TODO: Write a brief description of the graph and its information.</p>
-            <div style={{ width: 1500, height: 'auto', margin: 'auto' }}>
-                <Line
-                    style={{ backgroundColor: "white" }}
-                    options={options}
-                    data={data}
-                />
-            </div>
+            {props.show
+                ? <div>
+                    <h4>Ice core 800k year composite study CO2 measurements</h4>
+                    <a href="https://www.ncei.noaa.gov/access/paleo-search/study/17975" target="_blank" rel="noreferrer">Data description</a>
+                    <br />
+                    <a href="https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt" target="_blank" rel="noreferrer">Data source</a>
+                    <p>TODO: Write a brief description of the graph and its information.</p>
+                    <h4>Evolution of global temperature over the past two million years</h4>
+                    <a href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf" target="_blank" rel="noreferrer">Data description</a>
+                    <br />
+                    <a href="http://carolynsnyder.com/publications.php" target="_blank" rel="noreferrer">Data source</a>
+                    <p>TODO: Write a brief description of the graph and its information.</p>
+                    {props.description
+                        ? <p>{props.description}</p>
+                        : null
+                    }
+                    <div style={{ width: 1500, height: 'auto', margin: 'auto' }}>
+                        <Line
+                            style={{ backgroundColor: "white" }}
+                            options={options}
+                            data={data}
+                        />
+                    </div>
+                </div>
+                : null
+            }
+
         </>
     )
 }

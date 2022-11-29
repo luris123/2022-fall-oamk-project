@@ -8,7 +8,7 @@ import 'chartjs-adapter-luxon';
 
 Chart.register(...registerables);
 
-function V1V2() {
+function V1V2(props) {
 
   const [v1Data, setV1Data] = useState([]);
   const [v2Data, setV2Data] = useState([]);
@@ -181,21 +181,30 @@ function V1V2() {
 
   return (
     <>
-      <h4>Global historical surface temperature anomalies from January 1850 onwards</h4>
-      <a href="https://www.metoffice.gov.uk/hadobs/hadcrut5/" target="_blank" rel="noreferrer">Description and data source</a>
-      <br></br>
-      <h4>Northern Hemisphere 2,000-year temperature reconstruction</h4>
-      <a href="https://gml.noaa.gov/ccgg/about/co2_measurements.html" target="_blank" rel="noreferrer">Data measurement description<br /></a>
-      <a href="https://www.ncei.noaa.gov/pub/data/paleo/contributions_by_author/moberg2005/nhtemp-moberg2005.txt" target="_blank" rel="noreferrer">Data source<br /></a>
-      <button onClick={() => setVisible(!visible)}>Change view</button>
-      <button onClick={() => setV2Toggle(!v2Toggle)}>V2Toggle</button>
-      <div style={{ width: 1500, height: 'auto', margin: 'auto' }}>
-        <Line
-          style={{ backgroundColor: "white" }}
-          options={options}
-          data={data}
-        />
+      {props.show
+        ? <div>
+        <h4>Global historical surface temperature anomalies from January 1850 onwards</h4>
+        <a href="https://www.metoffice.gov.uk/hadobs/hadcrut5/" target="_blank" rel="noreferrer">Description and data source</a>
+        <br></br>
+        <h4>Northern Hemisphere 2,000-year temperature reconstruction</h4>
+        <a href="https://gml.noaa.gov/ccgg/about/co2_measurements.html" target="_blank" rel="noreferrer">Data measurement description<br /></a>
+        <a href="https://www.ncei.noaa.gov/pub/data/paleo/contributions_by_author/moberg2005/nhtemp-moberg2005.txt" target="_blank" rel="noreferrer">Data source<br /></a>
+        <button onClick={() => setVisible(!visible)}>Change view</button>
+        <button onClick={() => setV2Toggle(!v2Toggle)}>V2Toggle</button>
+        {props.description
+          ? <p>{props.description}</p>
+          : null
+        }
+        <div style={{ width: 1500, height: 'auto', margin: 'auto' }}>
+          <Line
+            style={{ backgroundColor: "white" }}
+            options={options}
+            data={data}
+          />
+        </div>
       </div>
+        : null
+      }
     </>
   )
 }

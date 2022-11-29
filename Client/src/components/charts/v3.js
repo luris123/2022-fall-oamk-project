@@ -6,7 +6,7 @@ import axios from 'axios';
 
 Chart.register(...registerables);
 
-function V3() {
+function V3(props) {
 
     const [annual, setAnnual] = useState([]);
     const [monthly, setMonthly] = useState([]);
@@ -67,7 +67,7 @@ function V3() {
 
                 let v10 = response.data.v10data
                 setV10(v10);
-                
+
                 for (let i = 0; i < v10.length; i++) {
                     v10[i].year = v10[i].year.toString();
                     v10[i].description = v10[i].description.toString();
@@ -78,17 +78,17 @@ function V3() {
                 for (let i = 0; i < v10.length; i++) {
                     v10[i].y = '0';
                 }
-                
+
 
             } catch (error) {
-            console.log(error)
-        }
+                console.log(error)
+            }
 
-            };
-            getData();
-        }, []);
-        
-        
+        };
+        getData();
+    }, []);
+
+
     const options = {
 
         // events: [] makes the chart unresponsive to mouse events   
@@ -114,116 +114,123 @@ function V3() {
                 }
             }
 
-                },
-            plugins: {
-                legend: {
-                    position: "top",
-                },
-                title: {
-                    display: true,
-                    text: "Mauna Loa CO2 concentration measurements",
-                },
-            }
-        };
+        },
+        plugins: {
+            legend: {
+                position: "top",
+            },
+            title: {
+                display: true,
+                text: "Mauna Loa CO2 concentration measurements",
+            },
+        }
+    };
 
-        const data = {
-            datasets: [
-                {
-                    label: 'Annual mean',
-                    spanGaps: true,
-                    data: annual,
-                    hidden: visible,
-                    borderColor: 'rgb(255, 99, 132)',
-                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                    parsing:{
-                        xAxisKey: 'year',
-                        yAxisKey: 'mean'
-                    }
-                    
-                },
-                {
-                    label: 'Monthly mean average',
-                    spanGaps: true,
-                    data: monthly,
-                    hidden: !visible,
-                    borderColor: 'rgb(54, 162, 235)',
-                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                    parsing:{
-                        xAxisKey: 'year',
-                        yAxisKey: 'average'
-                    }
-                },
-                {
-                    label: 'DE08',
-                    spanGaps: true,
-                    data: de08,
-                    hidden: v4Toggle,
-                    borderColor: 'rgb(255, 205, 86)',
-                    backgroundColor: 'rgba(255, 205, 86, 0.5)',
-                    parsing:{
-                        xAxisKey: 'year',
-                        yAxisKey: 'c02MixingRatio'
-                    }
-                },
-                {
-                    label: 'DE082',
-                    spanGaps: true,
-                    data: de082,
-                    hidden: v4Toggle,
-                    borderColor: 'rgb(153, 102, 255)',
-                    backgroundColor: 'rgba(153, 102, 255, 0.5)',
-                    parsing:{
-                        xAxisKey: 'year',
-                        yAxisKey: 'c02MixingRatio'
-                    }
-                },
-                {
-                    label: 'DSS',
-                    spanGaps: true,
-                    data: dss,
-                    hidden: v4Toggle,
-                    borderColor: 'rgb(75, 192, 192)',
-                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
-                    parsing:{
-                        xAxisKey: 'year',
-                        yAxisKey: 'c02MixingRatio'
-                    }
+    const data = {
+        datasets: [
+            {
+                label: 'Annual mean',
+                spanGaps: true,
+                data: annual,
+                hidden: visible,
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                parsing: {
+                    xAxisKey: 'year',
+                    yAxisKey: 'mean'
+                }
 
-                },
-                {
-                    label: 'Major historical events',
-                    data: v10,
-                    hidden: v10Toggle,
-                    borderColor: 'rgb(50, 205, 50)',
-                    backgroundColor: 'rgba(50, 205, 50, 0.5)',
-                    parsing:{
-                        xAxisKey: 'year',
-                        yAxisKey: 'y'
-                    }
-                },
-                
-            ],
+            },
+            {
+                label: 'Monthly mean average',
+                spanGaps: true,
+                data: monthly,
+                hidden: !visible,
+                borderColor: 'rgb(54, 162, 235)',
+                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                parsing: {
+                    xAxisKey: 'year',
+                    yAxisKey: 'average'
+                }
+            },
+            {
+                label: 'DE08',
+                spanGaps: true,
+                data: de08,
+                hidden: v4Toggle,
+                borderColor: 'rgb(255, 205, 86)',
+                backgroundColor: 'rgba(255, 205, 86, 0.5)',
+                parsing: {
+                    xAxisKey: 'year',
+                    yAxisKey: 'c02MixingRatio'
+                }
+            },
+            {
+                label: 'DE082',
+                spanGaps: true,
+                data: de082,
+                hidden: v4Toggle,
+                borderColor: 'rgb(153, 102, 255)',
+                backgroundColor: 'rgba(153, 102, 255, 0.5)',
+                parsing: {
+                    xAxisKey: 'year',
+                    yAxisKey: 'c02MixingRatio'
+                }
+            },
+            {
+                label: 'DSS',
+                spanGaps: true,
+                data: dss,
+                hidden: v4Toggle,
+                borderColor: 'rgb(75, 192, 192)',
+                backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                parsing: {
+                    xAxisKey: 'year',
+                    yAxisKey: 'c02MixingRatio'
+                }
+
+            },
+            {
+                label: 'Major historical events',
+                data: v10,
+                hidden: v10Toggle,
+                borderColor: 'rgb(50, 205, 50)',
+                backgroundColor: 'rgba(50, 205, 50, 0.5)',
+                parsing: {
+                    xAxisKey: 'year',
+                    yAxisKey: 'y'
+                }
+            },
+
+        ],
 
     }
 
     return (
         <>
-            <h3>V3 Atmospheric CO2 concentrations from Mauna Loa measurements starting 1958</h3>
-            <a href="https://gml.noaa.gov/ccgg/trends/" target="_blank" rel="noreferrer">Data source</a>
-            <br></br>
-            <a href="https://gml.noaa.gov/ccgg/about/co2_measurements.html" target="_blank" rel="noreferrer">data measurement description<br /></a>
-            <button onClick={() => setVisible(!visible)}>Change view</button>
-            <button onClick={() => setV4Toggle(!v4Toggle)}>Toggle V4</button>
-            <button onClick={() => setV10Toggle(!v10Toggle)}>Toggle V10</button>
-            {console.log(v10)}
-            {console.log(dss)}
-            <div style={{width: 1500, height: "auto", margin: "auto"}}>
-                <Line
-                    style={{ backgroundColor: "white" }}
-                    options={options}
-                    data={data}
-                />
-            </div>
+            {props.show
+                ? <div>
+                    <h3>V3 Atmospheric CO2 concentrations from Mauna Loa measurements starting 1958</h3>
+                    <a href="https://gml.noaa.gov/ccgg/trends/" target="_blank" rel="noreferrer">Data source</a>
+                    <br></br>
+                    <a href="https://gml.noaa.gov/ccgg/about/co2_measurements.html" target="_blank" rel="noreferrer">data measurement description<br /></a>
+                    <button onClick={() => setVisible(!visible)}>Change view</button>
+                    <button onClick={() => setV4Toggle(!v4Toggle)}>Toggle V4</button>
+                    <button onClick={() => setV10Toggle(!v10Toggle)}>Toggle V10</button>
+                    {props.description
+                        ? <p>{props.description}</p>
+                        : null
+                    }
+                    <div style={{ width: 1500, height: "auto", margin: "auto" }}>
+                        <Line
+                            style={{ backgroundColor: "white" }}
+                            options={options}
+                            data={data}
+                        />
+                    </div>
+                </div>
+                : null
+            }
         </>
 
     )

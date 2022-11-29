@@ -19,14 +19,10 @@ const createView = async (settings) => {
   return response.data;
 }
 
-const getView = async (url) => {
+const getView = async url => {
 
-  /*const object = {
-    "url": url
-  }
-
-  const response = await axios.get(baseUrl + '/users/getView', object);
-  return response.data; */
+  const response = await axios.post(baseUrl + '/users/getView',{url});
+  return response.data;
 }
 
 

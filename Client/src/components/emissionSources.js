@@ -6,8 +6,8 @@ function EmissionSources() {
     return (
         <div>
         <h1>EmissionSources</h1>
-        <V8/>
-        <V9/>
+        <V8 show={true}/>
+        <V9 show={true}/>
         </div>
     )
 }

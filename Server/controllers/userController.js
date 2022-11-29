@@ -147,11 +147,8 @@ const deleteView = async(req, res) => {
 
 const getView = async(req, res) => {
     const body = req.body;
-    console.log(body);
     const user = await User.findOne({ "views.url": body.url }).exec();
-    console.log(user);
     const object = user.views.find(x => x.url === body.url);
-
     res.status(200).json(object);
 }
 
