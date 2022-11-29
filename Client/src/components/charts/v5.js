@@ -19,7 +19,7 @@ function V5(props) {
         setAirAge(AirAgeArray.reverse());
 
         let co2ConcentrationArray = response.data.v5data.map(x => x.c02_concentration);
-        setCO2Concentration(co2ConcentrationArray);
+        setCO2Concentration(co2ConcentrationArray.reverse());
 
       } catch (error) {
         console.log(error);
