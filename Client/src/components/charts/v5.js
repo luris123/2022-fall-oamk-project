@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import chartService from '../../services/chartService';
+//import chartService from '../../services/chartService';
 import { Chart, registerables } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import axios from 'axios';
@@ -8,18 +8,18 @@ Chart.register(...registerables);
 
 function V5(props) {
 
-  const [icesAge, setIcesAge] = useState([]);
+  const [airAge, setAirAge] = useState([]);
   const [co2Concentration, setCO2Concentration] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
       try {
         const response = await axios.get('http://localhost:3001/datasets');
-        let iceAgeArray = response.data.v5data.map(x => x.mean_age_of_air_yr);
-        setIcesAge(iceAgeArray);
-        console.log(response.data);
+        let AirAgeArray = response.data.v5data.map(x => x.mean_age_of_air_yr);
+        setAirAge(AirAgeArray.reverse());
+
         let co2ConcentrationArray = response.data.v5data.map(x => x.c02_concentration);
-        setCO2Concentration(co2ConcentrationArray);
+        setCO2Concentration(co2ConcentrationArray.reverse());
 
       } catch (error) {
         console.log(error);
@@ -39,7 +39,7 @@ function V5(props) {
       },
       title: {
         display: true,
-        text: "CO2 Concentration compared to the age of the ice years before present",
+        text: "CO2 Concentration compared to the age of the air per year",
       },
     }
   };
@@ -56,22 +56,20 @@ function V5(props) {
             ? <p>{props.description}</p>
             : null
           }
-          <div style={{ width: 'auto', height: 'auto', margin: 'auto' }}>
-            <Line
-              style={{ backgroundColor: "white" }}
-              options={options}
-              data={{
-                labels: icesAge,
-                datasets: [
-                  {
-                    label: "Concentration of CO2",
-                    data: co2Concentration,
-                    borderColor: 'black'
-                  }
-                ]
-              }}
-            />
-          </div>
+          <Line
+            style={{ backgroundColor: "white" }}
+            options={options}
+            data={{
+              labels: icesAge,
+              datasets: [
+                {
+                  label: "Concentration of CO2",
+                  data: co2Concentration,
+                  borderColor: 'black'
+                }
+              ]
+            }}
+          />
         </>
         : null
       }
