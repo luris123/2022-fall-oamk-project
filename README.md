@@ -13,7 +13,7 @@ Projektin tarkoituksena oli perehtyä full-stack ohjelmoinnin perusteisiin ja Ka
 
 ### Frontend
 
-Sovelluksen frontend on toteutettu käyttäen ReactJS nimistä JavaScript kirjastoa ja CSS:ää HTML:n tyylittämiseen. Erilaisten pakettien ja dependencyjen asentamiseen käytettiin npm:ää (node package manager).
+Sovelluksen frontend on toteutettu käyttäen ReactJS (JavaScript kirjasto), Bootstrap (CSS kehys) ja CSS:ää HTML:n tyylittämiseen. Erilaisten pakettien asentamiseen käytettiin npm:ää (node package manager). Mainisemisen arvoisia paketteja ovat: Chart.js (https://www.chartjs.org/docs/latest/)
 
 ### Backend
 
