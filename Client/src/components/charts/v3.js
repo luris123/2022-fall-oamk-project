@@ -79,7 +79,7 @@ function V3(props) {
                 setV10(v10.slice(344));
                 v10.y = '';
                 for (let i = 0; i < v10.length; i++) {
-                    v10[i].y = '0';
+                    v10[i].y = '260';
                 }
 
 

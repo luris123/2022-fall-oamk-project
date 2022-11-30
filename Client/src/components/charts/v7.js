@@ -140,7 +140,7 @@ function V7(props) {
                         ? <p>{props.description}</p>
                         : null
                     }
-                    <div style={{ width: 600, Height: 600, margin: 'auto' }}>
+                    <div style={{ width: 'auto', height: 'auto', margin: 'auto' }}>
                         <Line
                             style={{ backgroundColor: "white" }}
                             options={options}

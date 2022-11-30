@@ -18,10 +18,15 @@ function V6(props) {
         const response = await axios.get('http://localhost:3001/datasets');
 
         let iceAgeArrayV6 = response.data.v6data.map(x => x.age_before_present);
-        setIcesAgeV6(iceAgeArrayV6);
+        setIcesAgeV6(iceAgeArrayV6.reverse());
+        
+        for (let i = 0; i < iceAgeArrayV6.length; i++) {
+          iceAgeArrayV6[i] = parseInt(iceAgeArrayV6[i], 10);
+        }
+
 
         let co2ppmArrayV6 = response.data.v6data.map(x => x.c02_ppm);
-        setCO2ppmV6(co2ppmArrayV6);
+        setCO2ppmV6(co2ppmArrayV6.reverse());
 
       } catch (error) {
         console.log(error);
@@ -57,7 +62,7 @@ function V6(props) {
             ? <p>{props.description}</p>
             : null
           }
-          <div style={{ width: 600, Height: 600, margin: 'auto' }}>
+          <div style={{ width: 'auto', height: 'auto', margin: 'auto' }}>
             <Line
               style={{ backgroundColor: "white" }}
               options={options}
