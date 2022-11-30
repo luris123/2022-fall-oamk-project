@@ -23,6 +23,9 @@ Backend toteutettiin myös Javascriptillä käyttäen Node.js ajoympäristöä, 
 
 Tietokannaksi valittiin MongoDB, joka on avoimen lähteen dokumenttipohjainen NoSQL tietokanta. Suurin syy MongoDB:n valinnalle oli sen yksinkertainen rakenne.
 
+## Ketkä tekivät ja mikä oli kenenkin rooli
+-?-
+
 ## Arkkitehtuuri ja rakenne
 
 ### Sovelluksen rakenne
