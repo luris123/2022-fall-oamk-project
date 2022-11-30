@@ -182,7 +182,7 @@ function V1V2(props) {
   return (
     <>
       {props.show
-        ? <div>
+        ? <>
         <h4>Global historical surface temperature anomalies from January 1850 onwards</h4>
         <a href="https://www.metoffice.gov.uk/hadobs/hadcrut5/" target="_blank" rel="noreferrer">Description and data source</a>
         <br></br>
@@ -195,14 +195,14 @@ function V1V2(props) {
           ? <p>{props.description}</p>
           : null
         }
-        <div style={{ width: 1500, height: 'auto', margin: 'auto' }}>
+        <div style={{ width: 'auto', height: 'auto', margin: 'auto' }}>
           <Line
             style={{ backgroundColor: "white" }}
             options={options}
             data={data}
           />
         </div>
-      </div>
+      </>
         : null
       }
     </>

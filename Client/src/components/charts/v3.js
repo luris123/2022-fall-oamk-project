@@ -209,7 +209,7 @@ function V3(props) {
     return (
         <>
             {props.show
-                ? <div>
+                ? <>
                     <h3>V3 Atmospheric CO2 concentrations from Mauna Loa measurements starting 1958</h3>
                     <a href="https://gml.noaa.gov/ccgg/trends/" target="_blank" rel="noreferrer">Data source</a>
                     <br></br>
@@ -221,14 +221,14 @@ function V3(props) {
                         ? <p>{props.description}</p>
                         : null
                     }
-                    <div style={{ width: 1500, height: "auto", margin: "auto" }}>
+                    <div style={{ width: 'auto', height: 'auto', margin: 'auto' }}>
                         <Line
                             style={{ backgroundColor: "white" }}
                             options={options}
                             data={data}
                         />
                     </div>
-                </div>
+                </>
                 : null
             }
         </>

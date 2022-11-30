@@ -48,7 +48,7 @@ function V6(props) {
   return (
     <>
       {props.show
-        ? <div>
+        ? <>
           <h3>V6 Ice core 800k year composite study CO2 measurements</h3>
           <a href="https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt" target="_blank" rel="noreferrer">Data source</a>
           <br></br>
@@ -57,21 +57,23 @@ function V6(props) {
             ? <p>{props.description}</p>
             : null
           }
-          <Line
-            style={{ backgroundColor: "white" }}
-            options={options}
-            data={{
-              labels: icesAgeV6,
-              datasets: [
-                {
-                  label: "PPM of CO2",
-                  data: co2ppmV6,
-                  borderColor: 'black'
-                }
-              ]
-            }}
-          />
-        </div>
+          <div style={{ width: 'auto', height: 'auto', margin: 'auto' }}>
+            <Line
+              style={{ backgroundColor: "white" }}
+              options={options}
+              data={{
+                labels: icesAgeV6,
+                datasets: [
+                  {
+                    label: "PPM of CO2",
+                    data: co2ppmV6,
+                    borderColor: 'black'
+                  }
+                ]
+              }}
+            />
+          </div>
+        </>
         : null
       }
 

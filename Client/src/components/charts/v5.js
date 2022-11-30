@@ -15,9 +15,9 @@ function V5(props) {
     const getData = async () => {
       try {
         const response = await axios.get('http://localhost:3001/datasets');
-        let iceAgeArray = response.data.v5data.map(x => x.age_of_ice_yr_bp);
+        let iceAgeArray = response.data.v5data.map(x => x.mean_age_of_air_yr);
         setIcesAge(iceAgeArray);
-
+        console.log(response.data);
         let co2ConcentrationArray = response.data.v5data.map(x => x.c02_concentration);
         setCO2Concentration(co2ConcentrationArray);
 
@@ -47,7 +47,7 @@ function V5(props) {
   return (
     <>
       {props.show
-        ? <div>
+        ? <>
           <h3>V5 Vostok Ice Core CO2 measurements, 417160 - 2342 years BP</h3>
           <a href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2" target="_blank" rel="noreferrer">Data source</a>
           <br></br>
@@ -56,21 +56,23 @@ function V5(props) {
             ? <p>{props.description}</p>
             : null
           }
-          <Line
-            style={{ backgroundColor: "white" }}
-            options={options}
-            data={{
-              labels: icesAge,
-              datasets: [
-                {
-                  label: "Concentration of CO2",
-                  data: co2Concentration,
-                  borderColor: 'black'
-                }
-              ]
-            }}
-          />
-        </div>
+          <div style={{ width: 'auto', height: 'auto', margin: 'auto' }}>
+            <Line
+              style={{ backgroundColor: "white" }}
+              options={options}
+              data={{
+                labels: icesAge,
+                datasets: [
+                  {
+                    label: "Concentration of CO2",
+                    data: co2Concentration,
+                    borderColor: 'black'
+                  }
+                ]
+              }}
+            />
+          </div>
+        </>
         : null
       }
     </>
