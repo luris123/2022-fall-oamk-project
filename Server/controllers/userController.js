@@ -142,7 +142,7 @@ const deleteView = async(req, res) => {
   user.views.splice(index, 1);
   user.save();
 
-  res.status(200).json({message: "View deleted successfully"});
+  res.status(200).json({views: user.views});
 }
 
 const getView = async(req, res) => {

@@ -23,6 +23,6 @@ router.route('/newView')
     .post(userController.createNewView);
 
 router.route('/deleteView')
-    .delete(userController.deleteView);
+    .post(userController.deleteView);
 
 module.exports = router;
