@@ -60,7 +60,7 @@ function V5(props) {
             style={{ backgroundColor: "white" }}
             options={options}
             data={{
-              labels: icesAge,
+              labels: airAge,
               datasets: [
                 {
                   label: "Concentration of CO2",

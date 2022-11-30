@@ -227,7 +227,7 @@ function V1V2(props) {
           ? <p>{props.description}</p>
           : null
         }
-        <div style={{ width: 'auto', height: 'auto', margin: 'auto' }}>
+        <div style={{ width: 1000, height: '1500', margin: 'auto' }}>
           <Line
             style={{ backgroundColor: "white" }}
             options={options}
