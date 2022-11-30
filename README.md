@@ -26,7 +26,7 @@ Tietokannaksi valittiin MongoDB, joka on avoimen lähteen dokumenttipohjainen No
 ## Arkkitehtuuri ja rakenne
 
 ### Sovelluksen rakenne
--kuva tähän-
+![](Client/src/assests/MongoDB.png)
 
 ### Tietokanta rakenne
 -kuva tähän-
