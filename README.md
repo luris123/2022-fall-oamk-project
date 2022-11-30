@@ -35,6 +35,8 @@ Tietokannaksi valittiin MongoDB, joka on avoimen lähteen dokumenttipohjainen No
 4. Käynnistä sovelluksen backend komennolla npm run devStart 'Server' kansion sisällä.
 
 ### Linkit
-Chart.js (https://www.chartjs.org/docs/latest/)
-Bootstrap (https://getbootstrap.com/)
-React-Bootstrap (https://react-bootstrap.github.io/)
+#### Chart.js (https://www.chartjs.org/docs/latest/)
+#### React-Chartjs-2 (https://react-chartjs-2.js.org/)
+#### Bootstrap (https://getbootstrap.com/)
+#### React-Bootstrap (https://react-bootstrap.github.io/)
+#### 
