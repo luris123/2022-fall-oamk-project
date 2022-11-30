@@ -3,6 +3,9 @@ import { Chart, registerables } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import 'chartjs-adapter-luxon';
 import axios from 'axios';
+import Button from "react-bootstrap/Button";
+import '../../App.css'
+import Card from 'react-bootstrap/Card';
 
 Chart.register(...registerables);
 
@@ -208,32 +211,36 @@ function V3(props) {
 
     return (
         <>
-            {props.show
-                ? <div>
-                    <h3>V3 Atmospheric CO2 concentrations from Mauna Loa measurements starting 1958</h3>
-                    <a href="https://gml.noaa.gov/ccgg/trends/" target="_blank" rel="noreferrer">Data source</a>
-                    <br></br>
-                    <a href="https://gml.noaa.gov/ccgg/about/co2_measurements.html" target="_blank" rel="noreferrer">data measurement description<br /></a>
-                    <button onClick={() => setVisible(!visible)}>Change view</button>
-                    <button onClick={() => setV4Toggle(!v4Toggle)}>Toggle V4</button>
-                    <button onClick={() => setV10Toggle(!v10Toggle)}>Toggle V10</button>
-                    {props.description
-                        ? <p>{props.description}</p>
-                        : null
-                    }
-                    <div style={{ width: 1500, height: "auto", margin: "auto" }}>
-                        <Line
-                            style={{ backgroundColor: "white" }}
-                            options={options}
-                            data={data}
-                        />
-                    </div>
-                </div>
-                : null
+        {props.show
+            ? <Card id="card">
+            <Card.Body id="card-header">
+                <h3>V3 Atmospheric CO2 concentrations from Mauna Loa measurements starting 1958</h3>
+            </Card.Body>
+            <Card.Body id="card-header">
+                <Button id="view-button" onClick={() => setVisible(!visible)}>Change view</Button>
+                <Button id="view-button" onClick={() => setV4Toggle(!v4Toggle)}>Toggle V4</Button>
+                <Button id="view-button" onClick={() => setV10Toggle(!v10Toggle)}>Toggle V10</Button>
+            </Card.Body>
+            {props.description
+            ? <p>{props.description}</p>
+            : null
             }
-        </>
-
-    )
+            <div style={{ width: 600, Height: 600, margin: 'auto'}}>
+            <Line
+                style={{ backgroundColor: "white" }}
+                options={options}
+                data={data}
+            />
+            </div>
+            <Card.Body id="card-header">
+                <Card.Link href="https://gml.noaa.gov/ccgg/about/co2_measurements.html">Data measurement description</Card.Link>
+                <Card.Link href="https://gml.noaa.gov/ccgg/trends/">Data source</Card.Link>
+            </Card.Body>
+        </Card>
+            : null
+        }
+    </>
+  )
 }
 
 export default V3;

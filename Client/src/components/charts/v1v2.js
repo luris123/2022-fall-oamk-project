@@ -182,36 +182,6 @@ function V1V2(props) {
 
     ]
   }
-//   return (
-//     <>
-//       {props.show
-//         ? <div>
-//         <h4>Global historical surface temperature anomalies from January 1850 onwards</h4>
-//         <a href="https://www.metoffice.gov.uk/hadobs/hadcrut5/" target="_blank" rel="noreferrer">Description and data source</a>
-//         <br></br>
-//         <h4>Northern Hemisphere 2,000-year temperature reconstruction</h4>
-//         <a href="https://gml.noaa.gov/ccgg/about/co2_measurements.html" target="_blank" rel="noreferrer">Data measurement description<br /></a>
-//         <a href="https://www.ncei.noaa.gov/pub/data/paleo/contributions_by_author/moberg2005/nhtemp-moberg2005.txt" target="_blank" rel="noreferrer">Data source<br /></a>
-//         <Button id="view-button" onClick={() => setVisible(!visible)}>Change view</Button>
-//         <Button id="view-button" onClick={() => setV2Toggle(!v2Toggle)}>V2Toggle</Button>
-//         {props.description
-//           ? <p>{props.description}</p>
-//           : null
-//         }
-//         <div style={{ width: 1500, height: 'auto', margin: 'auto' }}>
-//           <Line
-//             style={{ backgroundColor: "white" }}
-//             options={options}
-//             data={data}
-//           />
-//         </div>
-//       </div>
-//         : null
-//       }
-//     </>
-//   )
-// }
-
   return (
     <>
       {props.show
@@ -227,7 +197,7 @@ function V1V2(props) {
           ? <p>{props.description}</p>
           : null
         }
-        <div style={{ width: 1000, height: 'auto', margin: 'auto' }}>
+        <div style={{  width: 600, height: 600, margin: 'auto' }}>
           <Line
             style={{ backgroundColor: "white" }}
             options={options}
