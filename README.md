@@ -34,5 +34,5 @@ Tietokannaksi valittiin MongoDB, joka on avoimen lähteen dokumenttipohjainen No
 3. Käynnistä sovelluksen frontend komennolla npm start 'Client' kansion sisällä.
 4. Käynnistä sovelluksen backend komennolla npm run devStart 'Server' kansion sisällä.
 
-## Linkit: 
-# Chart.js (https://www.chartjs.org/docs/latest/)
+### Linkit: 
+#### Chart.js (https://www.chartjs.org/docs/latest/)
