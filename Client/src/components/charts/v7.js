@@ -3,6 +3,7 @@ import chartService from '../../services/chartService';
 import { Chart, registerables } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import axios from 'axios';
+import Card from 'react-bootstrap/Card';
 
 Chart.register(...registerables);
 
@@ -62,7 +63,7 @@ function V7(props) {
                     text: "Surface temperature change (ºC)",
                     color: 'blue',
                     font: {
-                        size: 20,
+                        size: 12,
                         weight: 'bold',
                         lineHeight: 1.2,
                     },
@@ -77,7 +78,7 @@ function V7(props) {
                     text: "C02 ppm",
                     color: 'red',
                     font: {
-                        size: 20,
+                        size: 12,
                         weight: 'bold',
                         lineHeight: 1.2,
                     },
@@ -92,7 +93,7 @@ function V7(props) {
                     text: "Time (ka)",
                     color: 'black',
                     font: {
-                        size: 20,
+                        size: 12,
                         weight: 'bold',
                         lineHeight: 1.2,
                     },
@@ -129,17 +130,12 @@ function V7(props) {
     return (
         <>
             {props.show
-                ? <>
-                    <h4>Ice core 800k year composite study CO2 measurements</h4>
-                    <a href="https://www.ncei.noaa.gov/access/paleo-search/study/17975" target="_blank" rel="noreferrer">Data description</a>
-                    <br />
-                    <a href="https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt" target="_blank" rel="noreferrer">Data source</a>
-                    <p>TODO: Write a brief description of the graph and its information.</p>
-                    <h4>Evolution of global temperature over the past two million years</h4>
-                    <a href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf" target="_blank" rel="noreferrer">Data description</a>
-                    <br />
-                    <a href="http://carolynsnyder.com/publications.php" target="_blank" rel="noreferrer">Data source</a>
-                    <p>TODO: Write a brief description of the graph and its information.</p>
+                ? <Card id="card"> 
+                    <Card.Body id="card-header">
+                        <h4>Evolution of global temperature over the past two million years</h4>
+                        <p>TODO: Write a brief description of the graph and its information.</p>
+                    </Card.Body>
+
                     {props.description
                         ? <p>{props.description}</p>
                         : null
@@ -151,7 +147,11 @@ function V7(props) {
                             data={data}
                         />
                     </div>
-                </>
+                    <Card.Body id="card-header">
+                        <Card.Link href="http://carolynsnyder.com/publications.php" >Data description</Card.Link>
+                        <Card.Link href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf">Data source</Card.Link>
+                    </Card.Body>
+                </Card>
                 : null
             }
 

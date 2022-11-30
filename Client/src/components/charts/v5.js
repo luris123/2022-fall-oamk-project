@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { Chart, registerables } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import axios from 'axios';
+import '../../App.css'
+import Card from 'react-bootstrap/Card';
 
 Chart.register(...registerables);
 
@@ -47,30 +49,35 @@ function V5(props) {
   return (
     <>
       {props.show
-        ? <>
-          <h3>V5 Vostok Ice Core CO2 measurements, 417160 - 2342 years BP</h3>
-          <a href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2" target="_blank" rel="noreferrer">Data source</a>
-          <br></br>
-          <a href="https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html" target="_blank" rel="noreferrer">Data description</a>
+        ? <Card id="card">
+          <Card.Body id="card-header">
+            <h3>V5 Vostok Air Core CO2 measurements, 417160 - 2342 years BP 2003</h3>
+          </Card.Body>
           {props.description
             ? <p>{props.description}</p>
             : null
           }
-          <Line
-            style={{ backgroundColor: "white" }}
-            options={options}
-            data={{
-              labels: airAge,
-              datasets: [
-                {
-                  label: "Concentration of CO2",
-                  data: co2Concentration,
-                  borderColor: 'black'
-                }
-              ]
-            }}
+          <div style={{ width: 600, Height: 600, margin: 'auto' }}>
+            <Line
+              style={{ backgroundColor: "white" }}
+              options={options}
+              data={{
+                labels: airAge,
+                datasets: [
+                  {
+                    label: "Concentration of CO2",
+                    data: co2Concentration,
+                    borderColor: 'black'
+                  }
+                ]
+              }}
           />
-        </>
+        </div>
+        <Card.Body id="card-header">
+          <Card.Link href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.Aircore.co2">Data source</Card.Link>
+          <Card.Link href="https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html">Data  description</Card.Link>
+        </Card.Body>
+        </Card>
         : null
       }
     </>
