@@ -29,7 +29,7 @@ Tietokannaksi valittiin MongoDB, joka on avoimen lähteen dokumenttipohjainen No
 -kuva tähän-
 
 ### Käyttöliittymäsuunnitelma
-- kuva vai linkki tähän-
+-kuva vai linkki tähän-
 
 ### Tietokanta rakenne
 -kuva tähän-
