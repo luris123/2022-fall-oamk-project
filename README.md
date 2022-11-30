@@ -27,12 +27,13 @@ Tietokannaksi valittiin MongoDB, joka on avoimen lähteen dokumenttipohjainen No
 
 ## Käyttöönotto
 ---
-### lokaalisti
+### Lokaalisti
 
 1. Kloonaa repositorio.
 2. Siirry 'Client' kansioon ja asennna dependencyt komennolla 'npm install', tee sama 'Server' kansion sisällä.
 3. Käynnistä sovelluksen frontend komennolla npm start 'Client' kansion sisällä.
 4. Käynnistä sovelluksen backend komennolla npm run devStart 'Server' kansion sisällä.
 
-### Linkit: 
+### Linkit
+
 #### Chart.js (https://www.chartjs.org/docs/latest/)
