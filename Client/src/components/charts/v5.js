@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import chartServAir from '../../servAir/chartServAir';
+//import chartService from '../../services/chartService';
 import { Chart, registerables } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import axios from 'axios';
@@ -15,7 +15,7 @@ function V5(props) {
     const getData = async () => {
       try {
         const response = await axios.get('http://localhost:3001/datasets');
-        let AirAgeArray = response.data.v5data.map(x => x.mean-age-of-air-yr);
+        let AirAgeArray = response.data.v5data.map(x => x.mean_age_of_air_yr);
         setAirAge(AirAgeArray.reverse());
 
         let co2ConcentrationArray = response.data.v5data.map(x => x.c02_concentration);
