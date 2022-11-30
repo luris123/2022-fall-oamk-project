@@ -29,7 +29,7 @@ Tietokannaksi valittiin MongoDB, joka on avoimen lähteen dokumenttipohjainen No
 ![](Client/src/assets/Arkkitehtuuri.png)
 
 ### Tietokanta rakenne
--kuva tähän-
+![](Client/src/assets/Tietokanta1.png)
 
 ### Käyttöliittymäsuunnitelma
 -kuva vai linkki tähän-
