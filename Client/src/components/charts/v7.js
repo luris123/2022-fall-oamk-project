@@ -129,7 +129,7 @@ function V7(props) {
     return (
         <>
             {props.show
-                ? <div>
+                ? <>
                     <h4>Ice core 800k year composite study CO2 measurements</h4>
                     <a href="https://www.ncei.noaa.gov/access/paleo-search/study/17975" target="_blank" rel="noreferrer">Data description</a>
                     <br />
@@ -144,14 +144,14 @@ function V7(props) {
                         ? <p>{props.description}</p>
                         : null
                     }
-                    <div style={{ width: 1500, height: 'auto', margin: 'auto' }}>
+                    <div style={{ width: 'auto', height: 'auto', margin: 'auto' }}>
                         <Line
                             style={{ backgroundColor: "white" }}
                             options={options}
                             data={data}
                         />
                     </div>
-                </div>
+                </>
                 : null
             }
 

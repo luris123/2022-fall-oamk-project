@@ -47,9 +47,9 @@ function V5(props) {
   return (
     <>
       {props.show
-        ? <div>
-          <h3>V5 Vostok Air Core CO2 measurements, 417160 - 2342 years BP 2003</h3>
-          <a href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.Aircore.co2" target="_blank" rel="noreferrer">Data source</a>
+        ? <>
+          <h3>V5 Vostok Ice Core CO2 measurements, 417160 - 2342 years BP</h3>
+          <a href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2" target="_blank" rel="noreferrer">Data source</a>
           <br></br>
           <a href="https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html" target="_blank" rel="noreferrer">Data description</a>
           {props.description
@@ -70,7 +70,7 @@ function V5(props) {
               ]
             }}
           />
-        </div>
+        </>
         : null
       }
     </>
