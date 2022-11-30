@@ -80,10 +80,7 @@ function V3(props) {
         }
 
         setV10(v10.slice(344));
-        v10.y = "";
-        for (let i = 0; i < v10.length; i++) {
-          v10[i].y = "260";
-        }
+        
       } catch (error) {
         console.log(error);
       }
@@ -94,8 +91,13 @@ function V3(props) {
   const options = {
     // events: [] makes the chart unresponsive to mouse events
     events: ["mousemove"],
+    elements: {
+        point: {
+          radius: 1.5
+        }
+      },
     scales: {
-      C: {
+      Y: {
         type: "linear",
         display: true,
         position: "right",
@@ -220,6 +222,7 @@ function V3(props) {
             : null
             }
             <div style={{ width: 600, Height: 600, margin: 'auto'}}>
+                {console.log(data)}
             <Line
                 style={{ backgroundColor: "white" }}
                 options={options}
