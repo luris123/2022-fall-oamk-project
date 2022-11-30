@@ -10,7 +10,7 @@ Projektin aiheena oli tehdä visualisointityökalu, jossa voidaan tarkastella er
 Projektin tarkoituksena oli perehtyä full-stack ohjelmoinnin perusteisiin ja Kanban-kehitysmallin käyttämiseen.
 
 ## Mitä teknologioita projektissa on käytetty?
----
+
 ### frontend
 
 Sovelluksen frontend on toteutettu käyttäen ReactJS nimistä JavaScript kirjastoa ja CSS:ää HTML:n tyylittämiseen. Erilaisten pakettien ja dependencyjen asentamiseen käytettiin npm:ää (node package manager).
