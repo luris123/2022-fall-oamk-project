@@ -95,7 +95,7 @@ function V9(props) {
     return (
         <>
             {props.show
-                ? <div>
+                ? <>
                     <h3>V9 CO2 emissions by sectors</h3>
                     <a href='https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D'>Data source</a>
                     <br></br>
@@ -121,7 +121,7 @@ function V9(props) {
                         : null
                     }
 
-                    <div style={{ width: 1000, height: 1000, margin: "auto" }}>
+                    <div style={{ width: 'auto', height: 'auto', margin: 'auto' }}>
                         <Doughnut
                             style={{ height: "50%", width: "50%" }}
                             options={options}
@@ -146,7 +146,7 @@ function V9(props) {
 
                         />
                     </div>
-                </div>
+                </>
                 : null
             }
 

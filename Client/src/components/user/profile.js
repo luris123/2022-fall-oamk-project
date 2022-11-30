@@ -87,6 +87,26 @@ function Profile() {
         }
     }
 
+    const handleDeleteView = async (url) => {
+        //event.preventDefault();
+        console.log(url)
+        try {
+            const response = await viewService.deleteView({
+                url
+            });
+
+            console.log(response);
+
+            //update local storage user
+            userJSON.views = response.views;
+            window.localStorage.setItem('loggedUser', JSON.stringify(userJSON));
+            setUser(userJSON);
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     if (user === null) {
         return (
             <div>
@@ -103,7 +123,7 @@ function Profile() {
             <ul>
                 {user.views.map((view, i) => {
                     let url = "/view/" + view.url;
-                    return <li key={i}>Näkymä: <Link to = {url} onClick={() => View()}>{view.url}</Link></li>
+                    return <li key={i}>Näkymä: <Link to = {url} onClick={() => View()}>{view.url}</Link> <button onClick={() => handleDeleteView(view.url)}>poista näkymä</button></li>
                 })}
             </ul>
             <Popup trigger={<Button type='primary'>Luo uusi näkymä</Button>} modal nested onClose={() => {

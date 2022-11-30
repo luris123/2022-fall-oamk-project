@@ -94,7 +94,7 @@ function V8(props) {
   return (
     <>
       {props.show
-        ? <div>
+        ? <>
           <h3>V8 CO2 emissions by country</h3>
           <a href="https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D">V8 Data source</a>
           <br></br>
@@ -103,15 +103,17 @@ function V8(props) {
             ? <p>{props.description}</p>
             : null
           }
-          <Line
-            style={{ backgroundColor: "white" }}
-            options={options}
-            data={{
-              labels: V8Years,
-              datasets: V8Dataset
-            }}
-          />
-        </div>
+          <div style={{ width: 'auto', height: 'auto', margin: 'auto' }}>
+            <Line
+              style={{ backgroundColor: "white" }}
+              options={options}
+              data={{
+                labels: V8Years,
+                datasets: V8Dataset
+              }}
+            />
+          </div>
+        </>
         : null
       }
 

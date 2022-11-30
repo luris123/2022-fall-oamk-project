@@ -8,7 +8,7 @@ const getTokenFrom = (req) => {
   if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
     return authorization.substring(7)
   }
-  return null
+  return null;
 }
 
 const getUsers = async (req, res) => {
@@ -142,7 +142,7 @@ const deleteView = async(req, res) => {
   user.views.splice(index, 1);
   user.save();
 
-  res.status(200).json({message: "View deleted successfully"});
+  res.status(200).json({views: user.views});
 }
 
 const getView = async(req, res) => {

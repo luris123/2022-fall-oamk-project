@@ -3,6 +3,7 @@ import chartService from '../../services/chartService';
 import { Chart, registerables } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import axios from 'axios';
+import Card from 'react-bootstrap/Card';
 
 Chart.register(...registerables);
 
@@ -53,30 +54,35 @@ function V6(props) {
   return (
     <>
       {props.show
-        ? <div>
-          <h3>V6 Ice core 800k year composite study CO2 measurements</h3>
-          <a href="https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt" target="_blank" rel="noreferrer">Data source</a>
-          <br></br>
-          <a href="https://www.ncei.noaa.gov/access/paleo-search/study/17975" target="_blank" rel="noreferrer">Data description</a>
+        ? <Card id="card">
+          <Card.Body id="card-header">
+            <h3>V6 Ice core 800k year composite study CO2 measurements</h3>
+          </Card.Body>
           {props.description
             ? <p>{props.description}</p>
             : null
           }
-          <Line
-            style={{ backgroundColor: "white" }}
-            options={options}
-            data={{
-              labels: icesAgeV6,
-              datasets: [
-                {
-                  label: "PPM of CO2",
-                  data: co2ppmV6,
-                  borderColor: 'black'
-                }
-              ]
-            }}
-          />
-        </div>
+          <div style={{ width: 'auto', height: 'auto', margin: 'auto' }}>
+            <Line
+              style={{ backgroundColor: "white" }}
+              options={options}
+              data={{
+                labels: icesAgeV6,
+                datasets: [
+                  {
+                    label: "PPM of CO2",
+                    data: co2ppmV6,
+                    borderColor: 'black'
+                  }
+                ]
+              }}
+            />
+          </div>
+          <Card.Body id="card-header">
+            <Card.Link href="https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt">Data source</Card.Link>
+            <Card.Link href="https://www.ncei.noaa.gov/access/paleo-search/study/17975" >Data  description</Card.Link>
+          </Card.Body>
+        </Card>
         : null
       }
 
