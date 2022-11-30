@@ -26,7 +26,7 @@ Tietokannaksi valittiin MongoDB, joka on avoimen lähteen dokumenttipohjainen No
 ## Arkkitehtuuri ja rakenne
 
 ## Käyttöönotto
----
+
 ### Lokaalisti
 
 1. Kloonaa repositorio.
@@ -39,4 +39,4 @@ Tietokannaksi valittiin MongoDB, joka on avoimen lähteen dokumenttipohjainen No
 #### React-Chartjs-2 (https://react-chartjs-2.js.org/)
 #### Bootstrap (https://getbootstrap.com/)
 #### React-Bootstrap (https://react-bootstrap.github.io/)
-#### 
+
