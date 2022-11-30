@@ -1,20 +1,33 @@
 const express = require('express')
-const app = express()
+const app = express();
+const cors = require('cors')
+const mongoose = require('mongoose');
+const connectDB = require('./config/dbConn');
 
-const port = 3001
+const PORT = process.env.PORT || 3001; 
+
+//Cross Origin Resource Sharing
+app.use(cors());
+
+//built-in middleware to hande urlencoded form data
+app.use(express.urlencoded({extended: false}));
+
+//built-in middleware for json
+app.use(express.json()); 
+
+//Connect to MongoDB
+connectDB();
 
 app.get("/",(req,res) => {
-    res.status(200).json({message: "Home Page"} )
+    res.status(200).json({message: "Home Page"});
 })
 
-const logoutRouter = require('./routes/logout')
-//const loginRouter = require('./routes/login')
-//const ApiRouter = require('./routes/Api')
-//const registerRouter = require('./routes/reqister')
+app.use('/datasets', require('./routes/datasetsRouter'));
+app.use('/users', require('./routes/userRouter'));
+app.use('/login', require('./routes/loginRouter'));
 
-//app.use('/logout', logoutRouter)
-//app.use('/logout', loginRouter)
-//app.use('/logout', ApiRouter)
-//pp.use('/logout', registerRouter)
 
-app.listen(port)
+mongoose.connection.once('open', () => {
+    console.log('Connected to MongoDB');
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+});

@@ -1,0 +1,78 @@
+.App {
+  text-align: center;
+  background-color: #61dafb;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: rgb(255, 255, 255);
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.h1 {
+  color: #ffffff;
+  text-align: center;
+  font-size: 80px;
+}
+#form{
+  position: relative;
+  width: 280px;
+  height: 300px;
+  margin-top: 10px;
+
+}
+#form-label {
+  margin-top: 17px;
+  margin-left: 15px;
+}
+#form-control{
+  outline: 0;
+  border-width: 0 0 2px;
+  margin-left: 10px;
+  width: 250px;
+  box-shadow: none;
+}
+#form-header{
+  text-align: center;
+}
+#form-button {
+  margin-top: 30px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  width: 200px;
+  background-color: #61dafb;
+  border-color: #61dafb;
+  border-radius: 40px;
+}
+#view-button{
+  margin: 4px;
+  border-radius: 10px;
+  width: 120px;
+  height: 50px;
+}
+#card{
+  margin: 0 auto; 
+  float: none; 
+  margin-bottom: 10px; 
+}
+#card-header {
+  text-align: center;
+}
