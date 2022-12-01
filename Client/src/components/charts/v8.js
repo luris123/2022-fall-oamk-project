@@ -62,7 +62,6 @@ function V8(props) {
     interaction: {
       mode: 'point',
       intersect: false,
-      //hitRadius: 50,
     },
 
     responsive: true,
