@@ -17,7 +17,7 @@ router.route('/getView')
     .post(userController.getView);
 
 router.route('/deleteUser')
-    .delete(userController.deleteUser);
+    .post(userController.deleteUser);
 
 router.route('/newView')
     .post(userController.createNewView);
