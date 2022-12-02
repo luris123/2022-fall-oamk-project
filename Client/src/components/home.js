@@ -1,7 +1,7 @@
 import React from "react";
 import image from "../assets/nature.jpg"
-import "../App.css"
-import "../index.css"
+import "../css/App.css"
+import "../css/index.css"
 
 function Home() {
     return (

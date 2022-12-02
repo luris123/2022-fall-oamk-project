@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Chart, registerables } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import '../../App.css'
+import '../../css/App.css';
 import Card from 'react-bootstrap/Card';
 import { DatasetsContext } from '../../App.js';
 

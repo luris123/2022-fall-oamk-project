@@ -1,4 +1,4 @@
-import '../../App.css'
+import '../../css/App.css'
 import React, { useState, useEffect, useContext } from 'react';
 import { Chart, registerables } from 'chart.js';
 import { Line } from 'react-chartjs-2';
@@ -40,6 +40,11 @@ function V1V2(props) {
 
         datasets.v1data[0].southernMonthly[i].time = datasets.v1data[0].southernMonthly[i].time.toString();
         datasets.v1data[0].southernMonthly[i].anomaly = datasets.v1data[0].southernMonthly[i].anomaly.toString();
+      }
+
+      for (let i = 0; i < datasets.v2data.length; i++) {
+        datasets.v2data[i].year = datasets.v2data[i].year.toString();
+        datasets.v2data[i].t = datasets.v2data[i].t.toString();
       }
 
       setV1Data(datasets.v1data[0]);

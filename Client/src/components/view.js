@@ -1,4 +1,4 @@
-import "./view.css";
+import "../css/view.css";
 import V1V2 from './charts/v1v2';
 import V3 from './charts/v3';
 import V5 from './charts/v5';

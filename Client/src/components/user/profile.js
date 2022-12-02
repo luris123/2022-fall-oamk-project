@@ -33,6 +33,8 @@ function Profile() {
 
     const [displayOption, setDisplayOption] = useState(false);
 
+    const [popupOpen, setPopupOpen] = useState(false);
+
 
     const userJSON = JSON.parse(window.localStorage.getItem('loggedUser'));
 
@@ -101,10 +103,31 @@ function Profile() {
             userJSON.views = response.views;
             window.localStorage.setItem('loggedUser', JSON.stringify(userJSON));
             setUser(userJSON);
+            clear();
 
         } catch (error) {
             console.log(error);
         }
+    }
+
+    const clear = () => {
+        setV1V2Toggle(false);
+        setV3V4V10Toggle(false);
+        setV5Toggle(false);
+        setV6Toggle(false);
+        setV6V7Toggle(false);
+        setV8Toggle(false);
+        setV9Toggle(false);
+        setDisplayOption(false);
+        setPopupOpen(false)
+
+        setV1V2Description("");
+        setV3V4V10Description("");
+        setV5Description("");
+        setV6Description("");
+        setV6V7Description("");
+        setV8Description("");
+        setV9Description("");
     }
 
     if (user === null) {
@@ -123,27 +146,11 @@ function Profile() {
             <ul>
                 {user.views.map((view, i) => {
                     let url = "/view/" + view.url;
-                    return <li key={i}>Näkymä: <Link to = {url} onClick={() => View()}>{view.url}</Link> <button onClick={() => handleDeleteView(view.url)}>poista näkymä</button></li>
+                    return <li key={i}>Näkymä: <Link to={url} onClick={() => View()}>{view.url}</Link> <button onClick={() => handleDeleteView(view.url)}>poista näkymä</button></li>
                 })}
             </ul>
-            <Popup trigger={<Button type='primary'>Luo uusi näkymä</Button>} modal nested onClose={() => {
-                setV1V2Toggle(false);
-                setV3V4V10Toggle(false);
-                setV5Toggle(false);
-                setV6Toggle(false);
-                setV6V7Toggle(false);
-                setV8Toggle(false);
-                setV9Toggle(false);
-                setDisplayOption(false);
-
-                setV1V2Description("");
-                setV3V4V10Description("");
-                setV5Description("");
-                setV6Description("");
-                setV6V7Description("");
-                setV8Description("");
-                setV9Description("");
-            }}>
+            <Button type='primary' onClick={() => setPopupOpen(true)}>Luo uusi näkymä</Button>
+            <Popup open={popupOpen} modal nested closeOnDocumentClick={false}>
                 <div className='newView'>
                     <div className='newViewContent'>
                         <h1>Luo uusi näkymä</h1>
@@ -204,8 +211,11 @@ function Profile() {
                             <Form.Group className="mb-3" controlId="formBasicCheckbox">
                                 <Form.Check type="checkbox" onClick={() => setDisplayOption(!displayOption)} label="Vaihda 2-sarakkeen rinnakkaisasetteluun" />
                             </Form.Group>
-                            <Button type='submit'>
+                            <Button type='submit' onClick={() => setPopupOpen(false)}>
                                 Luo näkymä
+                            </Button>
+                            <Button onClick={() => { clear(); setPopupOpen(false) }}>
+                                Sulje
                             </Button>
                         </Form>
                     </div>

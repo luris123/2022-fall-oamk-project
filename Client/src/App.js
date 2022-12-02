@@ -1,14 +1,14 @@
-import './App.css';
+import './css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from './components/navbar/navigationbar.js'
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import axios from 'axios';
+import Navbar from './components/navbar/navigationbar.js'
 import Home from './components/home'
 import EmissionSources from './components/emissionSources'
 import Temperature from './components/temperature'
 import Profile from './components/user/profile.js'
 import View from './components/view.js'
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 
 export const DatasetsContext = React.createContext();
 
