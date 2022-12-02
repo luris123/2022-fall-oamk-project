@@ -1,31 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import chartService from '../../services/chartService';
+import React, { useState, useEffect, useContext } from 'react';
 import { Chart, registerables } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import axios from 'axios'
 import randomColor from "randomcolor";
+import { DatasetsContext } from '../../App.js';
 
 Chart.register(...registerables);
 
 function V8(props) {
 
+  const datasets = useContext(DatasetsContext);
+
   const [V8Years, setV8Years] = useState([]);
   const [V8Dataset, setV8Dataset] = useState([]);
 
   useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await axios.get('http://localhost:3001/datasets');
-
+    if (datasets.length !== 0) {
         let TempYears = [];
-        let TempCountries = response.data.v8data[1].countries;
+        let TempCountries = datasets.v8data[1].countries;
         let CountriesCO2 = [];
         let TempCountryCO2 = []
 
         for (let s = 0; s < 219; s++) {
           TempYears = []
           for (let i = 1959; i < 2021; i++) {
-            TempCountryCO2.push(response.data.v8data[0][i][TempCountries[s]])
+            TempCountryCO2.push(datasets.v8data[0][i][TempCountries[s]])
             TempYears.push(i)
           }
           CountriesCO2.push(TempCountryCO2)
@@ -47,12 +45,8 @@ function V8(props) {
         setV8Dataset(TempCountryCO2);
         setV8Years(TempYears);
 
-      } catch (error) {
-        console.log(error);
       }
-    };
-    getData();
-  }, []);
+  }, [datasets]);
 
 
 

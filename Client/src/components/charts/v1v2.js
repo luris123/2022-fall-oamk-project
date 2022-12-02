@@ -1,71 +1,52 @@
-import React, { useState, useEffect } from 'react';
-import chartService from '../../services/chartService';
+import '../../App.css'
+import React, { useState, useEffect, useContext } from 'react';
 import { Chart, registerables } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import axios from 'axios';
 import 'chartjs-adapter-luxon';
 import Button from "react-bootstrap/Button";
-import '../../App.css'
 import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
+import { DatasetsContext } from '../../App.js';
 
 
 Chart.register(...registerables);
 
 function V1V2(props) {
 
+  const datasets = useContext(DatasetsContext);
+
   const [v1Data, setV1Data] = useState([]);
   const [v2Data, setV2Data] = useState([]);
-
   const [visible, setVisible] = useState(false);
   const [v2Toggle, setV2Toggle] = useState(true);
 
   useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await axios.get('http://localhost:3001/datasets');
+    if (datasets.length !== 0) {
+      
+      for (let i = 0; i < datasets.v1data[0].globalAnnual.length; i++) {
+        datasets.v1data[0].globalAnnual[i].time = datasets.v1data[0].globalAnnual[i].time.toString();
+        datasets.v1data[0].globalAnnual[i].anomaly = datasets.v1data[0].globalAnnual[i].anomaly.toString();
 
-        for (let i = 0; i < response.data.v1data[0].globalAnnual.length; i++) {
-          response.data.v1data[0].globalAnnual[i].time = response.data.v1data[0].globalAnnual[i].time.toString();
-          response.data.v1data[0].globalAnnual[i].anomaly = response.data.v1data[0].globalAnnual[i].anomaly.toString();
+        datasets.v1data[0].globalMonthly[i].time = datasets.v1data[0].globalMonthly[i].time.toString();
+        datasets.v1data[0].globalMonthly[i].anomaly = datasets.v1data[0].globalMonthly[i].anomaly.toString();
 
-          response.data.v1data[0].globalMonthly[i].time = response.data.v1data[0].globalMonthly[i].time.toString();
-          response.data.v1data[0].globalMonthly[i].anomaly = response.data.v1data[0].globalMonthly[i].anomaly.toString();
+        datasets.v1data[0].northernAnnual[i].time = datasets.v1data[0].northernAnnual[i].time.toString();
+        datasets.v1data[0].northernAnnual[i].anomaly = datasets.v1data[0].northernAnnual[i].anomaly.toString();
 
-          response.data.v1data[0].northernAnnual[i].time = response.data.v1data[0].northernAnnual[i].time.toString();
-          response.data.v1data[0].northernAnnual[i].anomaly = response.data.v1data[0].northernAnnual[i].anomaly.toString();
+        datasets.v1data[0].northernMonthly[i].time = datasets.v1data[0].northernMonthly[i].time.toString();
+        datasets.v1data[0].northernMonthly[i].anomaly = datasets.v1data[0].northernMonthly[i].anomaly.toString();
 
-          response.data.v1data[0].northernMonthly[i].time = response.data.v1data[0].northernMonthly[i].time.toString();
-          response.data.v1data[0].northernMonthly[i].anomaly = response.data.v1data[0].northernMonthly[i].anomaly.toString();
+        datasets.v1data[0].southernAnnual[i].time = datasets.v1data[0].southernAnnual[i].time.toString();
+        datasets.v1data[0].southernAnnual[i].anomaly = datasets.v1data[0].southernAnnual[i].anomaly.toString();
 
-          response.data.v1data[0].southernAnnual[i].time = response.data.v1data[0].southernAnnual[i].time.toString();
-          response.data.v1data[0].southernAnnual[i].anomaly = response.data.v1data[0].southernAnnual[i].anomaly.toString();
-
-          response.data.v1data[0].southernMonthly[i].time = response.data.v1data[0].southernMonthly[i].time.toString();
-          response.data.v1data[0].southernMonthly[i].anomaly = response.data.v1data[0].southernMonthly[i].anomaly.toString();
-        }
-
-        for (let i = 0; i < response.data.v2data.length; i++) {
-          response.data.v2data[i].year = response.data.v2data[i].year.toString();
-          response.data.v2data[i].t = response.data.v2data[i].t.toString();
-        }
-
-        for (let j = 1980; j <= 2023; j++) {
-          response.data.v2data[j] = {
-            "year": null,
-            "t": null
-          }
-        }
-
-        setV1Data(response.data.v1data[0]);
-        setV2Data(response.data.v2data);
-
-      } catch (error) {
-        console.log(error);
+        datasets.v1data[0].southernMonthly[i].time = datasets.v1data[0].southernMonthly[i].time.toString();
+        datasets.v1data[0].southernMonthly[i].anomaly = datasets.v1data[0].southernMonthly[i].anomaly.toString();
       }
-    };
-    getData();
-  }, []);
+
+      setV1Data(datasets.v1data[0]);
+      setV2Data(datasets.v2data);
+    }
+  }, [datasets]);
+
 
   const options = {
     interaction: {
@@ -193,23 +174,23 @@ function V1V2(props) {
             <Button id="view-button" onClick={() => setVisible(!visible)}>Change view</Button>
             <Button id="view-button" onClick={() => setV2Toggle(!v2Toggle)}>V2Toggle</Button>
           </Card.Body>
-        {props.description
-          ? <p>{props.description}</p>
-          : null
-        }
-        <div style={{ width: 1000, height: '1500', margin: 'auto' }}>
-          <Line
-            style={{ backgroundColor: "white" }}
-            options={options}
-            data={data}
-          />
-        </div>
-        <Card.Body id="card-header">
-          <Card.Link href="https://www.metoffice.gov.uk/hadobs/hadcrut5/">Global surface temperature Description and Data source</Card.Link>
-          <Card.Link href="https://gml.noaa.gov/ccgg/about/co2_measurements.html">Data measurement description</Card.Link>
-          <Card.Link href="https://www.ncei.noaa.gov/pub/data/paleo/contributions_by_author/moberg2005/nhtemp-moberg2005.txt">Northern Hemisphere temperature Data source</Card.Link>
-        </Card.Body>
-      </Card>
+          {props.description
+            ? <p>{props.description}</p>
+            : null
+          }
+          <div style={{ width: 1000, height: '1500', margin: 'auto' }}>
+            <Line
+              style={{ backgroundColor: "white" }}
+              options={options}
+              data={data}
+            />
+          </div>
+          <Card.Body id="card-header">
+            <Card.Link href="https://www.metoffice.gov.uk/hadobs/hadcrut5/">Global surface temperature Description and Data source</Card.Link>
+            <Card.Link href="https://gml.noaa.gov/ccgg/about/co2_measurements.html">Data measurement description</Card.Link>
+            <Card.Link href="https://www.ncei.noaa.gov/pub/data/paleo/contributions_by_author/moberg2005/nhtemp-moberg2005.txt">Northern Hemisphere temperature Data source</Card.Link>
+          </Card.Body>
+        </Card>
         : null
       }
     </>

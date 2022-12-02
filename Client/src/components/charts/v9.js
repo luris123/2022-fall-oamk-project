@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
-import chartService from '../../services/chartService';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import Energy from './v9helpers/energy';
 import Industrial from './v9helpers/industrial';
 import Agriculture from './v9helpers/agriculture';
@@ -8,11 +7,13 @@ import { Chart, registerables } from 'chart.js';
 import { Doughnut, getElementAtEvent } from 'react-chartjs-2';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import axios from 'axios';
+import { DatasetsContext } from '../../App.js';
 
 Chart.register(...registerables);
 
 function V9(props) {
+
+    const datasets = useContext(DatasetsContext);
 
     const [sector, setSector] = useState([]);
     const [sectorShare, setSectorShare] = useState([]);
@@ -49,31 +50,24 @@ function V9(props) {
     }
 
     useEffect(() => {
-        const getData = async () => {
-            try {
-                const response = await axios.get('http://localhost:3001/datasets');
-
-                let sector = response.data.v9data[0].sector.map(x => x.sector);
+        if (datasets.length !== 0) {
+                let sector = datasets.v9data[0].sector.map(x => x.sector);
                 setSector(sector);
-                let sectorShare = response.data.v9data[0].sector.map(x => x.share_of_global_greenhouse_gas_emissions_percentage);
+                let sectorShare = datasets.v9data[0].sector.map(x => x.share_of_global_greenhouse_gas_emissions_percentage);
                 setSectorShare(sectorShare);
 
-                let subSector = response.data.v9data[0].sub_sector.map(x => x.sub_sector);
+                let subSector = datasets.v9data[0].sub_sector.map(x => x.sub_sector);
                 setSubSector(subSector);
-                let subSectorShare = response.data.v9data[0].sub_sector.map(x => x.share_of_global_greenhouse_gas_emissions_percentage);
+                let subSectorShare = datasets.v9data[0].sub_sector.map(x => x.share_of_global_greenhouse_gas_emissions_percentage);
                 setSubSectorShare(subSectorShare);
 
-                let subSectorFurtherBreakdown = response.data.v9data[0].sub_sector_further_breakdown.map(x => x.sub_sector);
+                let subSectorFurtherBreakdown = datasets.v9data[0].sub_sector_further_breakdown.map(x => x.sub_sector);
                 setSubSectorFurtherBreakdown(subSectorFurtherBreakdown);
-                let subSectorFurtherBreakdownShare = response.data.v9data[0].sub_sector_further_breakdown.map(x => x.share_of_global_greenhouse_gas_emissions_percentage);
+                let subSectorFurtherBreakdownShare = datasets.v9data[0].sub_sector_further_breakdown.map(x => x.share_of_global_greenhouse_gas_emissions_percentage);
                 setSubSectorFurtherBreakdownShare(subSectorFurtherBreakdownShare);
 
-            } catch (error) {
-                console.log(error);
             }
-        };
-        getData();
-    }, []);
+    }, [datasets]);
 
     const options = {
 

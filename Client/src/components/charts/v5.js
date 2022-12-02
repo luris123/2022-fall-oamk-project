@@ -1,34 +1,29 @@
-import React, { useState, useEffect } from 'react';
-//import chartService from '../../services/chartService';
+import React, { useState, useEffect, useContext } from 'react';
 import { Chart, registerables } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import axios from 'axios';
 import '../../App.css'
 import Card from 'react-bootstrap/Card';
+import { DatasetsContext } from '../../App.js';
+
 
 Chart.register(...registerables);
 
 function V5(props) {
 
+  const datasets = useContext(DatasetsContext);
+
   const [airAge, setAirAge] = useState([]);
   const [co2Concentration, setCO2Concentration] = useState([]);
 
   useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await axios.get('http://localhost:3001/datasets');
-        let AirAgeArray = response.data.v5data.map(x => x.mean_age_of_air_yr);
+    if (datasets.length !== 0) {
+        let AirAgeArray = datasets.v5data.map(x => x.mean_age_of_air_yr);
         setAirAge(AirAgeArray.reverse());
 
-        let co2ConcentrationArray = response.data.v5data.map(x => x.c02_concentration);
+        let co2ConcentrationArray = datasets.v5data.map(x => x.c02_concentration);
         setCO2Concentration(co2ConcentrationArray.reverse());
-
-      } catch (error) {
-        console.log(error);
-      }
     };
-    getData();
-  }, []);
+  }, [datasets]);
 
   const options = {
     //Only reacts to mousemove events

@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import chartService from '../../services/chartService';
+import React, { useState, useEffect, useContext } from 'react';
 import { Chart, registerables } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import axios from 'axios';
 import Card from 'react-bootstrap/Card';
+import { DatasetsContext } from '../../App.js';
 
 Chart.register(...registerables);
 
 function V7(props) {
+
+    const datasets = useContext(DatasetsContext);
 
     const [timeTemp1, setTimeTemp1] = useState([]);
     const [globalTemp1, setGlobalTemp1] = useState([]);
@@ -15,24 +16,19 @@ function V7(props) {
     const [carbon1, setCarbon1] = useState([]);
 
     useEffect(() => {
-        const getData = async () => {
-            try {
-                const response = await axios.get('http://localhost:3001/datasets');
-                let timeCarbon = response.data.v7data[0].carbon_dioxide.map(x => x.time_kyr_bp);
-                let carbon = response.data.v7data[0].carbon_dioxide.map(x => x.carbon_dioxide_ppm);
-                setTimeCarbon1(timeCarbon);
-                setCarbon1(carbon);
+        if (datasets.length !== 0) {
+            let timeCarbon = datasets.v7data[0].carbon_dioxide.map(x => x.time_kyr_bp);
+            let carbon = datasets.v7data[0].carbon_dioxide.map(x => x.carbon_dioxide_ppm);
+            setTimeCarbon1(timeCarbon);
+            setCarbon1(carbon);
 
-                let timeTemp = response.data.v7data[0].gast_reconstruction.map(x => x.time_kyr_bp);
-                let globalTemp = response.data.v7data[0].gast_reconstruction.map(x => x.changes_global_tempature_c);
-                setTimeTemp1(timeTemp);
-                setGlobalTemp1(globalTemp);
-            } catch (error) {
-                console.log(error);
-            }
+            let timeTemp = datasets.v7data[0].gast_reconstruction.map(x => x.time_kyr_bp);
+            let globalTemp = datasets.v7data[0].gast_reconstruction.map(x => x.changes_global_tempature_c);
+            setTimeTemp1(timeTemp);
+            setGlobalTemp1(globalTemp);
         }
-        getData();
-    }, []);
+
+    }, [datasets]);
 
     const options = {
         plugins: {
@@ -130,7 +126,7 @@ function V7(props) {
     return (
         <>
             {props.show
-                ? <Card id="card"> 
+                ? <Card id="card">
                     <Card.Body id="card-header">
                         <h4>Evolution of global temperature over the past two million years</h4>
                         <p>TODO: Write a brief description of the graph and its information.</p>
@@ -140,7 +136,7 @@ function V7(props) {
                         ? <p>{props.description}</p>
                         : null
                     }
-                    <div style={{ width: 'auto', height: 'auto', margin: 'auto' }}>
+                    <div style={{ width: 'auto', height: 'auto'}}>
                         <Line
                             style={{ backgroundColor: "white" }}
                             options={options}

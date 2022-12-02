@@ -20,8 +20,7 @@ function Navigationbar() {
         const loggedUserJSON = window.localStorage.getItem('loggedUser')
         if (loggedUserJSON) {
           const user = JSON.parse(loggedUserJSON)
-          setUser(user)
-          loginService.setToken(user.token)
+          setUser(user);
         }
       }, [])
 
@@ -32,7 +31,6 @@ function Navigationbar() {
             username, password,
           })
           setUser(user)
-          loginService.setToken(user.token)
           window.localStorage.setItem(
             'loggedUser', JSON.stringify(user)
           ) 
@@ -52,7 +50,6 @@ function Navigationbar() {
             const user = await loginService.register({
                 username, password,
             })
-            loginService.setToken(user.token)
             window.localStorage.setItem(
                 'loggedUser', JSON.stringify(user)
             )
