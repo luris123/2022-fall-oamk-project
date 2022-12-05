@@ -42,9 +42,22 @@ function V1V2(props) {
         datasets.v1data[0].southernMonthly[i].anomaly = datasets.v1data[0].southernMonthly[i].anomaly.toString();
       }
 
+      //because years below 1000 are not supported by chart.js
+      //zeros must be added to the beginning of the year
       for (let i = 0; i < datasets.v2data.length; i++) {
         datasets.v2data[i].year = datasets.v2data[i].year.toString();
         datasets.v2data[i].t = datasets.v2data[i].t.toString();
+
+        if (datasets.v2data[i].year.length < 2) {
+          datasets.v2data[i].year =  "000" + datasets.v2data[i].year;
+        }
+
+        if (datasets.v2data[i].year.length < 3) {
+          datasets.v2data[i].year =  "00" + datasets.v2data[i].year;
+        }
+        if (datasets.v2data[i].year.length < 4) {
+          datasets.v2data[i].year =  "0" + datasets.v2data[i].year;
+        }
       }
 
       setV1Data(datasets.v1data[0]);
@@ -54,17 +67,20 @@ function V1V2(props) {
 
 
   const options = {
+
     interaction: {
-      mode: 'index',
+      mode: 'nearest',
       intersect: false,
-    },
+  },
+
     elements: {
       point: {
         radius: 0
       }
     },
     //Only reacts to mousemove events
-    //events: ['mousemove'],
+    events: ['mousemove'],
+
     scales: {
       x: {
         type: 'time',
