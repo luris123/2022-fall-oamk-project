@@ -80,11 +80,11 @@ function Navigationbar() {
                             <h5 id="form-header">Kirjaudu</h5>
                             <Form.Group>
                                 <Form.Label id="form-label">Käyttäjätunnus</Form.Label>
-                                <Form.Control id="form-control" onChange={({ target }) => setUsername(target.value)} type="username"/>
+                                <Form.Control id="form-control" onChange={({ target }) => setUsername(target.value)} type="username" placeholder='käyttäjätunnus'/>
                             </Form.Group>
                             <Form.Group>
                                 <Form.Label id="form-label">Salasana</Form.Label>
-                                <Form.Control id="form-control" onChange={({ target }) => setPassword(target.value)} type="password" />
+                                <Form.Control id="form-control" onChange={({ target }) => setPassword(target.value)} type="password" placeholder='salasana' />
                             </Form.Group>
                             <Button type='submit' id="form-button">
                                 Kirjaudu sisään
