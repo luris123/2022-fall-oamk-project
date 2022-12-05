@@ -4,6 +4,8 @@ const app = require('../index');
 
 const api = supertest(app);
 
+
+
 test('GET /datasets', async () => {
     await api
     .get('/datasets')
@@ -40,12 +42,22 @@ test('Login', async () => {
 
 test('Delete user', async () => {
 
+    let token = '';
+
     const user = {
+        username: 'test',
         password: 'test'
     }
 
+    const response = await api
+    .post('/login')
+    .send(user);
+    token = response.body.token
+    console.log(token);
+
     await api
     .post('/users/deleteUser')
+    .set('Authorization', `Bearer ${token}`)
     .send(user)
     .expect(200)
     .expect('Content-Type', /application\/json/)
