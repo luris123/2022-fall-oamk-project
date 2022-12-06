@@ -11,6 +11,18 @@ const register = async credentials => {
   return response.data
 }
 
-const exportedObject = { login, register }
+const deleteAccount = async (credentials) => {
+  const user = JSON.parse(window.localStorage.getItem('loggedUser'))
+
+  const response = await axios.post(baseUrl+'/users/deleteUser', credentials, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + user.token,
+    },
+  })
+  return response.data
+}
+
+const exportedObject = { login, register, deleteAccount }
 
 export default exportedObject 

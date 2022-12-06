@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Button from "react-bootstrap/Button";
 import { Link } from 'react-router-dom';
 import viewService from '../../services/viewService';
+import loginService from '../../services/loginService';
 import View from '../view';
 
 function Profile() {
@@ -38,6 +39,9 @@ function Profile() {
 
     const userJSON = JSON.parse(window.localStorage.getItem('loggedUser'));
 
+    const refreshPage = () => {
+        window.location.reload(false);
+    }
 
     useEffect(() => {
         console.log(userJSON);
@@ -107,6 +111,27 @@ function Profile() {
 
         } catch (error) {
             console.log(error);
+        }
+    }
+
+    const handleDeleteUser = async () => {
+        console.log(userJSON.username)
+        let inputWindow = window.prompt("Kirjoita salasanasi vahvistaaksesi tilin poisto");
+        console.log(inputWindow)
+        try {
+            const response = await loginService.deleteAccount({
+                password: inputWindow,
+                token: JSON.stringify(userJSON.token)
+            });
+
+            console.log(response);
+
+            //update local storage user
+            window.localStorage.removeItem('loggedUser');
+            setUser(null);
+            refreshPage();
+        } catch (error) {
+            window.alert(error.response.data.error);
         }
     }
 
@@ -221,6 +246,7 @@ function Profile() {
                     </div>
                 </div>
             </Popup>
+            <Button type='primary' onClick={() => handleDeleteUser()}>Poista käyttäjä</Button>
         </div>
     )
 }

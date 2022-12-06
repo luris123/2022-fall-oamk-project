@@ -6,24 +6,36 @@ import userEvent from '@testing-library/user-event'
 import { MemoryRouter as Router } from 'react-router-dom';
 
 
-//test kirjaudu
-test('renders login', () => {
-    render(
-        <Router>
-    <Navigationbar />
-    </Router>
-    );
-    const loginElement = screen.getByText(/Kirjaudu/i);
-    expect(loginElement).toBeInTheDocument();
-    });
+//test rekisteröidy
+test('register works', async () => {
+    const mockHandler = jest.fn()
+    const user = userEvent.setup()
 
+    render(<Router><Navigationbar handleRegister={mockHandler} /></Router>)
+    const navDropdown = screen.getByRole('button', { name: /Rekisteröidy/i })
+    await user.click(navDropdown);
+    expect(screen.getByText(/Luo uusi tili/i)).toBeInTheDocument();
+    const newUser = screen.getByPlaceholderText(/käyttäjätunnus/i);
+    await user.type(newUser, 'testi')
+    const newPassword = screen.getByPlaceholderText(/salasana/i);
+    await user.type(newPassword, 'testi')
+    const registerButton = screen.getByRole('button', { name: /Luo uusi tili/i })
+    expect(newUser).toHaveValue('testi')
+    await user.click(registerButton);
+    expect(screen.getByText(/Rekisteröityminen onnistui!/i)).toBeInTheDocument();
+
+})
+
+
+
+//test kirjaudu
 test('login button works', async () => {
-    const handleLogin = jest.fn()
+    const mockHandler = jest.fn()
     const user = userEvent.setup()
 
     render(
         <Router>
-    <Navigationbar handleLogin={handleLogin} />
+    <Navigationbar handleLogin={mockHandler} />
     </Router>
     );
     //click kirjaudu navDropdown and check that login form is visible
@@ -36,7 +48,7 @@ test('login button works', async () => {
     const password = screen.getByPlaceholderText(/salasana/i);
     await user.type(password, 'testi');
     //click login button
-    const loginButton = screen.getByText(/kirjaudu sisään/i);
+    const loginButton = screen.getByRole('button', { name: /Kirjaudu sisään/i})
     await user.click(loginButton);
     //check that username and password are empty
     expect(username).toHaveValue('');
@@ -45,5 +57,3 @@ test('login button works', async () => {
     
 
     });
-
-            

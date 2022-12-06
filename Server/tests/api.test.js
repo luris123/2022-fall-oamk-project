@@ -45,8 +45,8 @@ test('Delete user', async () => {
     let token = '';
 
     const user = {
-        username: 'test',
-        password: 'test'
+        username: 'testaaja',
+        password: 'testaaja'
     }
 
     const response = await api
