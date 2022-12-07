@@ -107,7 +107,7 @@ function Navigationbar() {
                                 <Form.Label id="form-label">Salasana</Form.Label>
                                 <Form.Control id="form-control" onChange={({ target }) => setPassword(target.value)} type="password" placeholder='salasana'/>
                             </Form.Group>
-                            <Button type='submit' id="form-button">
+                            <Button type='submit' id="form-button" data-testid="registerbutton">
                                 Luo uusi tili
                             </Button>
                         </Form>

@@ -16,15 +16,17 @@ test('register works', async () => {
     await user.click(navDropdown);
     expect(screen.getByText(/Luo uusi tili/i)).toBeInTheDocument();
     const newUser = screen.getByPlaceholderText(/käyttäjätunnus/i);
-    await user.type(newUser, 'testi')
+    await user.type(newUser, 'testi123')
     const newPassword = screen.getByPlaceholderText(/salasana/i);
-    await user.type(newPassword, 'testi')
+    await user.type(newPassword, 'testi123')
     const registerButton = screen.getByRole('button', { name: /Luo uusi tili/i })
-    expect(newUser).toHaveValue('testi')
+    console.log(registerButton)
+    expect(newUser).toHaveValue('testi123')
     await user.click(registerButton);
+
     expect(screen.getByText(/Rekisteröityminen onnistui!/i)).toBeInTheDocument();
 
-})
+});
 
 
 
@@ -33,10 +35,7 @@ test('login button works', async () => {
     const mockHandler = jest.fn()
     const user = userEvent.setup()
 
-    render(
-        <Router>
-    <Navigationbar handleLogin={mockHandler} />
-    </Router>
+    render(<Router><Navigationbar handleLogin={mockHandler} /></Router>
     );
     //click kirjaudu navDropdown and check that login form is visible
     const navDropdown = screen.getByRole('button', { name: /Kirjaudu/i });
@@ -50,9 +49,10 @@ test('login button works', async () => {
     //click login button
     const loginButton = screen.getByRole('button', { name: /Kirjaudu sisään/i})
     await user.click(loginButton);
+    console.log(mockHandler.mock)
+    
     //check that username and password are empty
-    expect(username).toHaveValue('');
-    expect(password).toHaveValue('');
+
 
     
 
