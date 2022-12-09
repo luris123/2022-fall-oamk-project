@@ -116,6 +116,30 @@ function V3(props) {
       },
     },
     plugins: {
+      tooltip: {
+        callbacks: {
+            title: function (context) {
+                var title = context[0].dataset.title;
+                if(context[0].dataset.type === "bubble"){
+                    title = "Year: " + context[0].raw.x;
+                }
+                else{
+                    title = "Year: " + context[0].label;
+                }
+                return title;
+            },
+            label: function (context) {
+                var label = context.dataset.label;
+                if(context.dataset.type === "bubble"){
+                    label = context.raw.description;
+                }
+                else{
+                    label = label + ": " + context.formattedValue;
+                }
+                return label;
+            }
+        },
+    },
       legend: {
         position: "top",
       },
@@ -189,16 +213,22 @@ function V3(props) {
         },
       },
       {
+        type: "bubble",
         label: "Major historical events",
-        data: v10,
+
+        data: v10.map((x) => {
+          return {
+            x: x.year,
+            y: 250,
+            r: 5,
+            description: x.description,
+            };
+            }),
         hidden: v10Toggle,
-        borderColor: "rgb(50, 205, 50)",
-        backgroundColor: "rgba(50, 205, 50, 0.5)",
-        parsing: {
-          xAxisKey: "year",
-          yAxisKey: "y",
-        },
-      },
+        borderColor: "rgb(255, 99, 132)",
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+
+      }
     ],
   };
 
