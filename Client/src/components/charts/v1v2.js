@@ -97,7 +97,7 @@ function V1V2(props) {
       },
       title: {
         display: true,
-        text: "Global historical surface temperature anomalies from January 1850 onwards",
+        text: "Maailmanlaajuinen pintalämpötilojen poikkeavuus tammikuusta 1850 lähtien & Pohjoisen pallonpuoliskon 2000 vuoden lämpötilakonstruktio",
       },
     }
   };
@@ -105,7 +105,7 @@ function V1V2(props) {
   const data = {
     datasets: [
       {
-        label: "Global Annual",
+        label: "Maailmalaajuinen vuosittainen",
         data: v1Data.globalAnnual,
         borderColor: 'black',
         borderWidth: 2,
@@ -116,7 +116,7 @@ function V1V2(props) {
         hidden: visible
       },
       {
-        label: "Northern Hemisphere Annual",
+        label: "Pohjoisen pallonpuoliskon vuosittainen",
         data: v1Data.northernAnnual,
         borderColor: 'blue',
         borderWidth: 2,
@@ -127,7 +127,7 @@ function V1V2(props) {
         hidden: visible
       },
       {
-        label: "Southern Hemisphere Annual",
+        label: "Eteläisen pallonpuolisko vuosittainen",
         data: v1Data.southernAnnual,
         borderColor: 'red',
         borderWidth: 2,
@@ -138,7 +138,7 @@ function V1V2(props) {
         hidden: visible
       },
       {
-        label: "Global Monthly",
+        label: "Maailmalaajuinen kuuittainen",
         data: v1Data.globalMonthly,
         borderColor: 'black',
         borderWidth: 2,
@@ -149,7 +149,7 @@ function V1V2(props) {
         hidden: !visible
       },
       {
-        label: "Northern Hemisphere Monthly",
+        label: "Pohjoisen pallonpuoliskon kuukausittainen",
         data: v1Data.northernMonthly,
         borderColor: 'blue',
         borderWidth: 2,
@@ -160,7 +160,7 @@ function V1V2(props) {
         hidden: !visible
       },
       {
-        label: "Southern Hemisphere Monthly",
+        label: "Eteläisen pallonpuolisko vuosittainen",
         data: v1Data.southernMonthly,
         borderColor: 'red',
         borderWidth: 2,
@@ -171,7 +171,7 @@ function V1V2(props) {
         hidden: !visible
       },
       {
-        label: "2000 Year Temperatures",
+        label: "2000 vuoden lämpötilat",
         data: v2Data,
         borderColor: 'green',
         borderWidth: 2,
@@ -189,11 +189,11 @@ function V1V2(props) {
       {props.show
         ? <Card id="card">
           <Card.Body id="card-header">
-            <h3>Global historical surface temperature anomalies from January 1850 onwards<br></br>&<br></br>Northern Hemisphere 2,000-year temperature reconstruction</h3>
+            <h3>Maailmanlaajuinen pintalämpötilojen poikkeavuus tammikuusta 1850 lähtien <br></br>&<br></br>Pohjoisen pallonpuoliskon 2000 vuoden lämpötilakonstruktio</h3>
           </Card.Body>
           <Card.Body id="card-header">
-            <Button id="view-button" onClick={() => setVisible(!visible)}>Change view</Button>
-            <Button id="view-button" onClick={() => setV2Toggle(!v2Toggle)}>V2Toggle</Button>
+            <Button id="view-button" onClick={() => setVisible(!visible)}>Vaihda näkymä</Button>
+            <Button id="view-button" onClick={() => setV2Toggle(!v2Toggle)}>2000 vuoden lämpötilat</Button>
           </Card.Body>
           {props.description
             ? <p>{props.description}</p>
@@ -207,7 +207,7 @@ function V1V2(props) {
             />
           </div>
           <Card.Body id="card-header">
-            <Card.Link href="https://www.metoffice.gov.uk/hadobs/hadcrut5/">Global surface temperature Description and Data source</Card.Link>
+            <Card.Link href="https://www.metoffice.gov.uk/hadobs/hadcrut5/">Global surface temperature Description and Data source </Card.Link>
             <Card.Link href="https://gml.noaa.gov/ccgg/about/co2_measurements.html">Data measurement description</Card.Link>
             <Card.Link href="https://www.ncei.noaa.gov/pub/data/paleo/contributions_by_author/moberg2005/nhtemp-moberg2005.txt">Northern Hemisphere temperature Data source</Card.Link>
           </Card.Body>

@@ -26,15 +26,20 @@ function V7(props) {
             timeTemp = timeTemp.map(x => "-" + x);
 
             let globalTemp = datasets.v7data[0].gast_reconstruction.map(x => x.changes_global_tempature_c);
+            
             setTimeTemp1(timeTemp);
             setGlobalTemp1(globalTemp);
 
             let humanEvolution = datasets.v10data;
 
-            //filters out years that are not between -2000000 and 0
-            humanEvolution = humanEvolution.filter(x => x.year >= -2000000 && x.year <= 0);
+            //events that want to be shown on chart
+            let selectedEvents = [59, 61, 62, 64, 66, 69, 73, 77, 85, 121, 144, 598, 626];
 
-            //we must select only important events from data!!!
+            //selects only given indexes
+            humanEvolution = humanEvolution.filter((x, index) => selectedEvents.includes(index));
+
+            //shows only events before 0
+            humanEvolution = humanEvolution.filter(x => x.year < 2022);
 
             setHumanEvolution(humanEvolution);
         }
@@ -110,7 +115,7 @@ function V7(props) {
             },
             title: {
                 display: true,
-                text: "Evolution of global temperature over the past two million years combined ",
+                text: "Evolution of global temperature over the past two million years combined with Ice core 800k year composite study CO2 measurements",
             },
             
         },
@@ -162,7 +167,8 @@ function V7(props) {
                         weight: 'bold',
                         lineHeight: 1.2,
                     },
-                }
+                },
+                max: 2022,
             },
         }
 
