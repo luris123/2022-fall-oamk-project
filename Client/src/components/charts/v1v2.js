@@ -72,7 +72,6 @@ function V1V2(props) {
       mode: 'nearest',
       intersect: false,
     },
-
     elements: {
       point: {
         radius: 0
@@ -87,7 +86,17 @@ function V1V2(props) {
         time: {
           unit: 'year'
         },
-      }
+        title: {
+          display: true,
+          text: 'Aika'
+        }
+      },
+      y: {
+        title: {
+          display: true,
+          text: 'Lämpötila (°C)'
+        }
+      } 
     },
 
     responsive: true,
@@ -102,7 +111,7 @@ function V1V2(props) {
   const data = {
     datasets: [
       {
-        label: "Maailmalaajuinen vuosittainen",
+        label: "Maailmalaajuinen vuosittainen låmpötila",
         data: v1Data.globalAnnual,
         borderColor: 'black',
         borderWidth: 2,
@@ -113,7 +122,7 @@ function V1V2(props) {
         hidden: visible
       },
       {
-        label: "Pohjoisen pallonpuoliskon vuosittainen",
+        label: "Pohjoisen pallonpuoliskon vuosittainen lämpötila",
         data: v1Data.northernAnnual,
         borderColor: 'blue',
         borderWidth: 2,
@@ -124,7 +133,7 @@ function V1V2(props) {
         hidden: visible
       },
       {
-        label: "Eteläisen pallonpuolisko vuosittainen",
+        label: "Eteläisen pallonpuolisko vuosittainen lämpötila",
         data: v1Data.southernAnnual,
         borderColor: 'red',
         borderWidth: 2,
@@ -135,7 +144,7 @@ function V1V2(props) {
         hidden: visible
       },
       {
-        label: "Maailmalaajuinen kuuittainen",
+        label: "Maailmalaajuinen kuukaisittainen lämpötila",
         data: v1Data.globalMonthly,
         borderColor: 'black',
         borderWidth: 2,
@@ -146,7 +155,7 @@ function V1V2(props) {
         hidden: !visible
       },
       {
-        label: "Pohjoisen pallonpuoliskon kuukausittainen",
+        label: "Pohjoisen pallonpuoliskon kuukausittainen lämpötila",
         data: v1Data.northernMonthly,
         borderColor: 'blue',
         borderWidth: 2,
@@ -157,7 +166,7 @@ function V1V2(props) {
         hidden: !visible
       },
       {
-        label: "Eteläisen pallonpuolisko vuosittainen",
+        label: "Eteläisen pallonpuolisko kuukausittainen lämpötila",
         data: v1Data.southernMonthly,
         borderColor: 'red',
         borderWidth: 2,

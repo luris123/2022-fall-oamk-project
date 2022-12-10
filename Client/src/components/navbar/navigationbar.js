@@ -126,7 +126,7 @@ function Navigationbar() {
                     <NavLink eventKey="2" as={Link} to="/emissionSources">Päästölähteet</NavLink>
                     <NavLink eventKey="3" as={Link} to="/temperature">Lämpötilatiedot ja co2 pitoisuudet</NavLink>
                     <NavLink eventKey="4" as={Link} to="/profile">Profiili</NavLink>
-                    <Button onClick={() => {window.localStorage.removeItem('loggedUser'); setUser(null); refreshPage()}}>logout</Button>
+                    <Button onClick={() => {window.localStorage.removeItem('loggedUser'); setUser(null); refreshPage()}}>Kirjaudu ulos</Button>
             
                 </Nav>
             </Navbar.Collapse>
