@@ -1,3 +1,6 @@
+import { Card } from 'react-bootstrap';
+import '../../../css/v9helper.css'
+
 function Waste ({subSector, subSectorShare}) {
         
             let subSectorData = subSector.map((x, i) => {
@@ -5,7 +8,7 @@ function Waste ({subSector, subSectorShare}) {
             })    
         
             return (
-                <>
+                <Card className='v9helper'>
                 <h3>Waste</h3>
                 <ul>
                     {subSectorData.slice(15,17).map((x, i) => {
@@ -13,7 +16,7 @@ function Waste ({subSector, subSectorShare}) {
                     })}
                 </ul>
         
-                </>
+                </Card>
                 
             )
         }

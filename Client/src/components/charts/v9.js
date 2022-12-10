@@ -10,6 +10,7 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { DatasetsContext } from '../../App.js';
 
+
 Chart.register(...registerables);
 
 function V9(props) {
@@ -87,7 +88,7 @@ function V9(props) {
         <>
             <Card>
                 <Card.Body className='text-center'>
-                    <Card.Title>V9 CO2 emissions by sectors</Card.Title>
+                    <Card.Title>CO2-päästöt sektoreittain</Card.Title>
                     <Popup contentStyle={{ width: 1138 }} open={openEnergy} closeOnDocumentClick onClose={closeModal}>
                         <Energy subSector={subSector} subSectorShare={subSectorShare} subSectorFurtherBreakdown={subSectorFurtherBreakdown}
                             subSectorFurtherBreakdownShare={subSectorFurtherBreakdownShare} />
@@ -129,8 +130,8 @@ function V9(props) {
                         }}
                         onClick={onClick}
                     />
-                    <Card.Link href="https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D">Data source</Card.Link>
-                    <Card.Link href="https://essd.copernicus.org/articles/14/1917/2022/">Data description</Card.Link>
+                    <Card.Link href="https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D">Datan lähde</Card.Link>
+                    <Card.Link href="https://essd.copernicus.org/articles/14/1917/2022/">Datan kuvaus</Card.Link>
                 </Card.Body>
             </Card>
         </>

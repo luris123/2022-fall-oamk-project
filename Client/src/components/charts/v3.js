@@ -145,7 +145,6 @@ function V3(props) {
       },
       title: {
         display: true,
-        text: "Mauna Loa CO2 concentration measurements",
       },
     },
   };
@@ -153,7 +152,7 @@ function V3(props) {
   const data = {
     datasets: [
       {
-        label: "Annual mean",
+        label: "Vuosikeskiarvo",
         spanGaps: true,
         data: annual,
         hidden: visible,
@@ -165,7 +164,7 @@ function V3(props) {
         },
       },
       {
-        label: "Monthly mean average",
+        label: "Kuukauden keskiarvo",
         spanGaps: true,
         data: monthly,
         hidden: !visible,
@@ -214,7 +213,7 @@ function V3(props) {
       },
       {
         type: "bubble",
-        label: "Major historical events",
+        label: "historialliset tapahtumat",
 
         data: v10.map((x) => {
           return {
@@ -236,11 +235,11 @@ function V3(props) {
     <>
         <Card>
           <Card.Body className='text-center'>
-            <Card.Title>V3 Atmospheric CO2 concentrations from Mauna Loa measurements starting 1958</Card.Title>
+            <Card.Title>Ilmakehän CO2-pitoisuudet Mauna Loa -mittauksista alkaen vuodesta 1958 <br />&<br />Etelämantereen Jää ytimen merkinnät ilmakehän CO2-suhteista yhdistettynä Mauna Loa -mittauksiin</Card.Title>
             <div className="d-grid gap-2">
-            <Button id="view-button" onClick={() => setVisible(!visible)}>Change view</Button>
-            <Button id="view-button" onClick={() => setV4Toggle(!v4Toggle)}>Toggle V4</Button>
-            <Button id="view-button" onClick={() => setV10Toggle(!v10Toggle)}>Toggle V10</Button>
+            <Button id="view-button" onClick={() => setVisible(!visible)}>Vaihda näkymä</Button>
+            <Button id="view-button" onClick={() => setV4Toggle(!v4Toggle)}>Jää ytimen merkinnät</Button>
+            <Button id="view-button" onClick={() => setV10Toggle(!v10Toggle)}>Historialliset tapahtuma</Button>
             </div>
             {props.description
               ? <p>{props.description}</p>
@@ -251,8 +250,8 @@ function V3(props) {
               options={options}
               data={data}
             />
-           <Card.Link href="https://gml.noaa.gov/ccgg/about/co2_measurements.html">Data measurement description</Card.Link>
-            <Card.Link href="https://gml.noaa.gov/ccgg/trends/">Data source</Card.Link>
+           <Card.Link href="https://gml.noaa.gov/ccgg/trends/">Ilmakehän CO2-pitoisuudet Mauna Loa -mittauksista</Card.Link>
+            <Card.Link href="https://cdiac.ess-dive.lbl.gov/trends/co2/lawdome.html">Etelämantereen Jää ytimen merkinnät</Card.Link>
           </Card.Body>
         </Card>
     </>

@@ -8,6 +8,7 @@ import loginService from '../../services/loginService';
 import View from '../view';
 import { Card } from 'react-bootstrap';
 import "../../css/profile.css";
+import { BiTrash } from "react-icons/bi";
 
 function Profile() {
 
@@ -167,15 +168,15 @@ function Profile() {
 
     return (
         <>
-            <Card>
-                <Card.Body className='text-center profile-card'>
+            <Card className='text-center profile-card'>
+                <Card.Body >
                     <Card.Title>Käyttäjäprofiili</Card.Title>
                     <Card.Subtitle>Käyttäjätunnus: {user.username}</Card.Subtitle>
                     <Card.Subtitle>Näkymien määrä: {user.views.length}</Card.Subtitle>
                     <ul>
                         {user.views.map((view, i) => {
                             let url = "/view/" + view.url;
-                            return <li key={i}>Näkymä: <Link to={url} onClick={() => View()}>{view.url}</Link> <button onClick={() => handleDeleteView(view.url)}>poista näkymä</button></li>
+                            return <li key={i}>Näkymä: <Link to={url} onClick={() => View()}>{view.url}</Link> <Button onClick={() => handleDeleteView(view.url)} ><BiTrash size={25}/></Button></li>
                         })}
                     </ul>
                     <Popup open={popupOpen} modal nested closeOnDocumentClick={false}>

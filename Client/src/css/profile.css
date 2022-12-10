@@ -4,13 +4,15 @@
 }
 
 .profile-card{
-    background-color: white;
+    background-color: transparent;
     width: 600px;
     margin-left: auto;
     margin-right: auto;
+    border: none;
+
 }
 
 .profile-card ul{
     list-style-type: none;
-    padding: 0;
 }
+
