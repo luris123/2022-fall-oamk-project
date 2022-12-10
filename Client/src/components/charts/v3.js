@@ -225,9 +225,9 @@ function V3(props) {
             };
             }),
         hidden: v10Toggle,
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
-
+        //color hot pink
+        borderColor: "rgb(255, 105, 180)",
+        backgroundColor: "rgba(255, 105, 180, 0.5)",
       }
     ],
   };
