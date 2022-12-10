@@ -54,7 +54,7 @@ function V5(props) {
     <>
       <Card>
         <Card.Body className='text-center'>
-          <Card.Title>Vostokin ilman ytimen C02 mittaukset, vuodesta 417160 vuoteen 2342 ennen nykyaikaa</Card.Title>
+          <Card.Title>Vostokin ilman ytimen C02 mittaukset, vuodesta 415157 BC vuoteen 339 BC</Card.Title>
           {props.description
             ? <p>{props.description}</p>
             : null
