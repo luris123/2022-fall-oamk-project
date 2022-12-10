@@ -12,7 +12,38 @@
 
 }
 
-.profile-card ul{
-    list-style-type: none;
+.card-subtitle{
+    padding-top: 10px;
+    padding-bottom: 5px;
 }
 
+.profile-card ul{
+    list-style-type: none;
+
+    
+}
+
+//give the list items some space
+.profile-card ul li{
+    margin-bottom: 10px;
+}
+
+.deletebutton{
+    padding-left: 10px;
+}
+
+.deletebutton:hover{
+    color: #ff0000;
+    cursor: pointer;
+    
+}
+
+.error {
+    color: red;
+    background: lightgrey;
+    font-size: 20px;
+    border-style: solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }

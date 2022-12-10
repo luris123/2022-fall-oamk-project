@@ -38,7 +38,9 @@ function Profile() {
     const [displayOption, setDisplayOption] = useState(false);
 
     const [popupOpen, setPopupOpen] = useState(false);
+    const [popupOpen2, setPopupOpen2] = useState(false);
 
+    const [deletePassword, setDeletePassword] = useState("");
 
     const userJSON = JSON.parse(window.localStorage.getItem('loggedUser'));
 
@@ -119,11 +121,9 @@ function Profile() {
 
     const handleDeleteUser = async () => {
         console.log(userJSON.username)
-        let inputWindow = window.prompt("Kirjoita salasanasi vahvistaaksesi tilin poisto");
-        console.log(inputWindow)
         try {
             const response = await loginService.deleteAccount({
-                password: inputWindow,
+                password: deletePassword,
                 token: JSON.stringify(userJSON.token)
             });
 
@@ -176,7 +176,7 @@ function Profile() {
                     <ul>
                         {user.views.map((view, i) => {
                             let url = "/view/" + view.url;
-                            return <li key={i}>Näkymä: <Link to={url} onClick={() => View()}>{view.url}</Link> <Button onClick={() => handleDeleteView(view.url)} ><BiTrash size={25}/></Button></li>
+                            return <li key={i}>Näkymä: <Link to={url} onClick={() => View()}>{view.url}</Link> <span className='deletebutton' onClick={() => handleDeleteView(view.url)} ><BiTrash size={20}/></span></li>
                         })}
                     </ul>
                     <Popup open={popupOpen} modal nested closeOnDocumentClick={false}>
@@ -250,9 +250,28 @@ function Profile() {
                             </div>
                         </div>
                     </Popup>
+                    <Popup open={popupOpen2} modal nested closeOnDocumentClick={false}>
+                        <div className='newView'>
+                            <div className='newViewContent'>
+                                <h1>Poista käyttäjä</h1>
+                                <Form onSubmit={handleDeleteUser}>
+                                    <Form.Group className="mb-3">
+                                        <Form.Label>Kirjoita salasanasi vahvistaaksesi tilin poisto</Form.Label>
+                                        <Form.Control type="text" onChange={(e) => setDeletePassword(e.target.value)} placeholder="Salasana" />
+                                    </Form.Group>
+                                    <Button type='submit' onClick={() => setPopupOpen2(false)}>
+                                        Poista käyttäjä
+                                    </Button>
+                                    <Button onClick={() => { clear(); setPopupOpen2(false) }}>
+                                        Sulje
+                                    </Button>
+                                </Form>
+                            </div>
+                        </div>
+                    </Popup>
                     <div className="d-grid gap-2">
                         <Button type='primary' onClick={() => setPopupOpen(true)}>Luo uusi näkymä</Button>
-                        <Button type='primary' onClick={() => handleDeleteUser()}>Poista käyttäjä</Button>
+                        <Button type='primary' onClick={() => setPopupOpen2(true)}>Poista käyttäjä</Button>
                     </div>
                 </Card.Body>
             </Card>
