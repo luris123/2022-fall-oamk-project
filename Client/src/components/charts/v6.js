@@ -31,15 +31,19 @@ function V6(props) {
   const options = {
     //Only reacts to mousemove events
     events: ['mousemove'],
-
+    elements: {
+      point: {
+        radius: 0
+      }
+    },
+    interaction: {
+      mode: 'nearest',
+      intersect: false,
+  },
     responsive: true,
     plugins: {
       legend: {
         position: "top",
-      },
-      title: {
-        display: true,
-        text: "Antarctic Ice Cores Revised 800KYr CO2 Data",
       },
     }
   };
@@ -48,7 +52,7 @@ function V6(props) {
     <>
       <Card>
         <Card.Body className='text-center'>
-          <Card.Title>V6 Ice core 800k year composite study CO2 measurements</Card.Title>
+          <Card.Title>Jään C02 pitoisuuden mittaus 800t vuoden ajalta</Card.Title>
           {props.description
             ? <p>{props.description}</p>
             : null
@@ -60,15 +64,15 @@ function V6(props) {
               labels: icesAgeV6,
               datasets: [
                 {
-                  label: "PPM of CO2",
+                  label: "C02 ppm",
                   data: co2ppmV6,
                   borderColor: 'black'
                 }
               ]
             }}
           />
-          <Card.Link href="https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt">Data source</Card.Link>
-          <Card.Link href="https://www.ncei.noaa.gov/access/paleo-search/study/17975" >Data  description</Card.Link>
+          <Card.Link href="https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt">Datan lähde</Card.Link>
+          <Card.Link href="https://www.ncei.noaa.gov/access/paleo-search/study/17975" >Datan kuvaus</Card.Link>
         </Card.Body>
       </Card>
     </>

@@ -28,6 +28,15 @@ function V5(props) {
   const options = {
     //Only reacts to mousemove events
     events: ['mousemove'],
+    interaction: {
+      mode: 'nearest',
+      intersect: false,
+  },
+  elements: {
+      point: {
+          radius: 0
+      }
+  },
 
     responsive: true,
     plugins: {
@@ -36,7 +45,7 @@ function V5(props) {
       },
       title: {
         display: true,
-        text: "CO2 Concentration compared to the age of the air per year",
+        text: "Vuosittainen CO2 pitoisuus verrattuna ilman ikään",
       },
     }
   };
@@ -45,7 +54,7 @@ function V5(props) {
     <>
       <Card>
         <Card.Body className='text-center'>
-          <Card.Title>V5 Vostok Air Core CO2 measurements, 417160 - 2342 years BP 2003</Card.Title>
+          <Card.Title>Vostokin ilman ytimen C02 mittaukset, vuodesta 417160 vuoteen 2342 ennen nykyaikaa</Card.Title>
           {props.description
             ? <p>{props.description}</p>
             : null
@@ -57,15 +66,15 @@ function V5(props) {
               labels: airAge,
               datasets: [
                 {
-                  label: "Concentration of CO2",
+                  label: "CO2 pitoisuus",
                   data: co2Concentration,
                   borderColor: 'black'
                 }
               ]
             }}
           />
-          <Card.Link href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.Aircore.co2">Data source</Card.Link>
-          <Card.Link href="https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html">Data  description</Card.Link>
+          <Card.Link href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.Aircore.co2">Datan lähde</Card.Link>
+          <Card.Link href="https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html">Datan kuvaus</Card.Link>
         </Card.Body>
       </Card>
     </>

@@ -51,7 +51,7 @@ function V7(props) {
         datasets: [
             {
                 type: 'line',
-                label: "Change in global temperature (ºC)",
+                label: "Lämpötila (ºC)",
                 data: globalTemp1,
                 borderColor: 'blue',
                 borderWidth: 2,
@@ -61,7 +61,7 @@ function V7(props) {
             },
             {
                 type: 'line',
-                label: "C02 measurements from the 800k year period",
+                label: "C02",
                 data: carbon1,
                 borderColor: 'red',
                 borderWidth: 2,
@@ -69,7 +69,7 @@ function V7(props) {
             },
             {
                 type: 'bubble',
-                label: "History",
+                label: "Historia",
                 data: humanEvolution1.map((x) => {
                     return {
                         x: x.year,
@@ -91,10 +91,10 @@ function V7(props) {
                     title: function (context) {
                         var title = context[0].dataset.title;
                         if (context[0].dataset.type === "bubble") {
-                            title = "Year: " + context[0].parsed.x;
+                            title = "Vuosi: " + context[0].parsed.x;
                         }
                         else {
-                            title = "Year: " + context[0].label;
+                            title = "Vuosi: " + context[0].label;
                         }
                         return title;
                     },
@@ -129,7 +129,7 @@ function V7(props) {
                 position: 'right',
                 title: {
                     display: true,
-                    text: "Surface temperature change (ºC)",
+                    text: "Pinnan lämpötila muutos (ºC)",
                     color: 'blue',
                     font: {
                         size: 12,
@@ -156,7 +156,7 @@ function V7(props) {
                 type: "linear",
                 title: {
                     display: true,
-                    text: "Time, 2 million years ago to present",
+                    text: "Aika, 2 miljoonaa vuotta sitten - 2022",
                     color: 'black',
                     font: {
                         size: 12,
@@ -175,7 +175,7 @@ function V7(props) {
         <>
             <Card>
                 <Card.Body className='text-center'>
-                    <Card.Title>Evolution of global temperature over the past two million years <br />& <br /> Ice core 800k year composite study CO2 measurements</Card.Title>
+                    <Card.Title>Maailman lämpötilan muutos 2 miljoonan vuoden ajalta <br />& <br />Jään C02 pitoisuuden mittaus 800t vuoden ajalta</Card.Title>
                     {props.description
                         ? <p>{props.description}</p>
                         : null
@@ -186,8 +186,10 @@ function V7(props) {
                         data={data}
                         className='chart'
                     />
-                    <Card.Link href="http://carolynsnyder.com/publications.php" >Data description</Card.Link>
-                    <Card.Link href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf">Data source</Card.Link>
+                    <Card.Link href="http://carolynsnyder.com/publications.php" >Lämpötilan muutos - datan lähde</Card.Link>
+                    <Card.Link href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf">Lämpötilan muutos- datan kuvaus</Card.Link>
+                    <Card.Link href="https://www.ncei.noaa.gov/access/paleo-search/study/17975" >C02 - datan kuvaus</Card.Link>
+                    <Card.Link href="https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt" >C02 - datan lähde</Card.Link>
                 </Card.Body>
             </Card>
         </>
