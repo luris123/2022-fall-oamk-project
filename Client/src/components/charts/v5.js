@@ -17,11 +17,11 @@ function V5(props) {
 
   useEffect(() => {
     if (datasets.length !== 0) {
-        let AirAgeArray = datasets.v5data.map(x => x.mean_age_of_air_yr);
-        setAirAge(AirAgeArray.reverse());
+      let AirAgeArray = datasets.v5data.map(x => x.mean_age_of_air_yr);
+      setAirAge(AirAgeArray.reverse());
 
-        let co2ConcentrationArray = datasets.v5data.map(x => x.c02_concentration);
-        setCO2Concentration(co2ConcentrationArray.reverse());
+      let co2ConcentrationArray = datasets.v5data.map(x => x.c02_concentration);
+      setCO2Concentration(co2ConcentrationArray.reverse());
     };
   }, [datasets]);
 
@@ -43,38 +43,31 @@ function V5(props) {
 
   return (
     <>
-      {props.show
-        ? <Card id="card">
-          <Card.Body id="card-header">
-            <h3>V5 Vostok Air Core CO2 measurements, 417160 - 2342 years BP 2003</h3>
-          </Card.Body>
+      <Card>
+        <Card.Body className='text-center'>
+          <Card.Title>V5 Vostok Air Core CO2 measurements, 417160 - 2342 years BP 2003</Card.Title>
           {props.description
             ? <p>{props.description}</p>
             : null
           }
-          <div style={{ width: 600, Height: 600, margin: 'auto' }}>
-            <Line
-              style={{ backgroundColor: "white" }}
-              options={options}
-              data={{
-                labels: airAge,
-                datasets: [
-                  {
-                    label: "Concentration of CO2",
-                    data: co2Concentration,
-                    borderColor: 'black'
-                  }
-                ]
-              }}
+          <Line
+            className='chart'
+            options={options}
+            data={{
+              labels: airAge,
+              datasets: [
+                {
+                  label: "Concentration of CO2",
+                  data: co2Concentration,
+                  borderColor: 'black'
+                }
+              ]
+            }}
           />
-        </div>
-        <Card.Body id="card-header">
           <Card.Link href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.Aircore.co2">Data source</Card.Link>
           <Card.Link href="https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html">Data  description</Card.Link>
         </Card.Body>
-        </Card>
-        : null
-      }
+      </Card>
     </>
   )
 }

@@ -57,7 +57,7 @@ function V3(props) {
         de08[i].c02MixingRatio = de08[i].c02MixingRatio.toString();
       }
 
-       let de082 = datasets.v4data[0].de082;
+      let de082 = datasets.v4data[0].de082;
       setDe082(de082.reverse());
 
       for (let i = 0; i < de082.length; i++) {
@@ -118,28 +118,28 @@ function V3(props) {
     plugins: {
       tooltip: {
         callbacks: {
-            title: function (context) {
-                var title = context[0].dataset.title;
-                if(context[0].dataset.type === "bubble"){
-                    title = "Year: " + context[0].raw.x;
-                }
-                else{
-                    title = "Year: " + context[0].label;
-                }
-                return title;
-            },
-            label: function (context) {
-                var label = context.dataset.label;
-                if(context.dataset.type === "bubble"){
-                    label = context.raw.description;
-                }
-                else{
-                    label = label + ": " + context.formattedValue;
-                }
-                return label;
+          title: function (context) {
+            var title = context[0].dataset.title;
+            if (context[0].dataset.type === "bubble") {
+              title = "Year: " + context[0].raw.x;
             }
+            else {
+              title = "Year: " + context[0].label;
+            }
+            return title;
+          },
+          label: function (context) {
+            var label = context.dataset.label;
+            if (context.dataset.type === "bubble") {
+              label = context.raw.description;
+            }
+            else {
+              label = label + ": " + context.formattedValue;
+            }
+            return label;
+          }
         },
-    },
+      },
       legend: {
         position: "top",
       },
@@ -222,8 +222,8 @@ function V3(props) {
             y: 250,
             r: 5,
             description: x.description,
-            };
-            }),
+          };
+        }),
         hidden: v10Toggle,
         //color hot pink
         borderColor: "rgb(255, 105, 180)",
@@ -233,36 +233,28 @@ function V3(props) {
   };
 
   return (
-
     <>
-      {props.show
-        ? <Card id="card">
-          <Card.Body id="card-header">
-            <h3>V3 Atmospheric CO2 concentrations from Mauna Loa measurements starting 1958</h3>
-          </Card.Body>
-          <Card.Body id="card-header">
+        <Card>
+          <Card.Body className='text-center'>
+            <Card.Title>V3 Atmospheric CO2 concentrations from Mauna Loa measurements starting 1958</Card.Title>
+            <div className="d-grid gap-2">
             <Button id="view-button" onClick={() => setVisible(!visible)}>Change view</Button>
             <Button id="view-button" onClick={() => setV4Toggle(!v4Toggle)}>Toggle V4</Button>
             <Button id="view-button" onClick={() => setV10Toggle(!v10Toggle)}>Toggle V10</Button>
-          </Card.Body>
-          {props.description
-            ? <p>{props.description}</p>
-            : null
-          }
-          <div style={{ width: 600, Height: 600, margin: 'auto' }}>
-            <Line
-              style={{ backgroundColor: "white" }}
+            </div>
+            {props.description
+              ? <p>{props.description}</p>
+              : null
+            }
+             <Line
+              className='chart'
               options={options}
               data={data}
             />
-          </div>
-          <Card.Body id="card-header">
-            <Card.Link href="https://gml.noaa.gov/ccgg/about/co2_measurements.html">Data measurement description</Card.Link>
+           <Card.Link href="https://gml.noaa.gov/ccgg/about/co2_measurements.html">Data measurement description</Card.Link>
             <Card.Link href="https://gml.noaa.gov/ccgg/trends/">Data source</Card.Link>
           </Card.Body>
         </Card>
-        : null
-      }
     </>
   )
 }
