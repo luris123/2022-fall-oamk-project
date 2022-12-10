@@ -85,7 +85,7 @@ function V8(props) {
     <>
       <Card>
         <Card.Body className='text-center'>
-          <Card.Title>V8 CO2 emissions by country</Card.Title>
+          <Card.Title>CO2-päästöt maiden mukaan</Card.Title>
           {props.description
             ? <p>{props.description}</p>
             : null
@@ -98,8 +98,8 @@ function V8(props) {
               datasets: V8Dataset
             }}
           />
-          <Card.Link href="https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D"> V8 Data source</Card.Link>
-          <Card.Link href="https://www.icos-cp.eu/science-and-impact/global-carbon-budget/2021">V8 description</Card.Link>
+          <Card.Link href="https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D">Datan lähde</Card.Link>
+          <Card.Link href="https://www.icos-cp.eu/science-and-impact/global-carbon-budget/2021">Datan kuvaus</Card.Link>
         </Card.Body>
       </Card>
     </>
