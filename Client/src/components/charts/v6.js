@@ -22,42 +22,39 @@ function V6(props) {
       for (let i = 0; i < iceAgeArrayV6.length; i++) {
         iceAgeArrayV6[i] = parseInt(iceAgeArrayV6[i], 10);
       }
-      
+
       let co2ppmArrayV6 = datasets.v6data.map(x => x.c02_ppm);
       setCO2ppmV6(co2ppmArrayV6.reverse());
     };
-}, [datasets]);
+  }, [datasets]);
 
-const options = {
-  //Only reacts to mousemove events
-  events: ['mousemove'],
+  const options = {
+    //Only reacts to mousemove events
+    events: ['mousemove'],
 
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "top",
-    },
-    title: {
-      display: true,
-      text: "Antarctic Ice Cores Revised 800KYr CO2 Data",
-    },
-  }
-};
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: "Antarctic Ice Cores Revised 800KYr CO2 Data",
+      },
+    }
+  };
 
-return (
-  <>
-    {props.show
-      ? <Card id="card">
-        <Card.Body id="card-header">
-          <h3>V6 Ice core 800k year composite study CO2 measurements</h3>
-        </Card.Body>
-        {props.description
-          ? <p>{props.description}</p>
-          : null
-        }
-        <div style={{ width: 'auto', height: 'auto'}}>
+  return (
+    <>
+      <Card>
+        <Card.Body className='text-center'>
+          <Card.Title>V6 Ice core 800k year composite study CO2 measurements</Card.Title>
+          {props.description
+            ? <p>{props.description}</p>
+            : null
+          }
           <Line
-            style={{ backgroundColor: "white" }}
+            className='chart'
             options={options}
             data={{
               labels: icesAgeV6,
@@ -70,17 +67,12 @@ return (
               ]
             }}
           />
-        </div>
-        <Card.Body id="card-header">
           <Card.Link href="https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt">Data source</Card.Link>
           <Card.Link href="https://www.ncei.noaa.gov/access/paleo-search/study/17975" >Data  description</Card.Link>
         </Card.Body>
       </Card>
-      : null
-    }
-
-  </>
-)
+    </>
+  )
 }
 
 export default V6;

@@ -5,6 +5,7 @@ import Agriculture from './v9helpers/agriculture';
 import Waste from './v9helpers/waste';
 import { Chart, registerables } from 'chart.js';
 import { Doughnut, getElementAtEvent } from 'react-chartjs-2';
+import { Card } from 'react-bootstrap';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { DatasetsContext } from '../../App.js';
@@ -51,22 +52,22 @@ function V9(props) {
 
     useEffect(() => {
         if (datasets.length !== 0) {
-                let sector = datasets.v9data[0].sector.map(x => x.sector);
-                setSector(sector);
-                let sectorShare = datasets.v9data[0].sector.map(x => x.share_of_global_greenhouse_gas_emissions_percentage);
-                setSectorShare(sectorShare);
+            let sector = datasets.v9data[0].sector.map(x => x.sector);
+            setSector(sector);
+            let sectorShare = datasets.v9data[0].sector.map(x => x.share_of_global_greenhouse_gas_emissions_percentage);
+            setSectorShare(sectorShare);
 
-                let subSector = datasets.v9data[0].sub_sector.map(x => x.sub_sector);
-                setSubSector(subSector);
-                let subSectorShare = datasets.v9data[0].sub_sector.map(x => x.share_of_global_greenhouse_gas_emissions_percentage);
-                setSubSectorShare(subSectorShare);
+            let subSector = datasets.v9data[0].sub_sector.map(x => x.sub_sector);
+            setSubSector(subSector);
+            let subSectorShare = datasets.v9data[0].sub_sector.map(x => x.share_of_global_greenhouse_gas_emissions_percentage);
+            setSubSectorShare(subSectorShare);
 
-                let subSectorFurtherBreakdown = datasets.v9data[0].sub_sector_further_breakdown.map(x => x.sub_sector);
-                setSubSectorFurtherBreakdown(subSectorFurtherBreakdown);
-                let subSectorFurtherBreakdownShare = datasets.v9data[0].sub_sector_further_breakdown.map(x => x.share_of_global_greenhouse_gas_emissions_percentage);
-                setSubSectorFurtherBreakdownShare(subSectorFurtherBreakdownShare);
+            let subSectorFurtherBreakdown = datasets.v9data[0].sub_sector_further_breakdown.map(x => x.sub_sector);
+            setSubSectorFurtherBreakdown(subSectorFurtherBreakdown);
+            let subSectorFurtherBreakdownShare = datasets.v9data[0].sub_sector_further_breakdown.map(x => x.share_of_global_greenhouse_gas_emissions_percentage);
+            setSubSectorFurtherBreakdownShare(subSectorFurtherBreakdownShare);
 
-            }
+        }
     }, [datasets]);
 
     const options = {
@@ -79,21 +80,14 @@ function V9(props) {
             legend: {
                 position: "top",
             },
-            title: {
-                display: true,
-                text: "CO2 emissions by sectors",
-            },
         }
     };
 
     return (
         <>
-            {props.show
-                ? <>
-                    <h3>V9 CO2 emissions by sectors</h3>
-                    <a href='https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D'>Data source</a>
-                    <br></br>
-                    <a href='https://essd.copernicus.org/articles/14/1917/2022/'>Data description</a>
+            <Card>
+                <Card.Body className='text-center'>
+                    <Card.Title>V9 CO2 emissions by sectors</Card.Title>
                     <Popup contentStyle={{ width: 1138 }} open={openEnergy} closeOnDocumentClick onClose={closeModal}>
                         <Energy subSector={subSector} subSectorShare={subSectorShare} subSectorFurtherBreakdown={subSectorFurtherBreakdown}
                             subSectorFurtherBreakdownShare={subSectorFurtherBreakdownShare} />
@@ -114,36 +108,31 @@ function V9(props) {
                         ? <p>{props.description}</p>
                         : null
                     }
+                    <Doughnut
+                        className='chart'
+                        options={options}
+                        ref={chartRef}
+                        data={{
+                            labels: sector,
+                            datasets: [{
+                                data: sectorShare,
+                                backgroundColor: [
+                                    'rgb(255, 99, 132)',
+                                    'rgb(54, 162, 235)',
+                                    'rgb(255, 205, 86)',
+                                    'rgb(75, 192, 192)',
+                                ],
+                                hoverOffset: 4,
+                                weight: 100
+                            }],
 
-                    <div style={{ width: 'auto', height: 'auto', margin: 'auto' }}>
-                        <Doughnut
-                            style={{ height: "50%", width: "50%" }}
-                            options={options}
-                            ref={chartRef}
-                            data={{
-                                labels: sector,
-                                datasets: [{
-                                    data: sectorShare,
-                                    backgroundColor: [
-                                        'rgb(255, 99, 132)',
-                                        'rgb(54, 162, 235)',
-                                        'rgb(255, 205, 86)',
-                                        'rgb(75, 192, 192)',
-                                    ],
-                                    hoverOffset: 4,
-                                    weight: 100
-                                }],
-
-                            }}
-                            onClick={onClick}
-
-
-                        />
-                    </div>
-                </>
-                : null
-            }
-
+                        }}
+                        onClick={onClick}
+                    />
+                    <Card.Link href="https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D">Data source</Card.Link>
+                    <Card.Link href="https://essd.copernicus.org/articles/14/1917/2022/">Data description</Card.Link>
+                </Card.Body>
+            </Card>
         </>
     )
 

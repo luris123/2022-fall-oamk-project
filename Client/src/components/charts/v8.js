@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Chart, registerables } from 'chart.js';
+import { Card } from 'react-bootstrap';
 import { Line } from 'react-chartjs-2';
 import randomColor from "randomcolor";
 import { DatasetsContext } from '../../App.js';
@@ -15,37 +16,37 @@ function V8(props) {
 
   useEffect(() => {
     if (datasets.length !== 0) {
-        let TempYears = [];
-        let TempCountries = datasets.v8data[1].countries;
-        let CountriesCO2 = [];
-        let TempCountryCO2 = []
+      let TempYears = [];
+      let TempCountries = datasets.v8data[1].countries;
+      let CountriesCO2 = [];
+      let TempCountryCO2 = []
 
-        for (let s = 0; s < 219; s++) {
-          TempYears = []
-          for (let i = 1959; i < 2021; i++) {
-            TempCountryCO2.push(datasets.v8data[0][i][TempCountries[s]])
-            TempYears.push(i)
-          }
-          CountriesCO2.push(TempCountryCO2)
-          TempCountryCO2 = []
+      for (let s = 0; s < 219; s++) {
+        TempYears = []
+        for (let i = 1959; i < 2021; i++) {
+          TempCountryCO2.push(datasets.v8data[0][i][TempCountries[s]])
+          TempYears.push(i)
         }
-
-        for (let u = 0; u < 219; u++) {
-          let randomcolor = randomColor()
-          TempCountryCO2.push(
-            {
-              label: TempCountries[u],
-              data: CountriesCO2[u],
-              borderColor: randomcolor,
-              backgroundColor: randomcolor,
-              fill: false
-            }
-          )
-        }
-        setV8Dataset(TempCountryCO2);
-        setV8Years(TempYears);
-
+        CountriesCO2.push(TempCountryCO2)
+        TempCountryCO2 = []
       }
+
+      for (let u = 0; u < 219; u++) {
+        let randomcolor = randomColor()
+        TempCountryCO2.push(
+          {
+            label: TempCountries[u],
+            data: CountriesCO2[u],
+            borderColor: randomcolor,
+            backgroundColor: randomcolor,
+            fill: false
+          }
+        )
+      }
+      setV8Dataset(TempCountryCO2);
+      setV8Years(TempYears);
+
+    }
   }, [datasets]);
 
 
@@ -69,45 +70,38 @@ function V8(props) {
       padding: 2
     },
     elements: {
-        point: {
-            radius: 0
-        }
+      point: {
+        radius: 0
+      }
     },
     plugins: {
       legend: {
         position: "top",
-      },
-      title: {
-        display: true,
-        text: "V8 CO2 emissions by country",
       },
     }
   };
 
   return (
     <>
-      {props.show
-        ? <div>
-          <h3>V8 CO2 emissions by country</h3>
-          <a href="https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D">V8 Data source</a>
-          <br></br>
-          <a href="https://www.icos-cp.eu/science-and-impact/global-carbon-budget/2021">V8 description<br /></a>
+      <Card>
+        <Card.Body className='text-center'>
+          <Card.Title>V8 CO2 emissions by country</Card.Title>
           {props.description
             ? <p>{props.description}</p>
             : null
           }
           <Line
-            style={{ backgroundColor: "white" }}
+            className='chart'
             options={options}
             data={{
               labels: V8Years,
               datasets: V8Dataset
             }}
           />
-        </div>
-        : null
-      }
-
+          <Card.Link href="https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D"> V8 Data source</Card.Link>
+          <Card.Link href="https://www.icos-cp.eu/science-and-impact/global-carbon-budget/2021">V8 description</Card.Link>
+        </Card.Body>
+      </Card>
     </>
   )
 }

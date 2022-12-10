@@ -63,26 +63,21 @@
   border-color: #61dafb;
   border-radius: 40px;
 }
-#view-button{
-  margin: 4px;
-  border-radius: 10px;
-  width: 120px;
-  height: 50px;
-}
-#card{
-  margin: 0 auto; 
-  float: none; 
-  margin-bottom: 10px;
-}
-#card-header {
-  text-align: center;
-}
-#line-div{
-  max-width: 100 !important; 
-  height: 'auto';
-  margin: 'auto' 
-}
-#navibar{
 
+.d-grid{
+  margin: auto;
+  max-width: 300px;
+}
+
+.chart{
+  background-color: white;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+@media screen and (max-width: 800px) {
+  .chart {
+    margin: 0;
+  }
 }
 

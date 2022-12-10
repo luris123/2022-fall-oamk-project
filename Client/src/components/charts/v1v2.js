@@ -21,7 +21,7 @@ function V1V2(props) {
 
   useEffect(() => {
     if (datasets.length !== 0) {
-      
+
       for (let i = 0; i < datasets.v1data[0].globalAnnual.length; i++) {
         datasets.v1data[0].globalAnnual[i].time = datasets.v1data[0].globalAnnual[i].time.toString();
         datasets.v1data[0].globalAnnual[i].anomaly = datasets.v1data[0].globalAnnual[i].anomaly.toString();
@@ -49,14 +49,14 @@ function V1V2(props) {
         datasets.v2data[i].t = datasets.v2data[i].t.toString();
 
         if (datasets.v2data[i].year.length < 2) {
-          datasets.v2data[i].year =  "000" + datasets.v2data[i].year;
+          datasets.v2data[i].year = "000" + datasets.v2data[i].year;
         }
 
         if (datasets.v2data[i].year.length < 3) {
-          datasets.v2data[i].year =  "00" + datasets.v2data[i].year;
+          datasets.v2data[i].year = "00" + datasets.v2data[i].year;
         }
         if (datasets.v2data[i].year.length < 4) {
-          datasets.v2data[i].year =  "0" + datasets.v2data[i].year;
+          datasets.v2data[i].year = "0" + datasets.v2data[i].year;
         }
       }
 
@@ -71,7 +71,7 @@ function V1V2(props) {
     interaction: {
       mode: 'nearest',
       intersect: false,
-  },
+    },
 
     elements: {
       point: {
@@ -95,10 +95,7 @@ function V1V2(props) {
       legend: {
         position: "top",
       },
-      title: {
-        display: true,
-        text: "Maailmanlaajuinen pintalämpötilojen poikkeavuus tammikuusta 1850 lähtien & Pohjoisen pallonpuoliskon 2000 vuoden lämpötilakonstruktio",
-      },
+
     }
   };
 
@@ -186,34 +183,26 @@ function V1V2(props) {
   }
   return (
     <>
-      {props.show
-        ? <Card id="card">
-          <Card.Body id="card-header">
-            <h3>Maailmanlaajuinen pintalämpötilojen poikkeavuus tammikuusta 1850 lähtien <br></br>&<br></br>Pohjoisen pallonpuoliskon 2000 vuoden lämpötilakonstruktio</h3>
-          </Card.Body>
-          <Card.Body id="card-header">
-            <Button id="view-button" onClick={() => setVisible(!visible)}>Vaihda näkymä</Button>
-            <Button id="view-button" onClick={() => setV2Toggle(!v2Toggle)}>2000 vuoden lämpötilat</Button>
-          </Card.Body>
-          {props.description
-            ? <p>{props.description}</p>
-            : null
-          }
-          <div style={{ width: 1000, height: '1500', margin: 'auto' }}>
+        <Card>
+          <Card.Body className='text-center'>
+            <Card.Title>Maailmanlaajuinen pintalämpötilojen poikkeavuus tammikuusta 1850 lähtien <br />&<br />Pohjoisen pallonpuoliskon 2000 vuoden lämpötilakonstruktio</Card.Title>
+            <div className="d-grid gap-2">
+              <Button onClick={() => setVisible(!visible)}>Vaihda näkymä</Button>
+              <Button onClick={() => setV2Toggle(!v2Toggle)}>2000 vuoden lämpötilat</Button>
+            </div>
+            {props.description
+              ? <p>{props.description}</p>
+              : null
+            }
             <Line
-              style={{ backgroundColor: "white" }}
+              className='chart'
               options={options}
               data={data}
             />
-          </div>
-          <Card.Body id="card-header">
-            <Card.Link href="https://www.metoffice.gov.uk/hadobs/hadcrut5/">Global surface temperature Description and Data source </Card.Link>
-            <Card.Link href="https://gml.noaa.gov/ccgg/about/co2_measurements.html">Data measurement description</Card.Link>
-            <Card.Link href="https://www.ncei.noaa.gov/pub/data/paleo/contributions_by_author/moberg2005/nhtemp-moberg2005.txt">Northern Hemisphere temperature Data source</Card.Link>
+            <Card.Link href="https://www.metoffice.gov.uk/hadobs/hadcrut5/"> Maailmanlaajuinen pintalämpötilojen poikkeavuus data ja kuvaus </Card.Link>
+            <Card.Link href="https://www.nature.com/articles/nature03265">Pohjoisen pallonpuoliskon 2000 vuoden lämpötilakonstruktio tutkimus</Card.Link>
           </Card.Body>
         </Card>
-        : null
-      }
     </>
   )
 }

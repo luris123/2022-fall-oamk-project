@@ -26,7 +26,7 @@ function V7(props) {
             timeTemp = timeTemp.map(x => "-" + x);
 
             let globalTemp = datasets.v7data[0].gast_reconstruction.map(x => x.changes_global_tempature_c);
-            
+
             setTimeTemp1(timeTemp);
             setGlobalTemp1(globalTemp);
 
@@ -70,7 +70,7 @@ function V7(props) {
             {
                 type: 'bubble',
                 label: "History",
-                data: humanEvolution1.map((x) =>{
+                data: humanEvolution1.map((x) => {
                     return {
                         x: x.year,
                         y: 4,
@@ -90,20 +90,20 @@ function V7(props) {
                 callbacks: {
                     title: function (context) {
                         var title = context[0].dataset.title;
-                        if(context[0].dataset.type === "bubble"){
+                        if (context[0].dataset.type === "bubble") {
                             title = "Year: " + context[0].parsed.x;
                         }
-                        else{
+                        else {
                             title = "Year: " + context[0].label;
                         }
                         return title;
                     },
                     label: function (context) {
                         var label = context.dataset.label;
-                        if(context.dataset.type === "bubble"){
+                        if (context.dataset.type === "bubble") {
                             label = context.raw.description;
                         }
-                        else{
+                        else {
                             label = label + ": " + context.formattedValue;
                         }
                         return label;
@@ -113,11 +113,7 @@ function V7(props) {
             legend: {
                 position: "top",
             },
-            title: {
-                display: true,
-                text: "Evolution of global temperature over the past two million years combined with Ice core 800k year composite study CO2 measurements",
-            },
-            
+
         },
         interaction: {
             mode: 'nearest',
@@ -177,33 +173,23 @@ function V7(props) {
 
     return (
         <>
-            {props.show
-                ? <Card id="card">
-                    <Card.Body id="card-header">
-                        <h4>Evolution of global temperature over the past two million years</h4>
-                        <p>TODO: Write a brief description of the graph and its information.</p>
-                    </Card.Body>
-
+            <Card>
+                <Card.Body className='text-center'>
+                    <Card.Title>Evolution of global temperature over the past two million years <br />& <br /> Ice core 800k year composite study CO2 measurements</Card.Title>
                     {props.description
                         ? <p>{props.description}</p>
                         : null
                     }
-                    <div style={{ width: 'auto', height: 'auto' }}>
-
-                        <Chart
-                            type='line'
-                            options={options}
-                            data={data}
-                        />
-                    </div>
-                    <Card.Body id="card-header">
-                        <Card.Link href="http://carolynsnyder.com/publications.php" >Data description</Card.Link>
-                        <Card.Link href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf">Data source</Card.Link>
-                    </Card.Body>
-                </Card>
-                : null
-            }
-
+                    <Chart
+                        type='line'
+                        options={options}
+                        data={data}
+                        className='chart'
+                    />
+                    <Card.Link href="http://carolynsnyder.com/publications.php" >Data description</Card.Link>
+                    <Card.Link href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf">Data source</Card.Link>
+                </Card.Body>
+            </Card>
         </>
     )
 }
