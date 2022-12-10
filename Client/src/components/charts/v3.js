@@ -94,6 +94,10 @@ function V3(props) {
         radius: 1.5
       }
     },
+    interaction: {
+      mode: 'nearest',
+      intersect: false,
+  },
     scales: {
       Y: {
         type: "linear",
@@ -101,7 +105,7 @@ function V3(props) {
         position: "right",
         title: {
           display: true,
-          text: "Mean data",
+          text: "Datan keskiarvo",
         },
       },
       x: {
@@ -111,7 +115,7 @@ function V3(props) {
         },
         title: {
           display: true,
-          text: "Time (monthly)",
+          text: "Aika",
         },
       },
     },
@@ -121,10 +125,10 @@ function V3(props) {
           title: function (context) {
             var title = context[0].dataset.title;
             if (context[0].dataset.type === "bubble") {
-              title = "Year: " + context[0].raw.x;
+              title = "Vuosi: " + context[0].raw.x;
             }
             else {
-              title = "Year: " + context[0].label;
+              title = "Vuosi: " + context[0].label;
             }
             return title;
           },
@@ -213,7 +217,7 @@ function V3(props) {
       },
       {
         type: "bubble",
-        label: "historialliset tapahtumat",
+        label: "Historialliset tapahtumat",
 
         data: v10.map((x) => {
           return {
