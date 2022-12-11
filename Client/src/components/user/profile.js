@@ -9,6 +9,7 @@ import View from '../view';
 import { Card } from 'react-bootstrap';
 import "../../css/profile.css";
 import { BiTrash } from "react-icons/bi";
+import Error from '../Error.js';
 
 function Profile() {
 
@@ -42,6 +43,8 @@ function Profile() {
 
     const [deletePassword, setDeletePassword] = useState("");
 
+    const [error, setError] = useState("");
+
     const userJSON = JSON.parse(window.localStorage.getItem('loggedUser'));
 
     const refreshPage = () => {
@@ -59,7 +62,11 @@ function Profile() {
 
         //if every toggle is false then alert user to select at least one visualization
         if (!v1v2Toggle && !v3v4v10Toggle && !v5Toggle && !v6Toggle && !v6v7Toggle && !v8Toggle && !v9Toggle) {
-            alert("Valitse ainakin yksi visualisaatio luodaksesi näkymän");
+            setError('Valitse vähintään yksi visualisointi');
+            setTimeout(() => {
+                setError(null);
+            }, 2000);
+            
             return;
         }
 
@@ -92,6 +99,8 @@ function Profile() {
             userJSON.views = response.views;
             window.localStorage.setItem('loggedUser', JSON.stringify(userJSON));
             setUser(userJSON);
+            setPopupOpen(false);
+            clear();
 
         } catch (error) {
             console.log(error);
@@ -176,13 +185,17 @@ function Profile() {
                     <ul>
                         {user.views.map((view, i) => {
                             let url = "/view/" + view.url;
-                            return <li key={i}>Näkymä: <Link to={url} onClick={() => View()}>{view.url}</Link> <span className='deletebutton' onClick={() => handleDeleteView(view.url)} ><BiTrash size={20}/></span></li>
+                            return <li key={i}>Näkymä: <Link to={url} onClick={() => View()}>{view.url}</Link> <span className='deletebutton' onClick={() => handleDeleteView(view.url)} ><BiTrash size={20} /></span></li>
                         })}
                     </ul>
-                    <Popup open={popupOpen} modal nested closeOnDocumentClick={false}>
+                    <Popup className='scrollable' open={popupOpen} modal nested closeOnDocumentClick={false}>
                         <div className='newView'>
                             <div className='newViewContent'>
                                 <h1>Luo uusi näkymä</h1>
+                                {error
+                                    ? <div className="error">{error}</div>
+                                    : null
+                                }
                                 <Form onSubmit={handleCreateView}>
                                     <h4>Lämpötilatiedot ja co2 pitoisuudet</h4>
                                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
@@ -240,12 +253,14 @@ function Profile() {
                                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                                         <Form.Check type="checkbox" onClick={() => setDisplayOption(!displayOption)} label="Vaihda 2-sarakkeen rinnakkaisasetteluun" />
                                     </Form.Group>
-                                    <Button type='submit' onClick={() => setPopupOpen(false)}>
-                                        Luo näkymä
-                                    </Button>
-                                    <Button onClick={() => { clear(); setPopupOpen(false) }}>
-                                        Sulje
-                                    </Button>
+                                    <div className="d-grid gap-2">
+                                        <Button type='submit'>
+                                            Luo näkymä
+                                        </Button>
+                                        <Button onClick={() => { clear(); setPopupOpen(false) }}>
+                                            Sulje
+                                        </Button>
+                                    </div>
                                 </Form>
                             </div>
                         </div>

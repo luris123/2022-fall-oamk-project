@@ -1,15 +1,25 @@
-.newVisualization{
-    height: 100%;
-    width: 100%;
+
+.newViewContent{
+    padding: 1rem;
 }
 
+.newViewContent h1{
+    text-align: center;
+}
+
+.newViewContent form{
+    padding: 1rem;
+}
+
+.button{
+    margin-bottom: 1rem;
+}
 .profile-card{
     background-color: transparent;
     width: 600px;
     margin-left: auto;
     margin-right: auto;
     border: none;
-
 }
 
 .card-subtitle{
@@ -19,11 +29,8 @@
 
 .profile-card ul{
     list-style-type: none;
-
-    
 }
 
-//give the list items some space
 .profile-card ul li{
     margin-bottom: 10px;
 }
@@ -40,10 +47,11 @@
 
 .error {
     color: red;
-    background: lightgrey;
+    background: white;
     font-size: 20px;
     border-style: solid;
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 10px;
+    text-align: center;
   }
