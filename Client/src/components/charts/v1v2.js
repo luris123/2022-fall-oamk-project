@@ -111,7 +111,7 @@ function V1V2(props) {
   const data = {
     datasets: [
       {
-        label: "Maailmalaajuinen vuosittainen låmpötila",
+        label: "Maailmalaajuinen vuosittainen lämpötila",
         data: v1Data.globalAnnual,
         borderColor: 'black',
         borderWidth: 2,
@@ -208,6 +208,10 @@ function V1V2(props) {
               options={options}
               data={data}
             />
+            <Card.Text>Kuvaajassa näkyy maailman pintalämpötilojen poikkeavuus tammikuusta 1850 lähtien 
+              yhdisttettynä pohjoisen pallonpuoliskon 2000 vuoden lämpötilakonstruktio dataan. 
+              Kuvaajassa näkyy oletuksena vuosittaiset lämpötilat, mutta kuukaisittaisen 
+              lämpötilan ja 2000 vuoden lämpötila vaihtoehdot voi vaihtaa näkyviin.</Card.Text>
             <Card.Link href="https://www.metoffice.gov.uk/hadobs/hadcrut5/"> Maailmanlaajuinen pintalämpötilojen poikkeavuus data ja kuvaus </Card.Link>
             <Card.Link href="https://www.nature.com/articles/nature03265">Pohjoisen pallonpuoliskon 2000 vuoden lämpötilakonstruktio tutkimus</Card.Link>
           </Card.Body>

@@ -186,10 +186,15 @@ function V7(props) {
                         data={data}
                         className='chart'
                     />
+                    <Card.Text>Kuvaajassa näkyy maailman lämpötilan muutos 2 miljoonan vuoden
+                        ajalta yhdistettynä jään C02 pitoisuuden mittaukseen 800t vuoden ajalta.
+                        Lisäksi kuvaajassa näkyy myös evoluution ja historian merkittäviä tapahtumia.
+                    </Card.Text>
                     <Card.Link href="http://carolynsnyder.com/publications.php" >Lämpötilan muutos - datan lähde</Card.Link>
                     <Card.Link href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf">Lämpötilan muutos- datan kuvaus</Card.Link>
                     <Card.Link href="https://www.ncei.noaa.gov/access/paleo-search/study/17975" >C02 - datan kuvaus</Card.Link>
                     <Card.Link href="https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt" >C02 - datan lähde</Card.Link>
+                    <Card.Link href="https://www.southampton.ac.uk/~cpd/history.html" >Historia - datan lähde</Card.Link>
                 </Card.Body>
             </Card>
         </>
