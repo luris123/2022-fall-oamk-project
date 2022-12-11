@@ -39,7 +39,7 @@ function V6(props) {
     interaction: {
       mode: 'nearest',
       intersect: false,
-  },
+    },
     responsive: true,
     plugins: {
       legend: {
@@ -71,6 +71,7 @@ function V6(props) {
               ]
             }}
           />
+          <Card.Text>Kuvaajassa näkyy jään C02 pitoisuudet 800t vuoden ajalta. Data on kerätty eri osista Etelämannerta.</Card.Text>
           <Card.Link href="https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt">Datan lähde</Card.Link>
           <Card.Link href="https://www.ncei.noaa.gov/access/paleo-search/study/17975" >Datan kuvaus</Card.Link>
         </Card.Body>
