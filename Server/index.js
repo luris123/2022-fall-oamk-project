@@ -18,10 +18,6 @@ app.use(express.json());
 //Connect to MongoDB
 connectDB();
 
-app.get("/",(req,res) => {
-    res.status(200).json({message: "Home Page"});
-})
-
 app.use('/datasets', require('./routes/datasetsRouter'));
 app.use('/users', require('./routes/userRouter'));
 app.use('/login', require('./routes/loginRouter'));

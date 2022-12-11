@@ -9,6 +9,7 @@ const V8 = require('../models/V8');
 const V9 = require('../models/V9');
 const V10 = require('../models/V10');
 
+// Gets all datasets from MongoDB
 const getAllDatasets = async(req, res) => {
     try {
         const v1data = await V1.find({});
@@ -22,12 +23,10 @@ const getAllDatasets = async(req, res) => {
         const v9data = await V9.find({});
         const v10data = await V10.find({});
         res.status(200).json({ v1data, v2data, v3data, v4data, v5data, v6data, v7data, v8data, v9data, v10data });
-        //res.json(v1data);
     } catch (error) {
-        console.error(error);
+        res.status(404).json({ error: 'Data not found' });
     }
 }
-
     module.exports = {
         getAllDatasets
     };
