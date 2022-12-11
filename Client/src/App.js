@@ -16,17 +16,12 @@ function App() {
 
   const [datasets, setDatasets] = useState([]);
 
+  //gets datasets from server and sets them to state so components can use them
   useEffect(() => {
     const getData = async () => {
       try {
         const response = await axios.get('http://localhost:3001/datasets');
         setDatasets(response.data);
-        console.log(response.data);
-        response.data.v2data.map(x => {
-          if (x.year > 1980) {
-            console.log(x.year);
-          }
-        })
       } catch (error) {
         console.log(error);
       }

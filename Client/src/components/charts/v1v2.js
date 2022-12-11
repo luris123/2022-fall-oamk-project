@@ -7,7 +7,6 @@ import Button from "react-bootstrap/Button";
 import Card from 'react-bootstrap/Card';
 import { DatasetsContext } from '../../App.js';
 
-
 Chart.register(...registerables);
 
 function V1V2(props) {
@@ -20,8 +19,11 @@ function V1V2(props) {
   const [v2Toggle, setV2Toggle] = useState(true);
 
   useEffect(() => {
+
+    //waits for datasets
     if (datasets.length !== 0) {
 
+      //converts v1data to string
       for (let i = 0; i < datasets.v1data[0].globalAnnual.length; i++) {
         datasets.v1data[0].globalAnnual[i].time = datasets.v1data[0].globalAnnual[i].time.toString();
         datasets.v1data[0].globalAnnual[i].anomaly = datasets.v1data[0].globalAnnual[i].anomaly.toString();
@@ -65,7 +67,7 @@ function V1V2(props) {
     }
   }, [datasets]);
 
-
+  //options for line chart
   const options = {
 
     interaction: {
@@ -108,6 +110,7 @@ function V1V2(props) {
     }
   };
 
+  //data for line chart
   const data = {
     datasets: [
       {
