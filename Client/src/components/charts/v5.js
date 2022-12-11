@@ -54,7 +54,7 @@ function V5(props) {
     <>
       <Card>
         <Card.Body className='text-center'>
-          <Card.Title>Vostokin ilman ytimen C02 mittaukset, vuodesta 415157 BC vuoteen 339 BC</Card.Title>
+          <Card.Title>Vostokin jään C02 pitoisuuden mittaukset, vuodesta 415157 BC vuoteen 339 BC</Card.Title>
           {props.description
             ? <p>{props.description}</p>
             : null
@@ -73,7 +73,8 @@ function V5(props) {
               ]
             }}
           />
-          <Card.Link href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.Aircore.co2">Datan lähde</Card.Link>
+          <Card.Text>Kuvaajassa näkyy jään C02 pitoisuudet vuodesta 415157 - 339 ennen nykyaikaa. Data on kerätty Venäjän Vostokin asemalla itäosasta Etelämannerta.</Card.Text>
+          <Card.Link href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2">Datan lähde</Card.Link>
           <Card.Link href="https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html">Datan kuvaus</Card.Link>
         </Card.Body>
       </Card>
