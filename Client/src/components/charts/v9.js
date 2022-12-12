@@ -130,6 +130,7 @@ function V9(props) {
                         }}
                         onClick={onClick}
                     />
+                    <Card.Text>Kuvaajassa näkyy vuoden 2020 C02-päästöt sektoreittain maailmanlaajuisesti. Klikkaamalla tiettyä osaa donitsista näet sektorin alaosat.</Card.Text>
                     <Card.Link href="https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D">Datan lähde</Card.Link>
                     <Card.Link href="https://essd.copernicus.org/articles/14/1917/2022/">Datan kuvaus</Card.Link>
                 </Card.Body>

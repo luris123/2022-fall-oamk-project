@@ -9,7 +9,6 @@ import View from '../view';
 import { Card } from 'react-bootstrap';
 import "../../css/profile.css";
 import { BiTrash } from "react-icons/bi";
-import Error from '../Error.js';
 
 function Profile() {
 
@@ -128,22 +127,36 @@ function Profile() {
         }
     }
 
-    const handleDeleteUser = async () => {
-        console.log(userJSON.username)
+    const handleDeleteUser = async (event) => {
+        event.preventDefault();
+
+        if (deletePassword === "") {
+            setError('Anna salasana');
+            setTimeout(() => {
+                setError(null);
+            }, 2000);
+            return;
+        }
+
+        
         try {
             const response = await loginService.deleteAccount({
                 password: deletePassword,
                 token: JSON.stringify(userJSON.token)
             });
-
+            
             console.log(response);
-
+            
             //update local storage user
             window.localStorage.removeItem('loggedUser');
             setUser(null);
             refreshPage();
         } catch (error) {
-            window.alert(error.response.data.error);
+            console.log(error.response.data.error);
+            setError(error.response.data.error);
+            setTimeout(() => {
+                setError(null);
+            }, 2000);
         }
     }
 
@@ -269,12 +282,16 @@ function Profile() {
                         <div className='newView'>
                             <div className='newViewContent'>
                                 <h1>Poista käyttäjä</h1>
+                                {error
+                                    ? <div className="error">{error}</div>
+                                    : null
+                                }
                                 <Form onSubmit={handleDeleteUser}>
                                     <Form.Group className="mb-3">
                                         <Form.Label>Kirjoita salasanasi vahvistaaksesi tilin poisto</Form.Label>
                                         <Form.Control type="text" onChange={(e) => setDeletePassword(e.target.value)} placeholder="Salasana" />
                                     </Form.Group>
-                                    <Button type='submit' onClick={() => setPopupOpen2(false)}>
+                                    <Button type='submit'>
                                         Poista käyttäjä
                                     </Button>
                                     &nbsp;

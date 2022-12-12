@@ -11,6 +11,9 @@ function Navigationbar() {
     const [username, setUsername] = useState('') 
     const [password, setPassword] = useState('')
     const [user, setUser] = useState(null)
+    const [error, setError] = useState("");
+    const [notification, setNotification] = useState("");
+
 
     const refreshPage = () => {
         window.location.reload(false);
@@ -39,8 +42,12 @@ function Navigationbar() {
 
           refreshPage();
           
-        } catch (exception) {
-            console.log(exception)
+        } catch (error) {
+            console.log(error.response.data.error)
+            setError(error.response.data.error)
+            setTimeout(() => {
+                setError(null)
+            }, 3000)
         }
       }
 
@@ -55,9 +62,17 @@ function Navigationbar() {
             )
             setUsername('')
             setPassword('')
-            window.alert('Rekisteröityminen onnistui!')
-        } catch (exception) {
-            console.log(exception)
+            setNotification("Rekisteröityminen onnistui")
+            setTimeout(() => {
+                setNotification(null)
+            }, 3000)
+
+        } catch (error) {
+            console.log(error.response.data.error)
+            setError(error.response.data.error)
+            setTimeout(() => {
+                setError(null)
+            }, 3000)
         }
         }
 
@@ -78,6 +93,10 @@ function Navigationbar() {
                     >
                         <Form onSubmit={handleLogin} id="form">
                             <h5 id="form-header">Kirjaudu</h5>
+                            {error
+                                    ? <div className="error">{error}</div>
+                                    : null
+                                }
                             <Form.Group>
                                 <Form.Label id="form-label">Käyttäjätunnus</Form.Label>
                                 <Form.Control id="form-control" onChange={({ target }) => setUsername(target.value)} type="username" placeholder='käyttäjätunnus'/>
@@ -99,6 +118,14 @@ function Navigationbar() {
                     >
                         <Form onSubmit={handleRegister} id="form">
                             <h5 id="form-header">Rekisteröidy</h5>
+                        {error
+                                    ? <div className="error">{error}</div>
+                                    : null
+                                }
+                                {notification
+                                    ? <div className="notification">{notification}</div>
+                                    : null
+                                }
                             <Form.Group>
                                 <Form.Label id="form-label">Käyttäjätunnus</Form.Label>
                                 <Form.Control id="form-control" onChange={({ target }) => setUsername(target.value)} type="username" placeholder='käyttäjätunnus' />
@@ -110,6 +137,7 @@ function Navigationbar() {
                             <Button type='submit' id="form-button" data-testid="registerbutton">
                                 Luo uusi tili
                             </Button>
+                            
                         </Form>
                     </NavDropdown>
                 </Nav>

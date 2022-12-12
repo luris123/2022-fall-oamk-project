@@ -243,7 +243,7 @@ function V3(props) {
             <div className="d-grid gap-2">
             <Button id="view-button" onClick={() => setVisible(!visible)}>Vaihda näkymä</Button>
             <Button id="view-button" onClick={() => setV4Toggle(!v4Toggle)}>Jää ytimen merkinnät</Button>
-            <Button id="view-button" onClick={() => setV10Toggle(!v10Toggle)}>Historialliset tapahtuma</Button>
+            <Button id="view-button" onClick={() => setV10Toggle(!v10Toggle)}>Historialliset tapahtumat</Button>
             </div>
             {props.description
               ? <p>{props.description}</p>
@@ -254,8 +254,11 @@ function V3(props) {
               options={options}
               data={data}
             />
+            <Card.Text>Kuvaajassa näkyy ilmakehän CO2-pitoisuudet Mauna Loa -mittausten mukaan, kuvaajassa on oletuksena vuosittaiset keskiarvot,
+                      mutta kuukauden keskiarvon saa näkymiin vaihtamalla näkymää. Muun aiheeseen liityvän datan saa näkymiin painamalla kahta muuta nappia.</Card.Text>
            <Card.Link href="https://gml.noaa.gov/ccgg/trends/">Ilmakehän CO2-pitoisuudet Mauna Loa -mittauksista</Card.Link>
             <Card.Link href="https://cdiac.ess-dive.lbl.gov/trends/co2/lawdome.html">Etelämantereen Jää ytimen merkinnät</Card.Link>
+            <Card.Link href="https://www.southampton.ac.uk/~cpd/history.html" >Historialliset tapahtumat - datan lähde</Card.Link>
           </Card.Body>
         </Card>
     </>

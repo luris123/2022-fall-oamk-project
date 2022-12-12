@@ -11,11 +11,29 @@ const getTokenFrom = (req) => {
   return null;
 }
 
+const getUsers = async (req, res) => {
+  const users = await User.find({});
+
+  if (!users) return res.status(204).json({ 'message': 'No users found.' });
+
+  console.log(users);
+  res.json(users);
+}
+
 //checks if user exists and if user does not exist creates new user
+//also checks if username and password are long enough
 const createUser = async (req, res) => {
   const { username, password } = req.body;
 
   const existingUser = await User.findOne({ username });
+
+  if (!username || username.length<3) {
+    return res.status(400).json({error: 'Käyttäjänimen tulee olla vähintään 3 merkkiä pitkä'})
+  }
+
+  if (!password || password.length<3) {
+    return res.status(400).json({error: 'Salasanan tulee olla vähintään 3 merkkiä pitkä'})
+  }
 
   if (existingUser) {
     return res.status(400).json({error: 'Käyttäjä jo olemassa'})
@@ -149,5 +167,6 @@ module.exports = {
   deleteUser,
   createNewView,
   deleteView,
-  getView
+  getView,
+  getUsers
 }
