@@ -31,12 +31,12 @@ function V5(props) {
     interaction: {
       mode: 'nearest',
       intersect: false,
-  },
-  elements: {
+    },
+    elements: {
       point: {
-          radius: 0
+        radius: 0
       }
-  },
+    },
 
     responsive: true,
     plugins: {
@@ -55,10 +55,6 @@ function V5(props) {
       <Card>
         <Card.Body className='text-center'>
           <Card.Title>Vostokin jään C02 pitoisuuden mittaukset, vuodesta 415157 BC vuoteen 339 BC</Card.Title>
-          {props.description
-            ? <p>{props.description}</p>
-            : null
-          }
           <Line
             className='chart'
             options={options}
@@ -73,7 +69,10 @@ function V5(props) {
               ]
             }}
           />
-          <Card.Text>Kuvaajassa näkyy jään C02 pitoisuudet vuodesta 415157 - 339 ennen nykyaikaa. Data on kerätty Venäjän Vostokin asemalla itäosasta Etelämannerta.</Card.Text>
+          {props.description
+            ? <Card.Text>{props.description}</Card.Text>
+            : <Card.Text>Kuvaajassa näkyy jään C02 pitoisuudet vuodesta 415157 - 339 ennen nykyaikaa. Data on kerätty Venäjän Vostokin asemalla itäosasta Etelämannerta.</Card.Text>
+          }
           <Card.Link href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/vostok.icecore.co2">Datan lähde</Card.Link>
           <Card.Link href="https://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html">Datan kuvaus</Card.Link>
         </Card.Body>

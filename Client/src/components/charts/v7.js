@@ -16,7 +16,7 @@ function V7(props) {
     const [humanEvolution1, setHumanEvolution] = useState([]);
 
     useEffect(() => {
-        
+
         //wait for datasets
         if (datasets.length !== 0) {
             let carbon = datasets.v7data[0].carbon_dioxide.map(x => x.carbon_dioxide_ppm);
@@ -177,20 +177,19 @@ function V7(props) {
             <Card>
                 <Card.Body className='text-center'>
                     <Card.Title>Maailman lämpötilan muutos 2 miljoonan vuoden ajalta <br />& <br />Jään C02 pitoisuuden mittaus 800t vuoden ajalta</Card.Title>
-                    {props.description
-                        ? <p>{props.description}</p>
-                        : null
-                    }
                     <Chart
                         type='line'
                         options={options}
                         data={data}
                         className='chart'
                     />
-                    <Card.Text>Kuvaajassa näkyy maailman lämpötilan muutos 2 miljoonan vuoden
-                        ajalta yhdistettynä jään C02 pitoisuuden mittaukseen 800t vuoden ajalta.
-                        Lisäksi kuvaajassa näkyy myös evoluution ja historian merkittäviä tapahtumia.
-                    </Card.Text>
+                    {props.description
+                        ? <Card.Text>{props.description}</Card.Text>
+                        : <Card.Text>Kuvaajassa näkyy maailman lämpötilan muutos 2 miljoonan vuoden
+                            ajalta yhdistettynä jään C02 pitoisuuden mittaukseen 800t vuoden ajalta.
+                            Lisäksi kuvaajassa näkyy myös evoluution ja historian merkittäviä tapahtumia.
+                        </Card.Text>
+                    }
                     <Card.Link href="http://carolynsnyder.com/publications.php" >Lämpötilan muutos - datan lähde</Card.Link>
                     <Card.Link href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf">Lämpötilan muutos- datan kuvaus</Card.Link>
                     <Card.Link href="https://www.ncei.noaa.gov/access/paleo-search/study/17975" >C02 - datan kuvaus</Card.Link>

@@ -97,7 +97,7 @@ function V3(props) {
     interaction: {
       mode: 'nearest',
       intersect: false,
-  },
+    },
     scales: {
       Y: {
         type: "linear",
@@ -237,30 +237,29 @@ function V3(props) {
 
   return (
     <>
-        <Card>
-          <Card.Body className='text-center'>
-            <Card.Title>Ilmakehän CO2-pitoisuudet Mauna Loa -mittauksista alkaen vuodesta 1958 <br />&<br />Etelämantereen Jää ytimen merkinnät ilmakehän CO2-suhteista yhdistettynä Mauna Loa -mittauksiin</Card.Title>
-            <div className="d-grid gap-2">
+      <Card>
+        <Card.Body className='text-center'>
+          <Card.Title>Ilmakehän CO2-pitoisuudet Mauna Loa -mittauksista alkaen vuodesta 1958 <br />&<br />Etelämantereen Jää ytimen merkinnät ilmakehän CO2-suhteista yhdistettynä Mauna Loa -mittauksiin</Card.Title>
+          <div className="d-grid gap-2">
             <Button id="view-button" onClick={() => setVisible(!visible)}>Vaihda näkymä</Button>
             <Button id="view-button" onClick={() => setV4Toggle(!v4Toggle)}>Jää ytimen merkinnät</Button>
             <Button id="view-button" onClick={() => setV10Toggle(!v10Toggle)}>Historialliset tapahtumat</Button>
-            </div>
-            {props.description
-              ? <p>{props.description}</p>
-              : null
-            }
-             <Line
-              className='chart'
-              options={options}
-              data={data}
-            />
-            <Card.Text>Kuvaajassa näkyy ilmakehän CO2-pitoisuudet Mauna Loa -mittausten mukaan, kuvaajassa on oletuksena vuosittaiset keskiarvot,
-                      mutta kuukauden keskiarvon saa näkymiin vaihtamalla näkymää. Muun aiheeseen liityvän datan saa näkymiin painamalla kahta muuta nappia.</Card.Text>
-           <Card.Link href="https://gml.noaa.gov/ccgg/trends/">Ilmakehän CO2-pitoisuudet Mauna Loa -mittauksista</Card.Link>
-            <Card.Link href="https://cdiac.ess-dive.lbl.gov/trends/co2/lawdome.html">Etelämantereen Jää ytimen merkinnät</Card.Link>
-            <Card.Link href="https://www.southampton.ac.uk/~cpd/history.html" >Historialliset tapahtumat - datan lähde</Card.Link>
-          </Card.Body>
-        </Card>
+          </div>
+          <Line
+            className='chart'
+            options={options}
+            data={data}
+          />
+          {props.description
+            ? <Card.Text>{props.description}</Card.Text>
+            : <Card.Text>Kuvaajassa näkyy ilmakehän CO2-pitoisuudet Mauna Loa -mittausten mukaan, kuvaajassa on oletuksena vuosittaiset keskiarvot,
+              mutta kuukauden keskiarvon saa näkymiin vaihtamalla näkymää. Muun aiheeseen liityvän datan saa näkymiin painamalla kahta muuta nappia.</Card.Text>
+          }
+          <Card.Link href="https://gml.noaa.gov/ccgg/trends/">Ilmakehän CO2-pitoisuudet Mauna Loa -mittauksista</Card.Link>
+          <Card.Link href="https://cdiac.ess-dive.lbl.gov/trends/co2/lawdome.html">Etelämantereen Jää ytimen merkinnät</Card.Link>
+          <Card.Link href="https://www.southampton.ac.uk/~cpd/history.html" >Historialliset tapahtumat - datan lähde</Card.Link>
+        </Card.Body>
+      </Card>
     </>
   )
 }

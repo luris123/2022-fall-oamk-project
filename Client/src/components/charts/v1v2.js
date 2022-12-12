@@ -202,19 +202,18 @@ function V1V2(props) {
               <Button onClick={() => setVisible(!visible)}>Vaihda näkymä</Button>
               <Button onClick={() => setV2Toggle(!v2Toggle)}>2000 vuoden lämpötilat</Button>
             </div>
-            {props.description
-              ? <p>{props.description}</p>
-              : null
-            }
             <Line
               className='chart'
               options={options}
               data={data}
             />
-            <Card.Text>Kuvaajassa näkyy maailman pintalämpötilojen poikkeavuus tammikuusta 1850 lähtien 
+            {props.description
+              ? <Card.Text>{props.description}</Card.Text>
+              : <Card.Text>Kuvaajassa näkyy maailman pintalämpötilojen poikkeavuus tammikuusta 1850 lähtien 
               yhdisttettynä pohjoisen pallonpuoliskon 2000 vuoden lämpötilakonstruktio dataan. 
               Kuvaajassa näkyy oletuksena vuosittaiset lämpötilat, mutta kuukaisittaisen 
               lämpötilan ja 2000 vuoden lämpötila vaihtoehdot voi vaihtaa näkyviin.</Card.Text>
+            }
             <Card.Link href="https://www.metoffice.gov.uk/hadobs/hadcrut5/"> Maailmanlaajuinen pintalämpötilojen poikkeavuus data ja kuvaus </Card.Link>
             <Card.Link href="https://www.nature.com/articles/nature03265">Pohjoisen pallonpuoliskon 2000 vuoden lämpötilakonstruktio tutkimus</Card.Link>
           </Card.Body>
