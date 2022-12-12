@@ -262,7 +262,8 @@ function Profile() {
                                     <Button type='submit' onClick={() => setPopupOpen2(false)}>
                                         Poista käyttäjä
                                     </Button>
-                                    <Button onClick={() => { clear(); setPopupOpen2(false) }}>
+                                    &nbsp;
+                                    <Button onClick={() => { setPopupOpen2(false) }}>
                                         Sulje
                                     </Button>
                                 </Form>
