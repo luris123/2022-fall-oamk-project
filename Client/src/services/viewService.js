@@ -1,7 +1,5 @@
 import axios from "axios";
-const baseUrl = "http://localhost:3001";
-
-//pitääkö hakea uusi token ainakun tekee jotain??
+const baseUrl = "https://group5-visualizationtool.onrender.com";
 
 const createView = async (settings) => {
   const user = JSON.parse(window.localStorage.getItem("loggedUser"));

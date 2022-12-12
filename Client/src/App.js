@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/datasets');
+        const response = await axios.get('https://group5-visualizationtool.onrender.com/datasets');
         setDatasets(response.data);
       } catch (error) {
         console.log(error);
