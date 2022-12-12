@@ -11,10 +11,10 @@ const handleLogin = async (request, response) => {
     let passwordCorrect;
 
     if(user){
-      passwordCorrect = bcrypt.compare(password, user.passwordHash);
+      passwordCorrect = await bcrypt.compare(password, user.passwordHash);
     }
     
-    if (!user && !passwordCorrect) {
+    if (!user || !passwordCorrect) {
       return response.status(401).json({ error: 'Väärä käyttäjätunnus tai salasana'})
     }
   
