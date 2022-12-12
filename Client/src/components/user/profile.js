@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Popup from 'reactjs-popup';
 import Form from 'react-bootstrap/Form';
 import Button from "react-bootstrap/Button";
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { Link } from 'react-router-dom';
 import viewService from '../../services/viewService';
 import loginService from '../../services/loginService';
@@ -212,52 +213,52 @@ function Profile() {
                                 <Form onSubmit={handleCreateView}>
                                     <h4>Lämpötilatiedot ja co2 pitoisuudet</h4>
                                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                                        <Form.Check type="checkbox" onClick={() => setV1V2Toggle(!v1v2Toggle)} label="Global historical surface temperature anomalies from January 1850 onwards combined with Northern Hemisphere 2,000-year temperature reconstruction " />
+                                        <Form.Check type="checkbox" onClick={() => setV1V2Toggle(!v1v2Toggle)} label="Maailmanlaajuinen pintalämpötilojen poikkeavuus tammikuusta 1850 lähtien & Pohjoisen pallonpuoliskon 2000 vuoden lämpötilakonstruktio " />
                                         {v1v2Toggle
-                                            ? <Form.Control type="text" onChange={(e) => setV1V2Description(e.target.value)} placeholder="Enter description" />
+                                            ?  <FloatingLabel label="Kuvaus (vapaaehtoinen)"><Form.Control as="textarea" onChange={(e) => setV1V2Description(e.target.value)} style={{ height: '100px' }} /></FloatingLabel>
                                             : null
                                         }
                                     </Form.Group>
                                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                                        <Form.Check type="checkbox" onClick={() => setV3V4V10Toggle(!v3v4v10Toggle)} label="Atmospheric CO2 concentrations from Mauna Loa measurements starting 1958 combined with Antarctic Ice Core records of atmospheric CO2 ratios combined with Mauna Loa measurements and Antarctic Ice Core records of atmospheric CO2 ratios combined with Mauna Loa measurements" />
+                                        <Form.Check type="checkbox" onClick={() => setV3V4V10Toggle(!v3v4v10Toggle)} label="Ilmakehän CO2-pitoisuudet Mauna Loa -mittauksista alkaen vuodesta 1958 & Etelämantereen Jää ytimen merkinnät ilmakehän CO2-suhteista yhdistettynä Mauna Loa -mittauksiin" />
                                         {v3v4v10Toggle
-                                            ? <Form.Control type="text" onChange={(e) => setV3V4V10Description(e.target.value)} placeholder="Enter description" />
+                                            ? <FloatingLabel label="Kuvaus (vapaaehtoinen)"><Form.Control type="textarea" onChange={(e) => setV3V4V10Description(e.target.value)} style={{ height: '100px' }} /></FloatingLabel>
                                             : null
                                         }
                                     </Form.Group>
                                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                                        <Form.Check type="checkbox" onClick={() => setV5Toggle(!v5Toggle)} label="Vostok Ice Core CO2 measurements, 417160 - 2342 years BP" />
+                                        <Form.Check type="checkbox" onClick={() => setV5Toggle(!v5Toggle)} label="Vostokin jään C02 pitoisuuden mittaukset, vuodesta 415157 BC vuoteen 339 BC" />
                                         {v5Toggle
-                                            ? <Form.Control type="text" onChange={(e) => setV5Description(e.target.value)} placeholder="Enter description" />
+                                            ? <FloatingLabel label="Kuvaus (vapaaehtoinen)"><Form.Control type="text" onChange={(e) => setV5Description(e.target.value)} style={{ height: '100px' }} /></FloatingLabel>
                                             : null
                                         }
                                     </Form.Group>
                                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                                        <Form.Check type="checkbox" onClick={() => setV6Toggle(!v6Toggle)} label="Ice core 800k year composite study CO2 measurements" />
+                                        <Form.Check type="checkbox" onClick={() => setV6Toggle(!v6Toggle)} label="Jään C02 pitoisuuden mittaus 800t vuoden ajalta" />
                                         {v6Toggle
-                                            ? <Form.Control type="text" onChange={(e) => setV6Description(e.target.value)} placeholder="Enter description" />
+                                            ? <FloatingLabel label="Kuvaus (vapaaehtoinen)"><Form.Control type="text" onChange={(e) => setV6Description(e.target.value)} style={{ height: '100px' }} /></FloatingLabel>
                                             : null
                                         }
                                     </Form.Group>
                                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                                        <Form.Check type="checkbox" onClick={() => setV6V7Toggle(!v6v7Toggle)} label="Evolution of global temperature over the past two million years combined with Ice core 800k year composite study CO2 measurements" />
+                                        <Form.Check type="checkbox" onClick={() => setV6V7Toggle(!v6v7Toggle)} label="Maailman lämpötilan muutos 2 miljoonan vuoden ajalta & Jään C02 pitoisuuden mittaus 800t vuoden ajalta" />
                                         {v6v7Toggle
-                                            ? <Form.Control type="text" onChange={(e) => setV6V7Description(e.target.value)} placeholder="Enter description" />
+                                            ? <FloatingLabel label="Kuvaus (vapaaehtoinen)"><Form.Control type="text" onChange={(e) => setV6V7Description(e.target.value)} style={{ height: '100px' }} /></FloatingLabel>
                                             : null
                                         }
                                     </Form.Group>
                                     <h4>Päästölähteet</h4>
                                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                                        <Form.Check type="checkbox" onClick={() => setV8Toggle(!v8Toggle)} label="CO2 emissions by country" />
+                                        <Form.Check type="checkbox" onClick={() => setV8Toggle(!v8Toggle)} label="CO2-päästöt maiden mukaan" />
                                         {v8Toggle
-                                            ? <Form.Control type="text" onChange={(e) => setV8Description(e.target.value)} placeholder="Enter description" />
+                                            ? <FloatingLabel label="Kuvaus (vapaaehtoinen)"><Form.Control type="text" onChange={(e) => setV8Description(e.target.value)} style={{ height: '100px' }} /></FloatingLabel>
                                             : null
                                         }
                                     </Form.Group>
                                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                                        <Form.Check type="checkbox" onClick={() => setV9Toggle(!v9Toggle)} label="CO2 emissions by sectors" />
+                                        <Form.Check type="checkbox" onClick={() => setV9Toggle(!v9Toggle)} label="CO2-päästöt sektoreittain" />
                                         {v9Toggle
-                                            ? <Form.Control type="text" onChange={(e) => setV9Description(e.target.value)} placeholder="Enter description" />
+                                            ? <FloatingLabel label="Kuvaus (vapaaehtoinen)"><Form.Control type="text" onChange={(e) => setV9Description(e.target.value)} style={{ height: '100px' }} /></FloatingLabel>
                                             : null
                                         }
                                     </Form.Group>
