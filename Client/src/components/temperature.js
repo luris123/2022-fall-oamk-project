@@ -6,7 +6,6 @@ import V6 from './charts/v6';
 
 function Temperature() {
 
-  //Temporary test below will be changed to chart later on...
   return (
     <div>
       <V1V2 show={true}/>

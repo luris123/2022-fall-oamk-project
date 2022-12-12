@@ -1,0 +1,69 @@
+
+.newViewContent{
+    padding: 1rem;
+}
+
+.newViewContent h1{
+    text-align: center;
+}
+
+.newViewContent form{
+    padding: 1rem;
+    max-height: calc(100vh - 5rem);
+    overflow-y: auto;
+}
+
+.button{
+    margin-bottom: 1rem;
+}
+.profile-card{
+    background-color: transparent;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+}
+
+.card-subtitle{
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+.profile-card ul{
+    list-style-type: none;
+}
+
+.profile-card ul li{
+    margin-bottom: 10px;
+}
+
+.deletebutton{
+    padding-left: 10px;
+}
+
+.deletebutton:hover{
+    color: #ff0000;
+    cursor: pointer;
+    
+}
+
+.error {
+    color: red;
+    background: white;
+    font-size: 20px;
+    border-style: solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+.notification {
+    color: green;
+    background: lightgrey;
+    font-size: 20px;
+    border-style: solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}

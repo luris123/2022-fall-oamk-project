@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import Popup from "reactjs-popup"
+import Button from "react-bootstrap/Button";
+import '../../../css/v9helper.css'
+import Card from 'react-bootstrap/Card';
 import Transport from './energyhelpers/transport';
 import EnergyInBuildings from './energyhelpers/energyInBuildings';
 import EnergyInIndustry from './energyhelpers/energyInIndustry';
@@ -55,7 +58,7 @@ function Energy ({subSector, subSectorShare, subSectorFurtherBreakdown, subSecto
     }
 
     return (
-        <>
+        <Card className='v9helper'>
         <h3>Energy</h3>
         <ul>
             {subSectorData.slice(0,6).map((x, i) => {
@@ -86,15 +89,18 @@ function Energy ({subSector, subSectorShare, subSectorFurtherBreakdown, subSecto
         <Popup open={openFugitiveEmissionsFromEnergy} closeOnDocumentClick onClose={closeModal}>
             <FugitiveEmissionsFromEnergy subSectorFurtherBreakdown={subSectorFurtherBreakdown} subSectorFurtherBreakdownShare={subSectorFurtherBreakdownShare} />
         </Popup>
-
-        <button onClick={handleTransport}>Transport</button>
-        <button onClick={handleEnergyInBuildings}>Energy in buildings (elec and heat)</button>
-        <button onClick={handleEnergyInIndustry}>Energy in industry</button>
-        <button onClick={handleEnergyInAgri}>Energy in Agri & Fishing</button>
-        <button onClick={handleUnallocatedFuelCombustion}>Unallocated fuel combustion</button>
-        <button onClick={handleFugitiveEmissionsFromEnergy}>Fugitive emissions from energy</button>
-
-        </>
+        <Button onClick={handleTransport}>Transport</Button>
+        &nbsp;
+        <Button onClick={handleEnergyInBuildings}>Energy in buildings (elec and heat)</Button>
+        &nbsp;
+        <Button onClick={handleEnergyInIndustry}>Energy in industry</Button>
+        &nbsp;
+        <Button onClick={handleEnergyInAgri}>Energy in Agri & Fishing</Button>
+        &nbsp;
+        <Button onClick={handleUnallocatedFuelCombustion}>Unallocated fuel combustion</Button>
+        &nbsp;
+        <Button onClick={handleFugitiveEmissionsFromEnergy}>Fugitive emissions from energy</Button>
+        </Card>
         
     )
 }
