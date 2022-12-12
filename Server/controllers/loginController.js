@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const User = require('../models/user');
 
+//checks if user exists and if password is correct and returns new token, username and users views
 const handleLogin = async (request, response) => {
     const { username, password } = request.body;
 
@@ -10,13 +11,11 @@ const handleLogin = async (request, response) => {
     let passwordCorrect;
 
     if(user){
-      passwordCorrect = await bcrypt.compare(password, user.passwordHash);
+      passwordCorrect = bcrypt.compare(password, user.passwordHash);
     }
     
-    if (!(user && passwordCorrect)) {
-      return response.status(401).json({
-        error: 'invalid username or password'
-      })
+    if (!user && !passwordCorrect) {
+      return response.status(401).json({ error: 'Väärä käyttäjätunnus tai salasana'})
     }
   
     const userForToken = {

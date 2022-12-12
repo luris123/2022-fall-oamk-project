@@ -64,7 +64,7 @@ function Navigationbar() {
 
     if (user === null) {
         return (
-        <Navbar collapseOnSelect expand ="sm" bg="dark" variant="dark" id="navibar">
+        <Navbar collapseOnSelect expand ="lg" bg="dark" variant="dark" id="navibar">
             <Navbar.Toggle aria-controls="navBarScroll" data-bs-target="#navbarScroll"/>
             <Navbar.Collapse id="navbarScroll">
                 <Nav>

@@ -16,12 +16,14 @@ function V7(props) {
     const [humanEvolution1, setHumanEvolution] = useState([]);
 
     useEffect(() => {
+        
+        //wait for datasets
         if (datasets.length !== 0) {
             let carbon = datasets.v7data[0].carbon_dioxide.map(x => x.carbon_dioxide_ppm);
             setCarbon1(carbon);
 
             let timeTemp = datasets.v7data[0].gast_reconstruction.map(x => x.time_kyr_bp);
-            //multiple timeTemp data by 1000 to get the correct time and add - char to beginning of string
+            //multiples timeTemp data by 1000 to get the correct time and adds - char to beginning of string
             timeTemp = timeTemp.map(x => x * 1000);
             timeTemp = timeTemp.map(x => "-" + x);
 
@@ -32,20 +34,18 @@ function V7(props) {
 
             let humanEvolution = datasets.v10data;
 
-            //events that want to be shown on chart
+            //events that want to be shown on chart (indexes)
             let selectedEvents = [59, 61, 62, 64, 66, 69, 73, 77, 85, 121, 144, 598, 626];
 
             //selects only given indexes
             humanEvolution = humanEvolution.filter((x, index) => selectedEvents.includes(index));
-
-            //shows only events before 0
-            humanEvolution = humanEvolution.filter(x => x.year < 2022);
 
             setHumanEvolution(humanEvolution);
         }
 
     }, [datasets]);
 
+    //data for line chart
     const data = {
         labels: timeTemp1,
         datasets: [
@@ -84,6 +84,7 @@ function V7(props) {
         ]
     }
 
+    //options for line chart
     const options = {
         plugins: {
             tooltip: {
@@ -186,10 +187,15 @@ function V7(props) {
                         data={data}
                         className='chart'
                     />
+                    <Card.Text>Kuvaajassa näkyy maailman lämpötilan muutos 2 miljoonan vuoden
+                        ajalta yhdistettynä jään C02 pitoisuuden mittaukseen 800t vuoden ajalta.
+                        Lisäksi kuvaajassa näkyy myös evoluution ja historian merkittäviä tapahtumia.
+                    </Card.Text>
                     <Card.Link href="http://carolynsnyder.com/publications.php" >Lämpötilan muutos - datan lähde</Card.Link>
                     <Card.Link href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf">Lämpötilan muutos- datan kuvaus</Card.Link>
                     <Card.Link href="https://www.ncei.noaa.gov/access/paleo-search/study/17975" >C02 - datan kuvaus</Card.Link>
                     <Card.Link href="https://www.ncei.noaa.gov/pub/data/paleo/icecore/antarctica/antarctica2015co2composite.txt" >C02 - datan lähde</Card.Link>
+                    <Card.Link href="https://www.southampton.ac.uk/~cpd/history.html" >Historia - datan lähde</Card.Link>
                 </Card.Body>
             </Card>
         </>

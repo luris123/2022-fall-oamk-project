@@ -1,6 +1,7 @@
 import "../css/view.css";
 import { useEffect, useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
+import { Container } from "react-bootstrap";
 import V1V2 from './charts/v1v2';
 import V3 from './charts/v3';
 import V5 from './charts/v5';
@@ -8,9 +9,8 @@ import V7 from './charts/v7';
 import V6 from './charts/v6';
 import V9 from './charts/v9';
 import V8 from './charts/v8';
-
 import viewService from '../services/viewService';
-import { Container } from "react-bootstrap";
+
 
 function View() {
 
@@ -20,9 +20,8 @@ function View() {
     useEffect(() => {
 
         let url = window.location.pathname.slice(6);
-        console.log(url.length);
 
-        const getView = async () => {
+        const getViews = async () => {
             try {
                 const response = await viewService.getView(url);
 
@@ -35,13 +34,16 @@ function View() {
             }
         };
 
+        //if url is 4 characters long, tries to get views
         if (url.length === 4) {
-            getView();
+            getViews();
         }
 
     }, []);
 
-    if (viewDisplay === true) {
+    //if viewDisplay is true, 2 charts are show side by side, 
+    //except if screen size is under 1000px, then they are shown in a column
+    if (viewDisplay) {
         return (
             <Container>
                 <Row>
@@ -97,7 +99,9 @@ function View() {
                 </Row>
             </Container>
         )
-    } else {
+    } 
+    //if viewDisplay is false, charts are shown in a column
+    else {
         return (
             <Container fluid>
                 {settings.v1v2

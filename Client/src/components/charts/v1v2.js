@@ -7,7 +7,6 @@ import Button from "react-bootstrap/Button";
 import Card from 'react-bootstrap/Card';
 import { DatasetsContext } from '../../App.js';
 
-
 Chart.register(...registerables);
 
 function V1V2(props) {
@@ -20,8 +19,11 @@ function V1V2(props) {
   const [v2Toggle, setV2Toggle] = useState(true);
 
   useEffect(() => {
+
+    //waits for datasets
     if (datasets.length !== 0) {
 
+      //converts v1data to string
       for (let i = 0; i < datasets.v1data[0].globalAnnual.length; i++) {
         datasets.v1data[0].globalAnnual[i].time = datasets.v1data[0].globalAnnual[i].time.toString();
         datasets.v1data[0].globalAnnual[i].anomaly = datasets.v1data[0].globalAnnual[i].anomaly.toString();
@@ -65,7 +67,7 @@ function V1V2(props) {
     }
   }, [datasets]);
 
-
+  //options for line chart
   const options = {
 
     interaction: {
@@ -108,10 +110,11 @@ function V1V2(props) {
     }
   };
 
+  //data for line chart
   const data = {
     datasets: [
       {
-        label: "Maailmalaajuinen vuosittainen låmpötila",
+        label: "Maailmalaajuinen vuosittainen lämpötila",
         data: v1Data.globalAnnual,
         borderColor: 'black',
         borderWidth: 2,
@@ -208,6 +211,10 @@ function V1V2(props) {
               options={options}
               data={data}
             />
+            <Card.Text>Kuvaajassa näkyy maailman pintalämpötilojen poikkeavuus tammikuusta 1850 lähtien 
+              yhdisttettynä pohjoisen pallonpuoliskon 2000 vuoden lämpötilakonstruktio dataan. 
+              Kuvaajassa näkyy oletuksena vuosittaiset lämpötilat, mutta kuukaisittaisen 
+              lämpötilan ja 2000 vuoden lämpötila vaihtoehdot voi vaihtaa näkyviin.</Card.Text>
             <Card.Link href="https://www.metoffice.gov.uk/hadobs/hadcrut5/"> Maailmanlaajuinen pintalämpötilojen poikkeavuus data ja kuvaus </Card.Link>
             <Card.Link href="https://www.nature.com/articles/nature03265">Pohjoisen pallonpuoliskon 2000 vuoden lämpötilakonstruktio tutkimus</Card.Link>
           </Card.Body>
