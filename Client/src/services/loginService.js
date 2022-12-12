@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:3001'
+const baseUrl = 'https://group5-visualizationtool.onrender.com'
 
 const login = async credentials => {
   const response = await axios.post(baseUrl+'/login', credentials)
