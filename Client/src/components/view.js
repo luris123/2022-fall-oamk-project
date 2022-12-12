@@ -18,8 +18,10 @@ function View() {
     const [viewDisplay, setViewDisplay] = useState(false);
 
     useEffect(() => {
+        //get last 4 characters of url if the url has "view" in it
+        const url = window.location.href.includes('view') ? window.location.href.slice(-4) : '';
 
-        let url = window.location.pathname.slice(6);
+        console.log(url);
 
         const getViews = async () => {
             try {
