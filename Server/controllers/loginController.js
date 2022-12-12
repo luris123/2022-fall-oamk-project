@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const User = require('../models/user');
+const User = require('../models/User');
 
 //checks if user exists and if password is correct and returns new token, username and users views
 const handleLogin = async (request, response) => {
