@@ -60,16 +60,13 @@ function Navigationbar() {
             const user = await loginService.register({
                 username, password,
             })
-            window.localStorage.setItem(
-                'loggedUser', JSON.stringify(user)
-            )
+            
             setNotification("Rekisteröityminen onnistui")
             setUsername('')
             setPassword('')
 
             setTimeout(() => {
                 setNotification(null)
-                setUser(user);
             }, 3000)
 
         } catch (error) {
@@ -133,11 +130,11 @@ function Navigationbar() {
                                 }
                                 <Form.Group>
                                     <Form.Label>Käyttäjätunnus</Form.Label>
-                                    <Form.Control onChange={({ target }) => setUsername(target.value)} type="username" placeholder='käyttäjätunnus' />
+                                    <Form.Control onChange={({ target }) => setUsername(target.value)} value={username} type="username" placeholder='käyttäjätunnus' />
                                 </Form.Group>
                                 <Form.Group>
                                     <Form.Label >Salasana</Form.Label>
-                                    <Form.Control onChange={({ target }) => setPassword(target.value)} type="password" placeholder='salasana' />
+                                    <Form.Control onChange={({ target }) => setPassword(target.value)} value={password} type="password" placeholder='salasana' />
                                 </Form.Group>
                                 <Button type='submit' data-testid="registerbutton">
                                     Luo uusi tili
