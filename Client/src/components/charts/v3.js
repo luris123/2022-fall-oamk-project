@@ -255,7 +255,7 @@ function V3(props) {
               mutta kuukauden keskiarvon saa näkymiin vaihtamalla näkymää. Muun aiheeseen liityvän datan saa näkymään painamalla kahta muuta nappia.</Card.Text>
           }
           <Card.Link href="https://gml.noaa.gov/ccgg/trends/">Ilmakehän CO2-pitoisuudet Mauna Loa -mittauksista</Card.Link>
-          <Card.Link href="https://cdiac.ess-dive.lbl.gov/trends/co2/lawdome.html">Etelämantereen Jää ytimen merkinnät</Card.Link>
+          <Card.Link href="https://cdiac.ess-dive.lbl.gov/trends/co2/lawdome.html">Etelämantereen Jää-ytimen merkinnät</Card.Link>
           <Card.Link href="https://www.southampton.ac.uk/~cpd/history.html" >Historialliset tapahtumat - datan lähde</Card.Link>
         </Card.Body>
       </Card>
