@@ -2,19 +2,19 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Chart, registerables } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import Card from 'react-bootstrap/Card';
-import { DatasetsContext } from '../../App.js';
+import DatasetsContext from '../../context/datasetProvider.js';
 
 Chart.register(...registerables);
 
 function V6(props) {
 
-  const datasets = useContext(DatasetsContext);
+  const {datasets, setDatasets} = useContext(DatasetsContext);
 
   const [icesAgeV6, setIcesAgeV6] = useState([]);
   const [co2ppmV6, setCO2ppmV6] = useState([]);
 
   useEffect(() => {
-    if (datasets.length !== 0) {
+    if (!(datasets === undefined)) {
 
       let iceAgeArrayV6 = datasets.v6data.map(x => x.age_before_present);
       setIcesAgeV6(iceAgeArrayV6.reverse());

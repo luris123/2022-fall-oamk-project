@@ -1,23 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import loginService from '../../services/loginService';
 import { Link } from "react-router-dom";
 import { Navbar, Nav, NavLink } from 'react-bootstrap'
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from "react-bootstrap/Button";
 import Form from 'react-bootstrap/Form';
-import '../../css/App.css';
+import '../../css/navigationbar.css';
+import UserContext  from '../../context/userProvider.js';
 
 function Navigationbar() {
+
+    const { user, setUser } = useContext(UserContext);
+
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [user, setUser] = useState(null)
     const [error, setError] = useState("");
     const [notification, setNotification] = useState("");
-
-
-    const refreshPage = () => {
-        window.location.reload(false);
-    }
 
     useEffect(() => {
         const loggedUserJSON = window.localStorage.getItem('loggedUser')
@@ -29,6 +27,7 @@ function Navigationbar() {
 
     const handleLogin = async (event) => {
         event.preventDefault()
+
         try {
             const user = await loginService.login({
                 username, password,
@@ -39,8 +38,6 @@ function Navigationbar() {
             )
             setUsername('')
             setPassword('')
-
-            refreshPage();
 
         } catch (error) {
             console.log(error.response.data.error)
@@ -53,16 +50,16 @@ function Navigationbar() {
 
     const handleRegister = async (event) => {
         event.preventDefault()
+
         try {
             const user = await loginService.register({
                 username, password,
             })
-            window.localStorage.setItem(
-                'loggedUser', JSON.stringify(user)
-            )
+            
+            setNotification("Rekisteröityminen onnistui")
             setUsername('')
             setPassword('')
-            setNotification("Rekisteröityminen onnistui")
+
             setTimeout(() => {
                 setNotification(null)
             }, 3000)
@@ -77,74 +74,67 @@ function Navigationbar() {
     }
 
 
-    if (user === null) {
+    if (user === null || user === undefined) {
         return (
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" id="navibar">
+            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Navbar.Toggle aria-controls="navBarScroll" data-bs-target="#navbarScroll" />
-                <Navbar.Collapse id="navbarScroll">
-                    <Nav>
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="me-auto">
                         <NavLink eventKey="1" as={Link} to="/">Etusivu</NavLink>
                         <NavLink eventKey="2" as={Link} to="/emissionSources">Päästölähteet</NavLink>
                         <NavLink eventKey="3" as={Link} to="/temperature">Lämpötilatiedot ja co2 pitoisuudet</NavLink>
                         <NavDropdown
-                            id="nav-dropdown"
                             title="Kirjaudu"
                             menuVariant="light"
+                            id="basic-nav-dropdown"
                         >
-                            <div className='navbarForm'>
-                                <Form onSubmit={handleLogin}>
-                                    <h5 id="form-header">Kirjaudu</h5>
-                                    {error
-                                        ? <div className="error">{error}</div>
-                                        : null
-                                    }
-                                    <Form.Group>
-                                        <Form.Label id="form-label">Käyttäjätunnus</Form.Label>
-                                        <Form.Control id="form-control" onChange={({ target }) => setUsername(target.value)} type="username" placeholder='käyttäjätunnus' />
-                                    </Form.Group>
-                                    <Form.Group>
-                                        <Form.Label id="form-label">Salasana</Form.Label>
-                                        <Form.Control id="form-control" onChange={({ target }) => setPassword(target.value)} type="password" placeholder='salasana' />
-                                    </Form.Group>
-                                    <div className='buttonDiv'>
-                                        <Button type='submit' id="form-button">
-                                            Kirjaudu sisään
-                                        </Button>
-                                    </div>
-                                </Form>
-                            </div>
+                            <Form onSubmit={handleLogin}>
+                                <h5>Kirjaudu</h5>
+                                {error
+                                    ? <div className="error">{error}</div>
+                                    : null
+                                }
+                                <Form.Group>
+                                    <Form.Label>Käyttäjätunnus</Form.Label>
+                                    <Form.Control onChange={({ target }) => setUsername(target.value)} type="username" placeholder='käyttäjätunnus' />
+                                </Form.Group>
+                                <Form.Group>
+                                    <Form.Label>Salasana</Form.Label>
+                                    <Form.Control onChange={({ target }) => setPassword(target.value)} type="password" placeholder='salasana' />
+                                </Form.Group>
+                                <Button type='submit'>
+                                    Kirjaudu sisään
+                                </Button>
+                            </Form>
                         </NavDropdown>
                         <NavDropdown
-                            id="nav-dropdown"
                             title="Rekisteröidy"
                             menuVariant="light"
+                            id="basic-nav-dropdown"
                         >
-                            <div className='navbarForm'>
-                                <Form onSubmit={handleRegister} id="form">
-                                    <h5 id="form-header">Rekisteröidy</h5>
-                                    {error
-                                        ? <div className="error">{error}</div>
-                                        : null
-                                    }
-                                    {notification
-                                        ? <div className="notification">{notification}</div>
-                                        : null
-                                    }
-                                    <Form.Group>
-                                        <Form.Label id="form-label">Käyttäjätunnus</Form.Label>
-                                        <Form.Control id="form-control" onChange={({ target }) => setUsername(target.value)} type="username" placeholder='käyttäjätunnus' />
-                                    </Form.Group>
-                                    <Form.Group>
-                                        <Form.Label id="form-label">Salasana</Form.Label>
-                                        <Form.Control id="form-control" onChange={({ target }) => setPassword(target.value)} type="password" placeholder='salasana' />
-                                    </Form.Group>
-                                    <div className='buttonDiv'>
-                                        <Button type='submit' id="form-button" data-testid="registerbutton">
-                                            Luo uusi tili
-                                        </Button>
-                                    </div>
-                                </Form>
-                            </div>
+
+                            <Form onSubmit={handleRegister}>
+                                <h5>Rekisteröidy</h5>
+                                {error
+                                    ? <div className="error">{error}</div>
+                                    : null
+                                }
+                                {notification
+                                    ? <div className="notification">{notification}</div>
+                                    : null
+                                }
+                                <Form.Group>
+                                    <Form.Label>Käyttäjätunnus</Form.Label>
+                                    <Form.Control onChange={({ target }) => setUsername(target.value)} value={username} type="username" placeholder='käyttäjätunnus' />
+                                </Form.Group>
+                                <Form.Group>
+                                    <Form.Label >Salasana</Form.Label>
+                                    <Form.Control onChange={({ target }) => setPassword(target.value)} value={password} type="password" placeholder='salasana' />
+                                </Form.Group>
+                                <Button type='submit' data-testid="registerbutton">
+                                    Luo uusi tili
+                                </Button>
+                            </Form>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
@@ -154,14 +144,13 @@ function Navigationbar() {
         return (
             <Navbar collapseOnSelect expand="sm" bg="dark" variant="dark">
                 <Navbar.Toggle aria-controls="navBarScroll" data-bs-target="#navbarScroll" />
-                <Navbar.Collapse id="navbarScroll">
+                <Navbar.Collapse>
                     <Nav>
                         <NavLink eventKey="1" as={Link} to="/">Etusivu</NavLink>
                         <NavLink eventKey="2" as={Link} to="/emissionSources">Päästölähteet</NavLink>
                         <NavLink eventKey="3" as={Link} to="/temperature">Lämpötilatiedot ja co2 pitoisuudet</NavLink>
                         <NavLink eventKey="4" as={Link} to="/profile">Profiili</NavLink>
-                        <Button onClick={() => { window.localStorage.removeItem('loggedUser'); setUser(null); refreshPage() }}>Kirjaudu ulos</Button>
-
+                        <Button onClick={() => { window.localStorage.removeItem('loggedUser'); setUser(null); }}>Kirjaudu ulos</Button>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

@@ -2,13 +2,13 @@ import React, { useState, useEffect, useContext, useRef } from 'react';
 import { Chart as ChartJS, registerables } from 'chart.js';
 import { Chart } from 'react-chartjs-2';
 import Card from 'react-bootstrap/Card';
-import { DatasetsContext } from '../../App.js';
+import DatasetsContext from '../../context/datasetProvider.js';
 
 ChartJS.register(...registerables);
 
 function V7(props) {
 
-    const datasets = useContext(DatasetsContext);
+    const {datasets, setDatasets} = useContext(DatasetsContext);
 
     const [timeTemp1, setTimeTemp1] = useState([]);
     const [globalTemp1, setGlobalTemp1] = useState([]);
@@ -18,7 +18,7 @@ function V7(props) {
     useEffect(() => {
 
         //wait for datasets
-        if (datasets.length !== 0) {
+        if (!(datasets === undefined)) {
             let carbon = datasets.v7data[0].carbon_dioxide.map(x => x.carbon_dioxide_ppm);
             setCarbon1(carbon);
 

@@ -1,0 +1,58 @@
+.dropdown-menu.show {
+    height: auto;
+    width: 300px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+}
+
+.dropdown-menu.show form h5{
+    text-align: center;
+}
+
+.dropdown-menu.show form div{
+    margin-top: 10px;
+}
+
+.dropdown-menu.show form div label{
+    margin-bottom: 3px;
+    margin-left: 3px;
+}
+
+.dropdown-menu.show form button{
+    margin-top: 15px;
+    width: 100%;
+    border-color: #61dafb;
+    border-radius: 40px;
+}
+
+.dropdown-menu.show form .error{
+    background-color: white;
+    color: red;
+    border: none;
+    font-size: medium;
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown-menu.show form .notification{
+    background-color: white;
+    color: green;
+    border: none;
+    font-size: medium;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-toggler{
+    margin-left: 10px;
+}
+
+.navbar-nav{
+    align-items: center;
+}
+
+.nav-link{
+    text-align: center;
+}
+
