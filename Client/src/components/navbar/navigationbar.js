@@ -17,11 +17,6 @@ function Navigationbar() {
     const [error, setError] = useState("");
     const [notification, setNotification] = useState("");
 
-
-    const refreshPage = () => {
-        window.location.reload(false);
-    }
-
     useEffect(() => {
         const loggedUserJSON = window.localStorage.getItem('loggedUser')
         if (loggedUserJSON) {

@@ -228,7 +228,6 @@ function V3(props) {
           };
         }),
         hidden: v10Toggle,
-        //color hot pink
         borderColor: "rgb(255, 105, 180)",
         backgroundColor: "rgba(255, 105, 180, 0.5)",
       }
@@ -242,7 +241,7 @@ function V3(props) {
           <Card.Title>Ilmakehän CO2-pitoisuudet Mauna Loa -mittauksista alkaen vuodesta 1958 <br />&<br />Etelämantereen Jää ytimen merkinnät ilmakehän CO2-suhteista yhdistettynä Mauna Loa -mittauksiin</Card.Title>
           <div className="d-grid gap-2">
             <Button id="view-button" onClick={() => setVisible(!visible)}>Vaihda näkymä</Button>
-            <Button id="view-button" onClick={() => setV4Toggle(!v4Toggle)}>Jää ytimen merkinnät</Button>
+            <Button id="view-button" onClick={() => setV4Toggle(!v4Toggle)}>Jää-ytimen merkinnät</Button>
             <Button id="view-button" onClick={() => setV10Toggle(!v10Toggle)}>Historialliset tapahtumat</Button>
           </div>
           <Line
@@ -253,7 +252,7 @@ function V3(props) {
           {props.description
             ? <Card.Text>{props.description}</Card.Text>
             : <Card.Text>Kuvaajassa näkyy ilmakehän CO2-pitoisuudet Mauna Loa -mittausten mukaan, kuvaajassa on oletuksena vuosittaiset keskiarvot,
-              mutta kuukauden keskiarvon saa näkymiin vaihtamalla näkymää. Muun aiheeseen liityvän datan saa näkymiin painamalla kahta muuta nappia.</Card.Text>
+              mutta kuukauden keskiarvon saa näkymiin vaihtamalla näkymää. Muun aiheeseen liityvän datan saa näkymään painamalla kahta muuta nappia.</Card.Text>
           }
           <Card.Link href="https://gml.noaa.gov/ccgg/trends/">Ilmakehän CO2-pitoisuudet Mauna Loa -mittauksista</Card.Link>
           <Card.Link href="https://cdiac.ess-dive.lbl.gov/trends/co2/lawdome.html">Etelämantereen Jää ytimen merkinnät</Card.Link>

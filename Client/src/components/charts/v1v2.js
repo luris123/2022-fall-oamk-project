@@ -180,7 +180,7 @@ function V1V2(props) {
         hidden: !visible
       },
       {
-        label: "2000 vuoden lämpötilat",
+        label: "2000-vuoden lämpötilat",
         data: v2Data,
         borderColor: 'green',
         borderWidth: 2,
@@ -197,10 +197,10 @@ function V1V2(props) {
     <>
         <Card>
           <Card.Body className='text-center'>
-            <Card.Title>Maailmanlaajuinen pintalämpötilojen poikkeavuus tammikuusta 1850 lähtien <br />&<br />Pohjoisen pallonpuoliskon 2000 vuoden lämpötilakonstruktio</Card.Title>
+            <Card.Title>Maailmanlaajuinen pintalämpötilojen poikkeavuus tammikuusta 1850 lähtien <br />&<br />Pohjoisen pallonpuoliskon 2000-vuoden lämpötilakonstruktio</Card.Title>
             <div className="d-grid gap-2">
               <Button onClick={() => setVisible(!visible)}>Vaihda näkymä</Button>
-              <Button onClick={() => setV2Toggle(!v2Toggle)}>2000 vuoden lämpötilat</Button>
+              <Button onClick={() => setV2Toggle(!v2Toggle)}>2000-vuoden lämpötilat</Button>
             </div>
             <Line
               className='chart'
@@ -210,12 +210,12 @@ function V1V2(props) {
             {props.description
               ? <Card.Text>{props.description}</Card.Text>
               : <Card.Text>Kuvaajassa näkyy maailman pintalämpötilojen poikkeavuus tammikuusta 1850 lähtien 
-              yhdisttettynä pohjoisen pallonpuoliskon 2000 vuoden lämpötilakonstruktio dataan. 
+              yhdistettynä pohjoisen pallonpuoliskon 2000-vuoden lämpötilakonstruktiodataan. 
               Kuvaajassa näkyy oletuksena vuosittaiset lämpötilat, mutta kuukaisittaisen 
-              lämpötilan ja 2000 vuoden lämpötila vaihtoehdot voi vaihtaa näkyviin.</Card.Text>
+              lämpötilan ja 2000-vuoden lämpötila vaihtoehdot voi vaihtaa näkyviin.</Card.Text>
             }
             <Card.Link href="https://www.metoffice.gov.uk/hadobs/hadcrut5/"> Maailmanlaajuinen pintalämpötilojen poikkeavuus data ja kuvaus </Card.Link>
-            <Card.Link href="https://www.nature.com/articles/nature03265">Pohjoisen pallonpuoliskon 2000 vuoden lämpötilakonstruktio tutkimus</Card.Link>
+            <Card.Link href="https://www.nature.com/articles/nature03265">Pohjoisen pallonpuoliskon 2000-vuoden lämpötilakonstruktio tutkimus</Card.Link>
           </Card.Body>
         </Card>
     </>
