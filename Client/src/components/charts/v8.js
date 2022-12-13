@@ -3,19 +3,19 @@ import { Chart, registerables } from 'chart.js';
 import { Card } from 'react-bootstrap';
 import { Line } from 'react-chartjs-2';
 import randomColor from "randomcolor";
-import { DatasetsContext } from '../../App.js';
+import DatasetsContext from '../../context/datasetProvider.js';
 
 Chart.register(...registerables);
 
 function V8(props) {
 
-  const datasets = useContext(DatasetsContext);
+  const {datasets, setDatasets} = useContext(DatasetsContext);
 
   const [V8Years, setV8Years] = useState([]);
   const [V8Dataset, setV8Dataset] = useState([]);
 
   useEffect(() => {
-    if (datasets.length !== 0) {
+    if (!(datasets === undefined)) {
       let TempYears = [];
       let TempCountries = datasets.v8data[1].countries;
       let CountriesCO2 = [];

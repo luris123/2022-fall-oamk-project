@@ -1,91 +1,10 @@
-.App {
-  text-align: center;
-  background-color: #61dafb;
-  min-width: 600;
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: rgb(255, 255, 255);
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 .h1 {
   color: #ffffff;
   text-align: center;
   font-size: 80px;
 }
 
-.dropdown-menu.show {
-  display: block;
-  min-height: 335px;
-  height: 100%;
-}
-
-.navbarForm {
-  margin-right: 15px;
-}
-
-.buttonDiv{
-  text-align: center;
-  margin-left: 15px;
-}
-
-
-.navbarForm form .error{
-  border: none;
-  font-size: medium;
-  padding: 0;
-  margin: 0;
-  margin-left: 15px;
-}
-
-.navbarForm form .notification{
-  border: none;
-  font-size: medium;
-  padding: 0;
-  margin: 0;
-  margin-left: 15px;
-}
-
-#form-label {
-  margin-top: 17px;
-  margin-left: 15px;
-}
-#form-control{
-  outline: 0;
-  border-width: 0 0 2px;
-  margin-left: 10px;
-  width: 250px;
-  box-shadow: none;
-}
-#form-header{
-  text-align: center;
-}
-#form-button {
-  margin-top: 30px;
-  width: 200px;
-  background-color: #61dafb;
-  border-color: #61dafb;
-  border-radius: 40px;
-}
 
 .d-grid{
   margin: auto;
@@ -103,4 +22,3 @@
     margin: 0;
   }
 }
-

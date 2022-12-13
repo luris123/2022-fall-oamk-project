@@ -3,20 +3,20 @@ import { Chart, registerables } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import '../../css/App.css';
 import Card from 'react-bootstrap/Card';
-import { DatasetsContext } from '../../App.js';
+import DatasetsContext from '../../context/datasetProvider.js';
 
 
 Chart.register(...registerables);
 
 function V5(props) {
 
-  const datasets = useContext(DatasetsContext);
+  const {datasets, setDatasets} = useContext(DatasetsContext);
 
   const [airAge, setAirAge] = useState([]);
   const [co2Concentration, setCO2Concentration] = useState([]);
 
   useEffect(() => {
-    if (datasets.length !== 0) {
+    if (!(datasets === undefined)) {
       let AirAgeArray = datasets.v5data.map(x => x.mean_age_of_air_yr);
       setAirAge(AirAgeArray.reverse());
 

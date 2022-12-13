@@ -5,13 +5,13 @@ import { Line } from 'react-chartjs-2';
 import 'chartjs-adapter-luxon';
 import Button from "react-bootstrap/Button";
 import Card from 'react-bootstrap/Card';
-import { DatasetsContext } from '../../App.js';
+import DatasetsContext from '../../context/datasetProvider.js';
 
 Chart.register(...registerables);
 
 function V1V2(props) {
 
-  const datasets = useContext(DatasetsContext);
+  const {datasets, setDatasets} = useContext(DatasetsContext);
 
   const [v1Data, setV1Data] = useState([]);
   const [v2Data, setV2Data] = useState([]);
@@ -21,7 +21,7 @@ function V1V2(props) {
   useEffect(() => {
 
     //waits for datasets
-    if (datasets.length !== 0) {
+    if (!(datasets === undefined)) {
 
       //converts v1data to string
       for (let i = 0; i < datasets.v1data[0].globalAnnual.length; i++) {

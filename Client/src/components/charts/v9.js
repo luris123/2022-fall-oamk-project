@@ -8,14 +8,14 @@ import { Doughnut, getElementAtEvent } from 'react-chartjs-2';
 import { Card } from 'react-bootstrap';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import { DatasetsContext } from '../../App.js';
+import DatasetsContext from '../../context/datasetProvider.js';
 
 
 Chart.register(...registerables);
 
 function V9(props) {
 
-    const datasets = useContext(DatasetsContext);
+    const {datasets, setDatasets} = useContext(DatasetsContext);
 
     const [sector, setSector] = useState([]);
     const [sectorShare, setSectorShare] = useState([]);
@@ -52,7 +52,7 @@ function V9(props) {
     }
 
     useEffect(() => {
-        if (datasets.length !== 0) {
+        if (!(datasets === undefined)) {
             let sector = datasets.v9data[0].sector.map(x => x.sector);
             setSector(sector);
             let sectorShare = datasets.v9data[0].sector.map(x => x.share_of_global_greenhouse_gas_emissions_percentage);
