@@ -1,11 +1,10 @@
 import axios from "axios";
 const baseUrl = "https://group5-visualizationtool.onrender.com";
-const localUrl = "http://localhost:3001";
 
 const createView = async (settings) => {
   const user = JSON.parse(window.localStorage.getItem("loggedUser"));
 
-  const response = await axios.post(localUrl + "/users/newView", settings, {
+  const response = await axios.post(baseUrl + "/users/newView", settings, {
     headers: {
       "Content-Type": "application/json",
       Authorization: "Bearer " + user.token,
@@ -15,14 +14,14 @@ const createView = async (settings) => {
 };
 
 const getView = async (url) => {
-  const response = await axios.post(localUrl + "/users/getView", { url });
+  const response = await axios.post(baseUrl + "/users/getView", { url });
   return response.data;
 };
 
 const deleteView = async (url) => {
   const user = JSON.parse(window.localStorage.getItem("loggedUser"));
 
-  const response = await axios.post(localUrl + "/users/deleteView", url, {
+  const response = await axios.post(baseUrl + "/users/deleteView", url, {
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + user.token,

@@ -15,14 +15,13 @@ import DatasetsContext from './context/datasetProvider.js'
 function App() {
 
   const baseUrl = 'https://group5-visualizationtool.onrender.com';
-  const localUrl = 'http://localhost:3001';
 
   const { datasets, setDatasets } = useContext(DatasetsContext);
   //gets datasets from server and sets them to state so components can use them
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axios.get(localUrl + '/datasets');
+        const response = await axios.get(baseUrl + '/datasets');
         setDatasets(response.data);
       } catch (error) {
         console.log(error);
