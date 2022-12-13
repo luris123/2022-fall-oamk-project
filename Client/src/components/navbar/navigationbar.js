@@ -84,7 +84,7 @@ function Navigationbar() {
 
     if (user === null || user === undefined) {
         return (
-            <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
+            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Navbar.Toggle aria-controls="navBarScroll" data-bs-target="#navbarScroll" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">

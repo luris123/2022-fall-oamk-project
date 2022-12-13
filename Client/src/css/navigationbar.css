@@ -43,3 +43,16 @@
     margin: 0;
     padding: 0;
 }
+
+.navbar-toggler{
+    margin-left: 10px;
+}
+
+.navbar-nav{
+    align-items: center;
+}
+
+.nav-link{
+    text-align: center;
+}
+
