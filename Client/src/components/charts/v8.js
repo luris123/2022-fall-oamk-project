@@ -21,6 +21,7 @@ function V8(props) {
       let CountriesCO2 = [];
       let TempCountryCO2 = []
 
+      // keraa jokaisen maan co2 paastot vuosilta 1959-2020
       for (let s = 0; s < 219; s++) {
         TempYears = []
         for (let i = 1959; i < 2021; i++) {
@@ -31,6 +32,7 @@ function V8(props) {
         TempCountryCO2 = []
       }
 
+      //tekee datasetin jossa on jokaiselle maaalle oma array osa datasetissa
       for (let u = 0; u < 219; u++) {
         let randomcolor = randomColor()
         TempCountryCO2.push(
@@ -63,7 +65,6 @@ function V8(props) {
     scales: {
       y: {
         stacked: true,
-        //max: 1000,
       }
     },
     layout: {
@@ -96,7 +97,7 @@ function V8(props) {
           />
           {props.description
             ? <Card.Text>{props.description}</Card.Text>
-            : <Card.Text>Tästä puuttuu kuvaus teksi</Card.Text>
+            : <Card.Text>Kuvaajassa näkyy jokaisen maan CO2-päästöt vuosien 1959-2020 väliltä</Card.Text>
           }
           <Card.Link href="https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D">Datan lähde</Card.Link>
           <Card.Link href="https://www.icos-cp.eu/science-and-impact/global-carbon-budget/2021">Datan kuvaus</Card.Link>
