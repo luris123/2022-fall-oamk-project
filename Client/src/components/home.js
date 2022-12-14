@@ -7,7 +7,7 @@ function Home() {
     return (
         <div style={{ backgroundImage:`url(${image})`, backgroundRepeat:'no-repeat', backgroundSize:'cover', backgroundPosition:'center', height: '70vh'
         }}>
-            <h1 class="h1">Web-ohjelmoinnin sovellusprojekti</h1>
+            <h1 className="h1">Web-ohjelmoinnin sovellusprojekti</h1>
         </div>
         
   );

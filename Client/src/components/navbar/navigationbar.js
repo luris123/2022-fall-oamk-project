@@ -86,7 +86,7 @@ function Navigationbar() {
                         <NavDropdown
                             title="Kirjaudu"
                             menuVariant="light"
-                            id="basic-nav-dropdown"
+                            id="basic-nav-dropdown login-nav-button"
                         >
                             <Form onSubmit={handleLogin}>
                                 <h5>Kirjaudu</h5>
@@ -96,13 +96,13 @@ function Navigationbar() {
                                 }
                                 <Form.Group>
                                     <Form.Label>Käyttäjätunnus</Form.Label>
-                                    <Form.Control onChange={({ target }) => setUsername(target.value)} type="username" placeholder='käyttäjätunnus' />
+                                    <Form.Control id='login-username' onChange={({ target }) => setUsername(target.value)} type="username" placeholder='käyttäjätunnus' />
                                 </Form.Group>
                                 <Form.Group>
                                     <Form.Label>Salasana</Form.Label>
-                                    <Form.Control onChange={({ target }) => setPassword(target.value)} type="password" placeholder='salasana' />
+                                    <Form.Control id='login-password' onChange={({ target }) => setPassword(target.value)} type="password" placeholder='salasana' />
                                 </Form.Group>
-                                <Button type='submit'>
+                                <Button type='submit' id='login-button'>
                                     Kirjaudu sisään
                                 </Button>
                             </Form>
@@ -125,13 +125,13 @@ function Navigationbar() {
                                 }
                                 <Form.Group>
                                     <Form.Label>Käyttäjätunnus</Form.Label>
-                                    <Form.Control onChange={({ target }) => setUsername(target.value)} value={username} type="username" placeholder='käyttäjätunnus' />
+                                    <Form.Control id='register-username' onChange={({ target }) => setUsername(target.value)} value={username} type="username" placeholder='käyttäjätunnus' />
                                 </Form.Group>
                                 <Form.Group>
                                     <Form.Label >Salasana</Form.Label>
-                                    <Form.Control onChange={({ target }) => setPassword(target.value)} value={password} type="password" placeholder='salasana' />
+                                    <Form.Control id='register-password' onChange={({ target }) => setPassword(target.value)} value={password} type="password" placeholder='salasana' />
                                 </Form.Group>
-                                <Button type='submit' data-testid="registerbutton">
+                                <Button type='submit' data-testid="registerbutton" id='register-button'>
                                     Luo uusi tili
                                 </Button>
                             </Form>

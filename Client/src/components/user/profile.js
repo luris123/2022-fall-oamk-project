@@ -126,7 +126,6 @@ function Profile() {
             return;
         }
 
-
         try {
             const response = await loginService.deleteAccount({
                 password: deletePassword,
@@ -273,9 +272,9 @@ function Profile() {
                                     <Form onSubmit={handleDeleteUser}>
                                         <Form.Group className="mb-3">
                                             <Form.Label>Kirjoita salasanasi vahvistaaksesi tilin poisto</Form.Label>
-                                            <Form.Control type="text" onChange={(e) => setDeletePassword(e.target.value)} placeholder="Salasana" />
+                                            <Form.Control id='deleteUser' type="text" onChange={(e) => setDeletePassword(e.target.value)} placeholder="Salasana" />
                                         </Form.Group>
-                                        <Button type='submit'>
+                                        <Button type='submit' id='deleteUser-button'>
                                             Poista käyttäjä
                                         </Button>
                                         &nbsp;
