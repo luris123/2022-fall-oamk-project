@@ -3,6 +3,7 @@
 ## Projektin nimi: Web-sovellusprojekti
 
 ## Linkki appiin: 
+https://group5-visualizationtool-gbn4.onrender.com/
 
 ## Projektin aihe ja tarkoitus
 Projektin aiheena oli tehdä visualisointityökalu, jossa voidaan tarkastella erilaisia ilmastonmuutokseen liittyviä kuvaajia. Sovelluksessa on myös mahdollista tehdä käyttäjä, jolla voidaan luoda omia visualisointinäkymiä yksilöllisillä url-tunnisteilla. Näkymiin käyttäjä voi valita haluamansa visualisoinnit ja asettelun, sekä kirjoittaa kuvaustekstin jokaiselle visualisoinnille. Käyttäjien luomat näkymät ovat löydettävissä julkisesti internetissä. 
