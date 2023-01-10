@@ -36,7 +36,7 @@ For Backend testing we used integration test approach. We used Jest and SuperTes
 ### Database structure
 ![](Client/src/assets/Tietokanta1.png)
 
-### Käyttöliittymäsuunnitelma
+### UI design
 [UI design link](https://www.figma.com/file/tXrYVw573jIBt49oBs0tLg/Group5?node-id=0%3A1)
 
 ## How to run locally
