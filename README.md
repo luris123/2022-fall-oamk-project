@@ -1,47 +1,67 @@
-# Syksyn 2022 ryhmäprojekti
+# Fall 2022 OAMK group project
 
-## Projektin nimi: Web-sovellusprojekti
+## Project name: Climate data visualization tool
 
-## Linkki appiin: https://group5-visualizationtool-gbn4.onrender.com/ (kuvaajien datan lataus saattaa kestää hetken)
+## Link to site: https://group5-visualizationtool-gbn4.onrender.com/ (data for the graphs may take a moment to appear)
 
-## Projektin aihe ja tarkoitus
-Projektin aiheena oli tehdä visualisointityökalu, jossa voidaan tarkastella erilaisia ilmastonmuutokseen liittyviä kuvaajia. Sovelluksessa on myös mahdollista tehdä käyttäjä, jolla voidaan luoda omia visualisointinäkymiä yksilöllisillä url-tunnisteilla. Näkymiin käyttäjä voi valita haluamansa visualisoinnit ja asettelun, sekä kirjoittaa kuvaustekstin jokaiselle visualisoinnille. Käyttäjien luomat näkymät ovat löydettävissä julkisesti internetissä. 
+## Projects topic and purpose
+Projects topic was to create a visualization tool, that shows different types of graphs about climate change. Users may create an account so they can create their own custom visualization views and share them via unique URLs. Users may select which graphs they want to display and write custom descriptions for them if they choose to do so. All user made views can be found publicly with correct URL.
 
-Projektin tarkoituksena oli perehtyä full-stack ohjelmoinnin perusteisiin ja Kanban-kehitysmallin käyttämiseen.
+The purpose of the project was to get familiar with full-stack programming and the Kanban development model.
 
-## Mitä teknologioita projektissa on käytetty?
+## Technologies and tools
 
 ### Frontend
 
-Sovelluksen frontend on toteutettu käyttäen ReactJS (JavaScript kirjasto), Bootstrap (CSS kehys) ja CSS:ää HTML:n tyylittämiseen. Erilaisten pakettien asentamiseen käytettiin npm:ää (node package manager). Mainisemisen arvoisia paketteja ovat: Chart.js, React-Chartjs-2, Axios, Bootstrap, React-Bootstrap
+Projects frontend was created using React.js, Bootstrap and CSS. npm was used for installing packages and such. Worth mentioning packages are Chart.js, React-Chartjs-2, Axios, Bootstrap and React-Bootsrap.
 
 ### Backend
 
-Backend toteutettiin myös Javascriptillä käyttäen Node.js ajoympäristöä, käytössä on myös muunmuassa Express.js niminen kirjasto jota käytettiin sovelluksen API:n rakentamisessa, sekä Mongoose jonka avulla voitiin luoda yhteys tietokannan ja backendin välillä.
+Projects backend was created using Node.js, Express.js was also used for building the API. Most important package was Mongoose, which was used for creating a connection between Backend and Database.
 
-### Tietokanta
+### Database
 
-Tietokannaksi valittiin MongoDB, joka on avoimen lähteen dokumenttipohjainen NoSQL tietokanta. Suurin syy MongoDB:n valinnalle oli sen yksinkertainen rakenne.
+MongoDB was chosen to be used mainly because of its fairly simple structure which is easy to learn/use.
 
-## Ketkä tekivät ja mikä oli kenenkin rooli
--?-
+### Testing
+For Frontend testing we used Cypress which is a End to End (E2E) testing library.
 
-## Arkkitehtuuri ja rakenne
+For Backend testing we used integration test approach. We used Jest and SuperTest libraries for testing API.
 
-### Sovelluksen rakenne
+## Architecture and structure
+
+### Application structure
 ![](Client/src/assets/Arkkitehtuuri.png)
 
-### Tietokanta rakenne
+### Database structure
 ![](Client/src/assets/Tietokanta1.png)
 
 ### Käyttöliittymäsuunnitelma
--kuva vai linkki tähän-
+[UI design link](https://www.figma.com/file/tXrYVw573jIBt49oBs0tLg/Group5?node-id=0%3A1)
 
-## Käyttöönotto
+## How to run locally
 
-### Lokaalisti
+1. Clone repository
+2. Move to folder 'Client' and install all dependencies with command 'npm install', do the same inside 'Server' folder.
+3. Start the apps frontend with command 'npm start' inside the 'Client' folder.
+4. Start the apps backend with command 'npm run devStart' inside the 'Server' folder.
 
-1. Kloonaa repositorio.
-2. Siirry 'Client' kansioon ja asennna dependencyt komennolla 'npm install', tee sama 'Server' kansion sisällä.
-3. Käynnistä sovelluksen frontend komennolla npm start 'Client' kansion sisällä.
-4. Käynnistä sovelluksen backend komennolla npm run devStart 'Server' kansion sisällä.
+## What everyone did
+
+### Anssi Rauhala
+Worked with data, made 2 graphs, login, register and delete view functions, CSS, worked with backend/frontend, made backend tests.
+
+### Junnu Kyrö
+Worked with data, made 2 graphs, made 'luo uusi näkymä' function, created the user made view page, CSS, fetch graph data from database, worked with backend/frontend, made frontend tests.
+
+[Link to Junnus GitHub](https://github.com/Jundeb)
+
+### Antti-Jussi Niku
+Worked with data, made 3 graphs, delete user function, responsives, initialization of the backend, fetch graph data from database, worked with backend/frontend.
+
+[Link to Anttis GitHub](https://github.com/ArunJ0)
+
+### Santtu Tiitinen
+Worked with data, UI design, responsives, CSS.
+
+[Link to Santtus GitHub](https://github.com/santtutiitinen)
