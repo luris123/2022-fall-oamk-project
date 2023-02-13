@@ -52,7 +52,7 @@ For Backend testing we used integration test approach. We used Jest and SuperTes
 Worked with data, made 2 graphs, login, register and delete view functions, CSS, worked with backend/frontend, made backend tests.
 
 ### Junnu Kyrö
-Worked with data, made 2 graphs, made 'luo uusi näkymä' function, created the user made view page, CSS, fetch graph data from database, worked with backend/frontend, made frontend tests.
+Worked with data, made 2 graphs, made 'create a new view' function, created the user made view page, CSS, fetch graph data from database, worked with backend/frontend, made frontend tests.
 
 [Link to Junnus GitHub](https://github.com/Jundeb)
 
